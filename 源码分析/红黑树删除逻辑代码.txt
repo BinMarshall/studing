@@ -1,0 +1,134 @@
+//寻找右子树最小结点
+Node* Successor(Tree T, Node *x){
+    if(x->right != NIL) {
+        Node *p=x->right;
+        while( p->left != NIL ) {
+            p=p->left;
+        }
+        //右孩子中最小的结点
+        return p;
+    }
+    return x;
+}
+
+/** z是将要从树中被删除的节点 */
+void Delete(Tree T, Node *z) {
+    Node *y;  //指向将要被删除的结点
+    Node *x;  //指向将要被删除的结点的唯一儿子
+    //如果有一个子结点为NIL，删除当前结点
+    if(z->left == NIL || z->right == NIL){
+        y=z;
+    } else {
+        //删除左子树的最大结点或右子树最小结点
+        y=Successor(T, z);//这里是右子树最大结点
+    }
+    
+    //开始删除
+    /** 如果y的左子不空，那么x就指向左子，否则x指向右子，注意：右子有可能是空的 */
+    if(y->left != NIL) {
+        x=y->left;
+    } else {
+        x=y->right;
+    }
+    /** 如果x不空，x的父亲指向y的父亲，相当于把y删除了 */
+    if (x != NIL){
+        x->parent=y->parent;
+    }
+    
+    if( y->parent == NIL ) {
+    		/** 如果y的父亲为空，即y是根，因此将根指向x */
+        T=x;
+    } else {
+    		/** 如果y的父亲不空，如果y是其父的左子，就令y父亲的左子指向x；否则令y父亲的右子指向x  */
+        if( y == y->parent->left ) {
+            y->parent->left=x;
+        } else {
+            y->parent->right=x;
+        }
+    }
+    //交换值
+    /** 如果y不等于z，则将z的值替换为y的值 */
+    if( y != z ) {
+        z->value=y->value;
+    }
+    //如果删除的是黑色结点，进行调整
+    if( y->color == BLACK ) {
+        //没有修改y结点，任意属性的值，可以使用
+        DeleteFixup(T,NIL!=x ? x:y);
+    }
+}
+
+/** 删除节点后，对树颜色进行调整 */
+void DeleteFixup(Tree T, Node *x) {
+    //若x是RED，不进行循环判断，直接将其变为黑色
+    while( x != T && x->color == BLACK ) {
+        //x为左子树
+        if(x == x->parent->left) {
+            //w为x的兄弟结点
+            Node *w=x->parent->right;
+            /*
+             情况1：如果w为RED，由于x为BLACK且删除了一个BLACK结点，所以w必有BLACK孩子。
+             此时将w着为BLACK，x父结点着为RED，对x的父结点左旋。x的新兄弟结点w是BLACK，情况1转换为情况2、3或4
+            */
+            if(w->color == RED){
+                w->color=BLACK;
+                x->parent->color=RED;
+                LeftRotate(T, x->parent);
+                w=x->parent->right;
+            }
+            /*
+             情况2：如果w为BLACK，w的左右孩子为BLACK。w着为RED，x上移至父结点
+             */
+            if(w->left->color == BLACK && w->right->color == BLACK) {
+                w->color=RED;
+                x=x->parent;
+            } else {
+                /*
+                 情况3：如果w为BLACK，w的左孩子为RED，右孩子为BLACK。
+                 交换w与其左孩子的color，对w进行右旋。旋转后x的新兄弟w是一个有RED右孩子的BLACK结点，转换成情况4
+                 */
+                if(w->right->color == BLACK) {
+                    w->color=RED;
+                    w->left->color=BLACK;
+                    RightRotate(T, w);
+                    w=x->parent->right;
+                }
+                /*
+                 情况4：如果w为BLACK，w的右孩子为RED。
+                 将w着为x父结点的颜色，x父结点着为BLACK，w右孩子着为BLACK，对x的父结点左旋，x设为根结点
+                 */
+                w->color=x->parent->color;
+                x->parent->color=BLACK;
+                w->right->color=BLACK;
+                LeftRotate(T,x->parent);
+                x=T;
+            }
+        } else {
+            //与前面对称，不再详述
+            Node *w=x->parent->left;
+            if(w->color == RED) {
+                w->color=BLACK;
+                x->parent->color=RED;
+                RightRotate(T, x->parent);
+                w=x->parent->left;
+            }
+            if(w->left->color == BLACK && w->right->color == BLACK) {
+                w->color=RED;
+                x=x->parent;
+            } else {
+                if(w->left->color == BLACK) {
+                    w->color=RED;
+                    w->right->color=BLACK;
+                    LeftRotate(T, w);
+                    w=x->parent->left;
+                }
+                w->color=x->parent->color;
+                x->parent->color=BLACK;
+                w->left->color=BLACK;
+                RightRotate(T,x->parent);
+                x=T;
+            }
+        }
+    }
+    x->color=BLACK;
+}
