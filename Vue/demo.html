@@ -13,7 +13,108 @@
 			<span>{{ textdata | toUpperCase1('333','444') }}</span>
 		</div>
 		
+		<div id="app" v-bind:name="message" v-html="message">
 		
+	</div><br>
+	
+	<div id="app-2">
+	  <span v-bind:title="message">
+	    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+	  </span><br>
+	  <span v-text="message"></span><br>
+	  <span>{{ message }}</span><br>
+	</div><br>
+	
+	<div id="app-3">
+	  <p v-if="seen">一夜北风紧</p>
+	  <p v-else="!seen">万里彤云厚</p>
+	  <p v-show="seen">骑驴过小桥</p>
+	  <p v-show="!seen">独叹梅花瘦</p>
+	</div><br>
+	
+	<div id="app-4">
+	  <ol>
+	    <li v-for="todo in todos">
+	      {{ todo.text }}
+	    </li>
+	  </ol>
+	  <ol>
+	    <li v-for="(todo,index) in todos">
+	      {{ todo.text }}---{{ index }}
+	    </li>
+	  </ol>
+	  <ol>
+	    <li v-for="(value,key,index) in todoMap">
+	      {{ value }}---{{ key }}---{{ index }}
+	    </li>
+	  </ol>
+	</div><br>
+	
+	<div id="app-5">
+		<input type="text" id="name" value="郝彬彬" v-model="data.name"  /><br>
+		<input v-bind:type="data.type" v-bind:name="data.sex" v-bind:value="data.age" /><br>
+		<input :type="data.type" :name="data.sex" :value="data.age" /><br>
+	</div><br>
+	
+	<div id="app-6">
+		<span>计算属性</span><br>
+		<input type="text" id="name" value="郝彬彬" v-model="data.name" />
+		<input type="text" id="age" value="30" v-model="data.age" />
+		姓名+年龄：{{nameage1}}<br>
+		<button @click="clickme">点我点我</button><br>
+	</div><br>
+	
+	<div id="app-7" v-cloak>
+		<a href="www.baidu.com" v-on:click.prevent="doThis('ttt')">默认事件</a>
+		<input type="text" name="age" v-on:click="value1 += 1" placeholder="执行focus事件0"/><span>{{value1}}</span>
+		<input type="text" name="age" v-on:click="doThis('aaa')" placeholder="执行focus事件1"/>
+		<input type="text" name="age" @focus.once="doThis('aaa')" placeholder="执行focus事件2"/>
+		<div @click="doThis('kkk')">
+			<div @click="doThat">
+				<div @click.stop.prevent="doother">测试事件冒泡</div>
+			</div>
+		</div>
+	</div><br>
+	
+	<div class="app-8">
+		<input type="text" name="hi" :value="my.value" />
+	</div><br>
+	
+	<label>
+		<input type="text" name="hi" :value="my.value" />
+	</label><br><br>
+	
+	<label>表单控件详解</label>
+	<div class="app-10">
+		<input type="text" v-model="textvalue" /><br>
+		
+		<input type="checkbox" value="didi" v-model="checkboxvalue">滴滴
+		<input type="checkbox" value="kudi" v-model="checkboxvalue">快滴
+		<input type="checkbox" value="uber" v-model="checkboxvalue">Uber<br>
+		
+		<input type="radio" value="al" v-model="radiovalue">阿里
+		<input type="radio" value="jd" v-model="radiovalue">京东<br>
+		
+		<select v-model="selectvalue">
+			<option value="bd">百度</option>
+			<option value="gg">谷歌</option>
+			<option value="sg">搜狗</option>
+		</select><br>
+		
+		<input type="button" value="更新表单控件值" @click="changevalue" />
+	</div>
+
+	将小写变大写：
+	<div id="app-11">
+		<input type="text" :value="textvalue | toUpperCase('aaa','bbb')">
+		<input type="text" v-model="textvalue">
+	</div><br>
+	
+	<div id="app-12">
+		<input type="text" v-model="textvalue"><br>
+		<span>未使用v-once：{{textvalue}}</span><br>
+		<span v-once>使用了v-once：{{textvalue}}</span>
+	</div>
 	</body>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script>
@@ -31,5 +132,151 @@
 					}
 				}
 			});
+			
+			var app=new Vue({
+		el:'#app',
+		data:{
+			message : '<p>Hello Vue!</p>'
+		}
+	})
+	
+	var app2 = new Vue({
+	  el: '#app-2',
+	  data: {
+	    message: '页面加载于 ' + new Date().toLocaleString()
+	  }
+	})
+	
+	var app3 = new Vue({
+	  el: '#app-3',
+	  data: {
+	    seen: true
+	  }
+	})
+	
+	var app4 = new Vue({
+	  el: '#app-4',
+	  data: {
+	  	todos : [
+	  		{"text" : "1111"},
+	  		{"text" : "2222"},
+	  		{"text" : "3333"}
+	  	],
+	    todoMap : {
+	    	"name" : "marshall",
+	    	"age" : 20,
+	    	"sex" : "male"
+	    }
+	  }
+	})
+	
+	var app5 = new Vue({
+	  el: '#app-5',
+	  data: {
+	    data:{
+	    	name:'郝浩然',
+	    	sex:'男',
+	    	age:6,
+	    	type:'text1'
+	    }
+	  }
+	})
+	
+	var app6 = new Vue({
+	  el: '#app-6',
+	  data: {
+	    data:{
+	    	name:'郝浩然',
+	    	sex:'男',
+	    	age:6
+	    }
+	  },
+	  computed:{
+	    nameage1 : {
+	    	cache : false,
+	    	get : function(){
+	    		return Date.now()+" ; "+this.data.name+" ; "+this.data.age;
+	    	}
+	    }
+	  },
+	  methods : {
+	  	clickme : function(){
+	  		alert(this.nameage1);
+	  	}
+	  }
+	})
+	
+	var app7 = new Vue({
+	  el: '#app-7',
+	  data : {
+	  	value1 : 1
+	  },
+	  methods : {
+	    doThis : function(abc){
+	    	alert(abc+"--"+this.value1+"--"+event.type);
+	    	alert(event.target.tagName);
+	    },
+	    doThat : function(){
+	    	alert('dothat');
+	    },
+	    doother : function(){
+	    	alert('doother');
+	    }
+	  }
+	})
+	
+	var app8 = new Vue({
+		el : '.app-8',
+		data : {
+			my : {
+				value : 'hell0'
+			}
+		}
+	})
+	
+	var app9 = new Vue({
+		el : 'label',
+		data : {
+			my : {
+				value : 'hell0'
+			}
+		}
+	})
+	
+	var app10 = new Vue({
+		el : '.app-10',
+		data : {
+			textvalue : '中科软',
+			checkboxvalue : ['kudi','uber'],
+			radiovalue : 'jd',
+			selectvalue : 'gg'
+		},
+		methods : {
+			changevalue : function(){
+				this.textvalue = '中青博联',
+				this.Checkboxvalue = ['didi','uber'],
+				this.radiovalue = 'al',
+				this.selectvalue = 'bd'
+			}
+		}
+	})
+	
+	Vue.filter("toUpperCase", function(value, v1, v2){
+		return value.toUpperCase() + v1+"--"+v2;
+	});
+
+	var app11 = new Vue({
+		el : '#app-11',
+		data : {
+			textvalue : 'abc'
+		}
+	})
+	
+	var app12 = new Vue({
+		el : '#app-12',
+		data : {
+			textvalue : 'abc'
+		}
+	})
 		</script>
 </html>
