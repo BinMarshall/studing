@@ -115,8 +115,28 @@
 		<span>未使用v-once：{{textvalue}}</span><br>
 		<span v-once>使用了v-once：{{textvalue}}</span>
 	</div>
+	
+	<div id="components-demo">
+	  <button-counter></button-counter>
+	</div>
+	
+	<div id="components-demo2">
+	  <button-counter2></button-counter2>
+	</div>
+	
+	<div id="consumer">
+		<button @click="clickme">远程调用</button>
+	</div>
+	
 	</body>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="./vue-resource1/vue-resource.js"></script>
+	<script>
+		//var Vue = require("vue");
+		//var VueResource = require("vue-resource");
+		//import VueResource from 'vue-resource1'
+		//Vue.use(VueResource);
+	</script>
 		<script>
 			Vue.filter('toUpperCase', function(v1, v2, v3){
 				alert(v1+"--"+v2+"--"+v3);
@@ -278,5 +298,50 @@
 			textvalue : 'abc'
 		}
 	})
-		</script>
+	
+	var tempDesc = Vue.extend({
+		data: function () {
+			return {
+				count: 0
+			}
+		},
+	  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+	});
+	Vue.component('button-counter', tempDesc);
+	new Vue({ el: '#components-demo' });
+	
+	var tempDesc = Vue.extend({
+		data: function () {
+			return {
+				count: 0
+			}
+		},
+	  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+	});
+	new Vue({
+  	el: '#components-demo2',
+  	components: {
+    	// <my-component> 将只在父组件模板可用
+    	'button-counter2' : tempDesc
+  	}
+	});
+	
+	var consumer = new Vue({
+		el : "#consumer",
+		methods : {
+			clickme : function(){
+				this.$http.post('www.baidu.com',{a:1,b:20},{
+                    emulateJSON:true
+        	}).then(
+            function(response){ //成功的回调函数
+                alert("成功："+response.data);
+            },
+            function(response){ //失败的回调函数
+                alert("失败："+response.status);
+            }
+        )
+			}
+		}
+	});
+	</script>
 </html>
