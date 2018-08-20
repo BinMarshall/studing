@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			[o-cloak]{
+				display:none
+			}
+		</style>
+	</head>
+	<body>
+		<span>内部指令</span><br>
+		<div id="app-1">
+		  <p v-if="seen">一夜北风紧</p>
+		  <p v-else="!seen">万里彤云厚</p>
+		  <p v-show="seen">骑驴过小桥</p>
+		  <p v-show="!seen">独叹梅花瘦</p>
+		</div><br><br>
+		
+		<div class="app-2">
+			<input type="text" v-model="textvalue" /><br>
+			
+			<input type="checkbox" value="didi" v-model="checkboxvalue">滴滴
+			<input type="checkbox" value="kudi" v-model="checkboxvalue">快滴
+			<input type="checkbox" value="uber" v-model="checkboxvalue">Uber<br>
+			
+			<input type="radio" value="al" v-model="radiovalue">阿里
+			<input type="radio" value="jd" v-model="radiovalue">京东<br>
+			
+			<select v-model="selectvalue">
+				<option value="bd">百度</option>
+				<option value="gg">谷歌</option>
+				<option value="sg">搜狗</option>
+			</select><br><br>
+			
+			<input type="button" value="更新表单控件值" @click="changevalue" />
+		</div><br><br>
+		
+		<div id="app-3">
+		  <ol>
+		    <li v-for="todo in todos">
+		      {{ todo.text }}
+		    </li>
+		  </ol>
+		  <ol>
+		    <li v-for="(todo,index) in todos">
+		      {{ todo.text }}---{{ index }}
+		    </li>
+		  </ol>
+		  <ol>
+		    <li v-for="(value,key,index) in todoMap">
+		      {{ value }}---{{ key }}---{{ index }}
+		    </li>
+		  </ol>
+		</div><br><br>
+		
+		<div id="app-4">
+		  <span v-text="message"></span><br>
+		  <span>{{ message }}</span><br>
+		</div><br><br>
+		
+		<div id="app-5" v-bind:name="message" v-html="message">
+		</div><br><br>
+		
+		<div id="app-6">
+			<input v-bind:type="data.type" v-bind:name="data.sex" v-bind:value="data.age" /><br>
+			<input :type="data.type" :name="data.sex" :value="data.age" /><br>
+		</div><br><br>
+		
+		<div id="app-7" v-cloak>
+			<a href="www.baidu.com" v-on:click.prevent="doThis('ttt')">默认事件</a>
+			<input type="text" name="age" v-on:click="value1 += 1" placeholder="执行focus事件0"/><span>{{value1}}</span>
+			<input type="text" name="age" v-on:click="doThis('aaa')" placeholder="执行focus事件1"/>
+			<input type="text" name="age" @focus.once="doThis('aaa')" placeholder="执行focus事件2"/>
+			<div @click="doThis('kkk')">
+				<div @click="doThat">
+					<div @click.stop.prevent="doother">测试事件冒泡</div>
+				</div>
+			</div>
+		</div><br><br>
+		
+		<div id="app-8">
+			<input type="text" v-model="textvalue"><br>
+			<span>未使用v-once：{{textvalue}}</span><br>
+			<span v-once>使用了v-once：{{textvalue}}</span>
+		</div><br><br><br>
+		
+		<span>计算属性</span><br>
+		<div id="app-9">
+			<input type="text" id="name" value="中青博联" v-model="data.name" />
+			<input type="text" id="age" value="30" v-model="data.age" />
+			姓名+年龄：{{nameage1}}<br>
+			<button @click="clickme">点我点我</button><br>
+		</div><br>
+		
+		<span>过滤器</span><br>
+		<div id="app-10">
+			<span v-bind:value="textdata | myFilter2('111','222')">看我F12</span><br>
+			<span>{{ textdata | myFilter1('111','222') }}</span><br>
+			<span>{{ textdata | myFilter3('333','444') }}</span>
+		</div><br>
+		
+		<div id="app-11">
+		  <button-counter></button-counter>
+		</div>
+		<div id="app-12">
+		  <button-counter2></button-counter2>
+		</div><br>
+		
+		<div id="app-13">
+			<button @click="clickme1">远程调用</button>
+			<button @click="clickme2">跨域调用</button>
+		</div><br>
+	</body>
+	<!-- Vue核心JS文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- Vue Resource插件，实现后端通信 -->
+	<script src="./vue-resource1/vue-resource.js"></script>
+	<script>
+		var app1 = new Vue({
+		  el: '#app-1',
+		  data: {
+		    seen: true
+		  }
+		});
+		
+		var app2 = new Vue({
+			el : '.app-2',
+			data : {
+				textvalue : '中科软',
+				checkboxvalue : ['kudi','uber'],
+				radiovalue : 'jd',
+				selectvalue : 'gg'
+			},
+			methods : {
+				changevalue : function(){
+					this.textvalue = '中青博联',
+					this.Checkboxvalue = ['didi','uber'],
+					this.radiovalue = 'al',
+					this.selectvalue = 'bd'
+				}
+			}
+		});
+		
+		var app3 = new Vue({
+		  el: '#app-3',
+		  data: {
+		  	todos : [
+		  		{"text" : "1111"},
+		  		{"text" : "2222"},
+		  		{"text" : "3333"}
+		  	],
+		    todoMap : {
+		    	"name" : "marshall",
+		    	"age" : 20,
+		    	"sex" : "male"
+		    }
+		  }
+		});
+		
+		var app4 = new Vue({
+		  el: '#app-4',
+		  data: {
+		    message: '页面加载于 ' + new Date().toLocaleString()
+		  }
+		});
+		
+		var app5=new Vue({
+			el:'#app-5',
+			data:{
+				message : '<p>Hello Vue!</p>'
+			}
+		});
+		
+		var app6 = new Vue({
+		  el: '#app-6',
+		  data: {
+		    data:{
+		    	sex:'男',
+		    	age:6,
+		    	type:'text1'
+		    }
+		  }
+		});
+		
+		var app7 = new Vue({
+		  el: '#app-7',
+		  data : {
+		  	value1 : 1
+		  },
+		  methods : {
+		    doThis : function(abc){
+		    	alert(abc+"--"+this.value1+"--"+event.type);
+		    	alert(event.target.tagName);
+		    },
+		    doThat : function(){
+		    	alert('dothat');
+		    },
+		    doother : function(){
+		    	alert('doother');
+		    }
+		  }
+		});
+		
+		var app8 = new Vue({
+			el : '#app-8',
+			data : {
+				textvalue : 'abc'
+			}
+		});
+		
+		var app9 = new Vue({
+		  el: '#app-9',
+		  data: {
+		    data:{
+		    	name:'中科软',
+		    	sex:'男',
+		    	age:6
+		    }
+		  },
+		  computed:{
+		    nameage1 : {
+		    	cache : false,
+		    	get : function(){
+		    		return Date.now()+" ; "+this.data.name+" ; "+this.data.age;
+		    	}
+		    }
+		  },
+		  methods : {
+		  	clickme : function(){
+		  		alert(this.nameage1);
+		  	}
+		  }
+		});
+		
+		Vue.filter('myFilter1', function(v1, v2, v3){
+			return v1+"--"+v2+"--"+v3;
+		});
+		
+		var app10 = new Vue({
+			el : '#app-10',
+			data : {
+				textdata : 'hello'
+			},
+			filters : {
+				myFilter2 : function(v1, v2, v3){
+					return v1.toUpperCase()+"--"+v2+"--"+v3;
+				},
+				myFilter3 : function(v1, v2, v3){
+					return v1+"--"+v2+"--"+v3;
+				}
+			}
+		});
+		
+		var tempDesc = Vue.extend({
+			data: function () {
+				return {
+					count: 0
+				}
+			},
+		  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+		});
+		Vue.component('button-counter', tempDesc);
+		new Vue({el : '#app-11'});
+		
+		var tempDesc = Vue.extend({
+			data: function () {
+				return {
+					count: 0
+				}
+			},
+		  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+		});
+		new Vue({
+	  	el: '#app-12',
+	  	components: {
+	    	'button-counter2' : tempDesc
+	  	}
+		});
+		
+		var app13 = new Vue({
+			el : "#app-13",
+			methods : {
+				clickme1 : function(){
+					this.$http.post('www.baidu.com',{a:1,b:20},{emulateJSON:true}
+	        	).then(
+	            function(response){ //成功的回调函数
+	                alert("成功："+response.data);
+	            },
+	            function(response){ //失败的回调函数
+	                alert("失败："+response.status);
+	            }
+	        )
+				},
+				clickme2 : function(){
+					this.$http.jsonp('http://localhost:8081/vue/test1',
+							{params:{a:1,b:20},jsonp:'callback123'}).then(
+              function(response){ //成功的回调函数
+                  console.log(response)
+                  alert("成功："+response.status+";"+response.bodyText+";"+response.data.A);
+              },
+              function(response){ //失败的回调函数
+                  console.log(response)
+                  alert("失败："+response.status);
+              }
+          )
+				}
+			}
+		});
+	</script>
+</html>
