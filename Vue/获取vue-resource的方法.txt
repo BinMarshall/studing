@@ -1,0 +1,4 @@
+1、下载node安装包，并解压，下载地址：https://nodejs.org/en/
+2、打开cmd窗口
+3、切换到node目录下（包含npm.cmd的目录）
+4、执行命令：npm install vue-resource --save
