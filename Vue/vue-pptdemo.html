@@ -42,7 +42,7 @@
 		    </li>
 		  </ol>
 		  <ol>
-		    <li v-for="(todo,index) in todos">
+		    <li v-for="(todo,index) of todos">
 		      {{ todo.text }}---{{ index }}
 		    </li>
 		  </ol>
@@ -110,6 +110,29 @@
 			<button @click="clickme1">远程调用</button>
 			<button @click="clickme2">跨域调用</button>
 		</div><br>
+		
+		<div id="app-14">
+			<button @click="changev">改变列表值</button><br>
+			<span style="color:red">说明：改变vue对象中list的值，页面会跟着改变</span>
+			<table>
+				<tr v-for="one in infolist">
+					<td>{{ one }}</td>
+				</tr>
+			</table>
+			<button @click="changejson">改变第一个json对象的值</button><br>
+			<table>
+				<tr v-for="one in jsonlist">
+					<td>{{ one.name + '-' + one.age }}</td>
+				</tr>
+			</table>
+			<button @click="fetchv">获取变化后列表的值</button><br>
+			<span style="color:red">说明：改变页面上的值，vue对象中list的值不会跟着改变</span>
+			<table>
+				<tr v-for="one in fetchlist">
+					<td><input type="text" :value="one"></td>
+				</tr>
+			</table>
+		</div>
 	</body>
 	<!-- Vue核心JS文件 -->
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -303,6 +326,28 @@
                   alert("失败："+response.status);
               }
           )
+				}
+			}
+		});
+		
+		var app14 = new Vue({
+			el : "#app-14",
+			data : {
+				infolist : ['abc','def','ghi'],
+				fetchlist : ['aoe','iuv'],
+				jsonlist : [{name:'A',age:10},{name:'B',age:15},{name:'C',age:20}]
+			},
+			methods : {
+				changev : function(){
+					this.infolist = ['123','456','789']
+				},
+				fetchv : function(){
+					alert(this.fetchlist);
+				},
+				changejson : function(){
+					this.jsonlist[0].name='D';
+					this.jsonlist[1].name='E';
+					this.jsonlist[2].name='F';
 				}
 			}
 		});
