@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<div id="app1">
+			{{ dataaaa.text }}
+		</div>
+		
+		<div id="app2">
+			<p v-if="condition">A</p>
+			<p v-else="condition">B</p>
+			<p v-show="condition">C</p>
+			<p v-show="!condition">D<p>
+		</div>
+		
+		<div id="app3">
+			<input type="text" value="abcd" v-model="textValue" />
+			<input type="text" v-model="textValue" />
+			<br><button @click="showValue">显示值</button>
+			
+			<br>
+			<input type="checkbox" v-model="boxvalue" value="didi">滴滴
+			<input type="checkbox" v-model="boxvalue" value="kuaidi">快滴
+			<input type="checkbox" v-model="boxvalue" value="uber">Uber
+			
+			<br>
+			<input type="radio" v-model="radiovalue" value="xiaomi">小米
+			<input type="radio" v-model="radiovalue" value="huawei">华为
+		</div>
+		
+		<div id="app4">
+			<ul>
+				<li v-for="(one,i) in mylist">
+					{{ one.name + ":" + one.age + ":"+ i }}
+				</li>
+			</ul>
+		</div>
+		
+		<div id="app5">
+			<div v-text="textContent"></div>
+			<div v-html="htmlContent"></div>
+		</div>
+		
+		<div id="app6">
+			<input v-bind:type="bindvalue">
+			<br><input v-model="typevalue"><button @click="changetype">改变值</button>
+		</div>
+		
+		<br>
+		<div id="app7">
+			<input type="text" @focus.once="focusMethod">
+		</div>
+		
+		<br>
+		<div id="app8">
+			<input type="text" v-model="name">
+			<input type="text" v-model="age">
+			<button @click="showme">显示值</button>
+		</div>
+		
+		<div id="app-13">
+			<button @click="clickme2">跨域调用</button>
+		</div><br>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="vue-resource/vue-resource.js"></script>
+	<script src="vue20181108.js"></script>
+</html>
