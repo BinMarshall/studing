@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.BoCrmProjectOtherDao">
+
+    <!--更新填报人-->
+    <update id="updateCreuser" parameterType="map">
+        update bo_crm_project set creuser = #{newCreuser} where id in (
+        select id from (
+        <include refid="selectListSql"/>
+        )
+        )
+    </update>
+    <!--查询兼职-->
+    <select id="selectUserParttime" resultType="map" parameterType="integer">
+                select b.DEPARTMENTNAME,c.GSMC from ORGUSERMAP a
+        inner join ORGDEPARTMENT b on a.DEPARTMENTID = b.id
+          left join BO_ORG_EXT_DEPT c on b.id=c.DEPARTMENTID
+          inner join orgrole d on a.ROLEID = d.id
+        where a.MAPID=#{0,jdbcType=DECIMAL} and d.ROLENAME='大项目对接人'
+    </select>
+    <resultMap id="selectUserInfoResultMap" type="map">
+        <collection property="parttimes" select="selectUserParttime" column="id" />
+    </resultMap>
+    <!--查询用户信息-->
+    <select id="selectUserInfo" parameterType="string" resultMap="selectUserInfoResultMap">
+        select a.id,a.userid,a.username,c.GSMC from orguser a
+  inner join ORGDEPARTMENT b on a.DEPARTMENTID = b.id
+  left join BO_ORG_EXT_DEPT c on b.id = c.DEPARTMENTID
+where a.userid=#{0,jdbcType=VARCHAR} and a.DISENABLE=0
+    </select>
+
+    <!--查询根据过滤条件过滤后，所有项目填报人-->
+    <select id="selectCreuserByFilter" resultType="string" parameterType="cn.bravolinks.erp.crm.server.model.MaxProjectFilter">
+        select distinct creuser from (
+        <include refid="selectListSql"/>
+        )
+    </select>
+
+    <!--查询用户权限-->
+    <select id="selectUserAuth" parameterType="string" resultType="map">
+        select * from BO_CRM_PROJECT_ROLE where id in (
+        select ROLEID from BO_CRM_PROJECT_USER where
+          USERID = (select id from orguser where userid=#{0}))
+    </select>
+
+    <!--查询用户名-->
+    <select id="selectUsernameById" parameterType="integer" resultType="string">
+        select username from orguser where id=#{0}
+    </select>
+    <!--查询用户id-->
+    <select id="selectId" parameterType="string" resultType="integer">
+        select id from orguser where userid = #{0}
+    </select>
+    <!--是不是对接人-->
+    <select id="isDjr" parameterType="string" resultType="integer">
+        select count(1) from (
+        select * from orguser where ROLEID=(select id from orgrole where ROLENAME='大项目对接人') and DISENABLE=0 and userid=#{0}
+        UNION
+        select a.* from orguser a INNER JOIN ORGUSERMAP b on a.id = b.MAPID where b.ROLEID=(select id from orgrole where ROLENAME='大项目对接人')  and a.DISENABLE=0 and a.userid=#{0}
+        )
+    </select>
+
+    <!--查询权限-->
+    <select id="selectAuth" parameterType="string" resultType="map">
+        select * from BO_CRM_PROJECT_ROLE where id in (
+        select ROLEID
+        from BO_CRM_PROJECT_USER where userid =(
+        select id from orguser where userid=#{0}))
+    </select>
+
+    <!--查询部门信息-->
+    <select id="selectDeptById" parameterType="integer" resultType="map">
+        select id "id",DEPARTMENTNAME "text",(select DEPARTMENTNAME from ORGDEPARTMENT where id = a.PARENTDEPARTMENTID) "ssgs" from ORGDEPARTMENT a where a.id=#{0}
+    </select>
+
+    <resultMap id="selectMemberByProjectIdResultMap" type="map">
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" javaType="Date"/>
+        <result column="START_DATE" property="startDate" jdbcType="TIMESTAMP" javaType="Date"/>
+        <result column="END_DATE" property="endDate" jdbcType="TIMESTAMP" javaType="Date"/>
+    </resultMap>
+    <!--查询项目成员-->
+    <select id="selectMemberByProjectId" resultMap="selectMemberByProjectIdResultMap" parameterType="integer">
+        select a.*,b.username XMCYMC,c.DEPARTMENTNAME,d.gsmc
+from BO_CRM_PROJECT_MEMBER a
+INNER JOIN orguser b on a.PROJECT_USER=b.id
+inner join ORGDEPARTMENT c on b.DEPARTMENTID = c.id
+left join BO_ORG_EXT_DEPT d on c.id = d.DEPARTMENTID
+where a.PROJECT_ID=#{0} order by a.id
+    </select>
+    <resultMap id="selectByPrimaryKeyResultMap" type="map" >
+        <result column="ID" property="ID" jdbcType="DECIMAL"/>
+        <result column="CRETIME" property="CRETIME" jdbcType="TIMESTAMP" javaType="Date" />
+        <result column="UPDTIME" property="UPDTIME" jdbcType="TIMESTAMP" javaType="Date" />
+        <collection property="xmcys" column="ID" select="selectMemberByProjectId" ofType="map"/>
+    </resultMap>
+    <!--查询-->
+    <select id="selectByPrimaryKey" resultMap="selectByPrimaryKeyResultMap" parameterType="map" >
+        select
+          c.DEPARTMENTNAME zzbmmc,d.DEPARTMENTNAME ssgsmc,e.USERNAME XMFZRMC,
+          a.*,g.username creusername
+        from BO_CRM_PROJECT a
+        LEFT JOIN ORGDEPARTMENT c on a.ZZBM = c.id
+        LEFT JOIN ORGDEPARTMENT d on a.SSGS = d.id
+        LEFT JOIN orguser e on a.XMFZR = e.id
+        inner join
+        (select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='大项目' and lx='最新项目状态' and zt='有效' order by sn) f
+        on a.NEW_STATUS=f.dm
+        and f.mc !='作废'
+        inner join orguser g on a.creuser = g.userid
+        where a.id = #{id,jdbcType=DECIMAL}
+        <include refid="selectListAuthConSql"/>
+    </select>
+
+
+    <!--查询客户信息-->
+    <select id="selectKhInfo" parameterType="integer" resultType="map">
+        <include refid="selectKhBaseSql"/> where a.id=#{0}
+    </select>
+
+    <!--查询list sql-->
+    <sql id="selectListSql">
+        select
+        a.ID, a.CUSNAME, a.PRONAME,a.CREUSER,
+        a.START_DATE_YEAR, a.START_DATE_MONTH, a.START_DATE_DAY, a.END_DATE_YEAR,
+        a.END_DATE_MONTH, a.END_DATE_DAY,
+        (select case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='大项目' and lx='项目区域类型' and zt='有效' and dm = a.REGION_TYPE) QYLX,
+        a.YGRS,
+        (select case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='大项目' and lx='最新项目状态' and zt='有效' and dm = a.NEW_STATUS) ZBZT,
+        b.DEPARTMENTNAME ZZBM ,
+        d.USERNAME XMFZRMC,
+        a.xmfzr,
+        c.DEPARTMENTNAME SSGS,
+        a.CITY JBD,f.sssyb
+        from
+        BO_CRM_PROJECT
+        a LEFT JOIN ORGDEPARTMENT b on a.zzbm = b.id
+        LEFT JOIN ORGDEPARTMENT c on a.ssgs = c.id
+        LEFT JOIN ORGUSER d on a.xmfzr = d.id
+        left join (
+        select b.DEPARTMENTID,b.SSSYB,b.SSSYBDM from ORGDEPARTMENT a left
+        JOIN BO_ORG_EXT_DEPT b on a.id = b.DEPARTMENTID
+        where a.COMPANYID=1 and b.sssyb is not null and b.SSSYBDM is not null
+        ) f on a.zzbm = f.DEPARTMENTID
+        inner join
+        (select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='大项目' and lx='最新项目状态' and zt='有效' order by sn) g
+        on a.NEW_STATUS=g.dm
+        and g.mc !='作废'
+        <where>
+            <if test="cusname!=null and cusname!=''">
+                and
+                a.id in (select id from (
+                select a.id,listagg(b.khmc,',') WITHIN GROUP (ORDER BY b.id) khmc
+                from BO_CRM_PROJECT a INNER JOIN BO_CRM_CLIENT_P b
+                on instr(','||a.CUSNAME||',',','||b.id||',')>0 GROUP BY a.id) where khmc like '%'||#{cusname}||'%')
+            </if>
+            <if test="hylx!=null">
+              and instr(','||a.hydm||',', ','||#{hylx}||',')>0
+            </if>
+            <if test="hyxl!=null">
+              and instr(','||a.hyxldm||',', ','||#{hyxl}||',')>0
+            </if>
+            <if test="division!=null and division!=''">
+                and f.sssybdm=#{division}
+            </if>
+            <if test="zzbm!=null">
+                and a.zzbm = #{zzbm}
+            </if>
+            <if test="zgld!=null">
+                and a.XMZGLD=#{zgld}
+            </if>
+            <if test="serviceType!=null">
+                and a.SERVICE_TYPE=#{serviceType}
+            </if>
+            <if test="regionType!=null">
+                and a.REGION_TYPE=#{regionType}
+            </if>
+            <if test="city!=null and city!=''">
+                and a.id in
+                (select id from (
+                select a.id,listagg(b.mddxs,',') WITHIN GROUP (ORDER BY b.id) city
+                from BO_CRM_PROJECT a INNER JOIN BO_CYTS_CITY b
+                on instr(','||a.city||',',','||b.id||',')>0 GROUP BY a.id) where city like '%'||#{city}||'%')
+            </if>
+            <if test="xmrs==1">
+                and a.YGRS&gt;=0 and a.YGRS&lt;100
+            </if>
+            <if test="xmrs==2">
+                and a.YGRS&gt;=100 and a.YGRS&lt;=500
+            </if>
+            <if test="xmrs==3">
+                and a.YGRS&gt;500
+            </if>
+            <if test="proStatus!=null">
+                and a.NEW_STATUS in
+                <foreach collection="proStatus" item="s" open="(" close=")" separator=",">
+                    #{s}
+                </foreach>
+            </if>
+            <if test="proname!=null and proname!=''">
+                and a.PRONAME like '%'||#{proname}||'%'
+            </if>
+            <if test="creuser!=null and creuser!='' ">
+                and (select username from orguser where userid=a.creuser) like '%'||#{creuser}||'%'
+            </if>
+            <if test="serviceContent!=null">
+                and
+                <foreach collection="serviceContent" item="item" open="(" close=")" separator="or">
+                     ','||service_content||',' like '%,'||#{item}||',%'
+                </foreach>
+            </if>
+            <if test="startBefore!=null">
+                and (
+                    (a.start_date_day is not null and
+                    to_date(a.start_date_year||'-'||a.start_date_month||'-'||a.start_date_day,'YYYY-MM-DD')
+                    >=#{startBefore})
+                    or (
+                    a.start_date_day is null and a.start_date_month is not null and
+                    to_date(a.start_date_year||'-'||a.start_date_month,'YYYY-MM')
+                    >=to_date(to_char(#{startBefore},'YYYY-MM'),'YYYY-MM')
+                    )
+                    or (
+                    a.start_date_day is null and a.start_date_month is null and
+                    to_date(a.start_date_year,'YYYY')
+                    >= to_date(to_char(#{startBefore},'YYYY'),'YYYY')
+                    )
+                )
+            </if>
+            <if test="startAfter!=null">
+                and (
+                (a.start_date_day is not null and
+                to_date(a.start_date_year||'-'||a.start_date_month||'-'||a.start_date_day,'YYYY-MM-DD')
+                &lt;=#{startAfter})
+                or (
+                a.start_date_day is null and a.start_date_month is not null and
+                to_date(a.start_date_year||'-'||a.start_date_month,'YYYY-MM')
+                &lt;=to_date(to_char(#{startAfter},'YYYY-MM'),'YYYY-MM')
+                )
+                or (
+                a.start_date_day is null and a.start_date_month is null and
+                to_date(a.start_date_year,'YYYY')
+                &lt;= to_date(to_char(#{startAfter},'YYYY'),'YYYY')
+                )
+                )
+            </if>
+            <if test="endBefore!=null">
+                and (
+                (a.end_date_day is not null and
+                to_date(a.end_date_year||'-'||a.end_date_month||'-'||a.end_date_day,'YYYY-MM-DD')
+                >=#{endBefore})
+                or (
+                a.end_date_day is null and a.end_date_month is not null and
+                to_date(a.end_date_year||'-'||a.end_date_month,'YYYY-MM')
+                >=to_date(to_char(#{endBefore},'YYYY-MM'),'YYYY-MM')
+                )
+                or (
+                a.end_date_day is null and a.end_date_month is null and
+                to_date(a.end_date_year,'YYYY')
+                >= to_date(to_char(#{endBefore},'YYYY'),'YYYY')
+                )
+                )
+            </if>
+            <if test="endAfter!=null">
+                and (
+                (a.end_date_day is not null and
+                to_date(a.end_date_year||'-'||a.end_date_month||'-'||a.end_date_day,'YYYY-MM-DD')
+                &lt;=#{endAfter})
+                or (
+                a.end_date_day is null and a.end_date_month is not null and
+                to_date(a.end_date_year||'-'||a.end_date_month,'YYYY-MM')
+                &lt;=to_date(to_char(#{endAfter},'YYYY-MM'),'YYYY-MM')
+                )
+                or (
+                a.end_date_day is null and a.end_date_month is null and
+                to_date(a.end_date_year,'YYYY')
+                &lt;= to_date(to_char(#{endAfter},'YYYY'),'YYYY')
+                )
+                )
+            </if>
+            <if test="updateBefore!=null">
+                and trunc(a.updtime) &gt;= #{updateBefore}
+            </if>
+            <if test="updateAfter!=null">
+                and trunc(a.updtime) &lt;= #{updateAfter}
+            </if>
+            <include refid="selectListAuthConSql"/>
+        </where>
+        order by a.START_DATE_YEAR,a.START_DATE_MONTH,a.START_DATE_DAY
+    </sql>
+    <sql id="selectListAuthConSql">
+        and (
+  <!--查大项目角色权限表-->
+      (select id from orguser where userid=#{userid}) in
+      (select a.USERID from BO_CRM_PROJECT_USER a INNER JOIN BO_CRM_PROJECT_ROLE b on a.ROLEID=b.id where b.IS_SELECT=1)
+    <!--填报人-->
+    or a.creuser = #{userid}
+        <!--经理-->
+    or a.XMFZR = (select id from orguser where userid=#{userid})
+        <!--对接人 查询所属公司-->
+    or a.ssgs in (
+        select c.id
+        from orguser a INNER JOIN ORGUSERMAP b on a.id = b.MAPID
+        INNER JOIN ORGDEPARTMENT c on b.DEPARTMENTID=c.id
+        where b.ROLEID=
+        (select id from orgrole where ROLENAME='大项目对接人')  and a.DISENABLE=0 and c.COMPANYID=1 and PARENTDEPARTMENTID=0 and a.userid=#{userid}
+      )
+    <!--对接人  查询所属部门-->
+    or a.zzbm in (
+        select c.id
+        from orguser a INNER JOIN ORGUSERMAP b on a.id = b.MAPID
+        INNER JOIN ORGDEPARTMENT c on b.DEPARTMENTID=c.id
+        where b.ROLEID=
+        (select id from orgrole where ROLENAME='大项目对接人')  and a.DISENABLE=0 and c.COMPANYID=1 and PARENTDEPARTMENTID!=0 and a.userid=#{userid}
+      )
+        <!--成员-->
+        or
+        (select id from orguser where userid=#{userid}) in
+        (select mb.PROJECT_USER from BO_CRM_PROJECT_MEMBER mb where mb.USER_ROLE=1 and mb.PROJECT_ID = a.id
+     )
+)
+    </sql>
+    <!--查询list-->
+    <select id="selectList" resultType="map" parameterType="cn.bravolinks.erp.crm.server.model.MaxProjectFilter">
+        SELECT *
+        FROM (SELECT rownum rn, b.* FROM (
+        <include refid="selectListSql"/>
+        ) b
+        <if test="max!=null">
+            WHERE rownum &lt;= #{max}
+        </if>
+        )
+        <if test="min!=null">
+            WHERE rn &gt; #{min}
+        </if>
+    </select>
+    <!--查询count-->
+    <select id="selectCount" resultType="integer" parameterType="cn.bravolinks.erp.crm.server.model.MaxProjectFilter">
+        select count(1) from (
+        <include refid="selectListSql"/>
+        )
+    </select>
+    <!--查询用户数量-->
+    <select id="selectUserCount" parameterType="map" resultType="integer">
+        select count(1) from (<include refid="selectUserSql"/>)
+    </select>
+    <!--查询用户sql-->
+    <sql id="selectUserSql">
+        select distinct a.id,a.USERNAME,b.DEPARTMENTNAME,c.GSMC,a.USERID from orguser a
+        inner join
+        ORGDEPARTMENT b
+        on a.DEPARTMENTID = b.id
+        left join BO_ORG_EXT_DEPT c on b.id = c.DEPARTMENTID
+        where a.DISENABLE=0 and b.COMPANYID=1
+        <if test="deptId!=null">
+            and a.DEPARTMENTID=#{deptId}
+        </if>
+        <if test="like!=null and like!=''">
+            and a.username like '%'||#{like}||'%'
+        </if>
+        <if test="id!=null">
+            and a.id = #{id}
+        </if>
+    </sql>
+    <!--查询用户-->
+    <select id="selectUser" parameterType="map" resultType="map">
+        SELECT *
+        FROM (SELECT rownum rn, b.* FROM (
+        <include refid="selectUserSql"/>
+        ) b
+        WHERE rownum &lt;= #{max})
+        WHERE rn &gt; #{min}
+    </select>
+
+    <resultMap id="selectCompanyResultMap" type="map">
+        <result column="id" property="id"/>
+        <result column="DEPARTMENTNAME" property="text"/>
+        <collection property="children" column="{companyId=id}" ofType="map" select="selectDeptByCompany"/>
+    </resultMap>
+    <!--查询公司-->
+    <select id="selectCompany" resultMap="selectCompanyResultMap">
+        select id,DEPARTMENTNAME,'closed' "state",1 "iscompany" from ORGDEPARTMENT where PARENTDEPARTMENTID=0 and COMPANYID=1 order by id
+    </select>
+    <!--查询部门根据公司-->
+    <select id="selectDeptByCompany" parameterType="map" resultType="map">
+        select id "id",DEPARTMENTNAME "text",
+        (select DEPARTMENTNAME from ORGDEPARTMENT where id = a.PARENTDEPARTMENTID) "ssgs"
+        from ORGDEPARTMENT a
+        where DEPARTMENTNAME not like '%V%'
+        <!--父级id-->
+        <if test="companyId!=null">
+        and a.PARENTDEPARTMENTID=#{companyId}
+        </if>
+        <!--部门id-->
+        <if test="deptId!=null">
+            and a.id = #{deptId}
+        </if>
+        order by id
+    </select>
+    <!--查询公司根据userid-->
+    <select id="selectCompanyByUserid" parameterType="string" resultType="map">
+select id "id",DEPARTMENTNAME "text" from ORGDEPARTMENT where id = (
+select PARENTDEPARTMENTID from ORGDEPARTMENT where id=(select DEPARTMENTID from orguser where userid=#{0})) and PARENTDEPARTMENTID=0
+UNION
+select id "id",DEPARTMENTNAME "text" from ORGDEPARTMENT where id=(select DEPARTMENTID from orguser where userid=#{0}) and PARENTDEPARTMENTID=0
+    </select>
+    <!--查询客户根据名称-->
+    <select id="selectKhByName" parameterType="string" resultType="integer">
+        select count(1) FROM BO_CRM_CLIENT_P where khmc = #{0}
+    </select>
+    <!--创建潜在客户-->
+    <insert id="insertKh" parameterType="map">
+        <selectKey keyProperty="id" order="BEFORE" resultType="integer">
+            select BO_CRM_CLIENT_P_SEQ.nextval id from dual
+        </selectKey>
+        insert into BO_CRM_CLIENT_P(id,ORGNO,CREATEDATE,CREATEUSER,khmc,khbh,hydm,hyxldm,isqzkh) VALUES (
+        #{id},'1',#{createDate},#{loginname},#{khmc},'qzkh'||#{id},#{hylx},#{hyxl},#{isqzkh}
+        )
+    </insert>
+
+    <!--查询行业小类-->
+    <select id="selectHyxl" parameterType="integer" resultType="map">
+        select dm,case when 'cn'='cn' then zwmc else ywmc end mc from BO_INDUSTRY_S where zt='有效'
+        and bindid=(select bindid from BO_INDUSTRY_P where dm=#{0})
+    </select>
+    <!--查询城市数量-->
+    <select id="selectCityCount" parameterType="map" resultType="integer">
+        select count(1) from (
+        <include refid="selectCitySql"/>
+        )
+    </select>
+    <!--查询城市sql-->
+    <sql id="selectCitySql">
+        select id "id",MDDXS "mddxs" from BO_CYTS_CITY
+        <if test="like!=null and like!=''">
+          where mddxs like '%'||#{like}||'%'
+        </if>
+        <if test="id!=null">
+            where id = #{id}
+        </if>
+        order by decode(mddxs,'待定-待定-待定',1)
+    </sql>
+    <!--查询城市-->
+    <select id="selectCity" parameterType="map" resultType="map">
+        SELECT *
+        FROM (SELECT rownum rn, b.* FROM (
+        <include refid="selectCitySql"/>
+        ) b
+        WHERE rownum &lt;= #{max})
+        WHERE rn &gt; #{min}
+    </select>
+    <sql id="selectKhBaseSql">
+        SELECT a.id "id",a.khmc "khmc",a.hydm "hydm",a.hyxldm "hyxldm",
+        (select case when 'cn'='cn' then zwmc else ywmc end mc from BO_INDUSTRY_P where zt='有效' and dm=a.hydm) "hymc",
+        (select case when 'cn'='cn' then zwmc else ywmc end mc from BO_INDUSTRY_S where zt='有效'
+        and dm = a.HYXLDM) "hyxlmc" , isqzkh "isqzkh"
+        FROM BO_CRM_CLIENT_P a
+    </sql>
+    <!--查询客户sql-->
+    <sql id="selectKhSql">
+        <include refid="selectKhBaseSql"/>
+        <if test="like!=null and like!=''">
+            where a.khmc like '%'||#{like}||'%'
+        </if>
+    </sql>
+    <!--查询客户-->
+    <select id="selectKh" parameterType="map" resultType="map">
+        SELECT *
+        FROM (SELECT rownum rn, b.* FROM (
+          <include refid="selectKhSql"/>
+        ) b
+        WHERE rownum &lt;= #{max})
+        WHERE rn &gt; #{min}
+    </select>
+    <!--查询客户count-->
+    <select id="selectKhCount" parameterType="string" resultType="integer">
+        select count(1) from (
+        <include refid="selectKhSql"/>
+        )
+    </select>
+
+    <!--查询维护数据ResultMap-->
+    <resultMap id="selectWeihuDataResultMap" type="map">
+        <collection property="fwlxs" column="temp" select="selectFwlx" ofType="map"/>
+        <collection property="fwnrs" column="temp" select="selectFwnr" ofType="map"/>
+        <collection property="qylxs" column="temp" select="selectQylx" ofType="map"/>
+        <collection property="xmzts" column="temp" select="selectXmzt" ofType="map"/>
+        <collection property="yxzls" column="temp" select="selectYxzl" ofType="map"/>
+        <collection property="qwbms" column="temp" select="selectQwbm" ofType="map"/>
+        <collection property="hylxs" column="temp" select="selectHylx" ofType="map"/>
+        <collection property="zglds" column="temp" select="selectZgld" ofType="map"/>
+        <collection property="cyjss" column="temp" select="selectCyjs" ofType="map"/>
+        <collection property="ssbs" column="temp" select="selectSsb" ofType="map"/>
+    </resultMap>
+    <!--查询维护数据-->
+    <select id="selectWeihuData" resultMap="selectWeihuDataResultMap">
+        select 1 temp from dual
+    </select>
+    <!--服务类型-->
+    <select id="selectFwlx" resultType="map">
+        select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='大项目' and lx='服务类型' and zt='有效' order by sn
+    </select>
+    <!--服务内容-->
+    <select id="selectFwnr" resultType="map">
+        select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='大项目' and lx='服务内容' and zt='有效' order by sn
+    </select>
+    <!--区域类型-->
+    <select id="selectQylx" resultType="map">
+        select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='大项目' and lx='项目区域类型' and zt='有效' order by sn
+    </select>
+    <!--项目状态-->
+    <select id="selectXmzt" resultType="map">
+        select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='大项目' and lx='最新项目状态' and zt='有效' order by sn
+    </select>
+    <!--影像资料-->
+    <select id="selectYxzl" resultType="map">
+        select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='大项目' and lx='影像资料收集渠道' and zt='有效' order by sn
+    </select>
+    <!--期望协助部门-->
+    <select id="selectQwbm" resultType="map">
+        select dm,case when 'cn'='cn' then zwmc else ywmc end mc,bz
+        from bo_cyts_baseinfo where  dl='大项目' and lx='期望协助部门' and zt='有效' order by sn
+    </select>
+    <!--项目主管领导-->
+    <select id="selectZgld" resultType="map">
+        select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='大项目' and lx='项目主管领导' and zt='有效' order by sn
+    </select>
+    <!--项目成员角色-->
+    <select id="selectCyjs" resultType="map">
+        select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='大项目' and lx='项目成员角色' and zt='有效' order by sn
+    </select>
+    <!--行业类型-->
+    <select id="selectHylx" resultType="map">
+        select dm,case when 'cn'='cn' then zwmc else ywmc end mc from BO_INDUSTRY_P where zt='有效'
+    </select>
+    <!--查询事业部-->
+    <select id="selectSsb" resultType="map">
+        select
+DISTINCT dm,
+  first_value(mc) over(PARTITION BY dm ORDER BY dm) mc
+from (
+select DISTINCT b.SSSYBDM dm,b.SSSYB mc from ORGDEPARTMENT a left
+        JOIN BO_ORG_EXT_DEPT b on a.id = b.DEPARTMENTID
+        where a.COMPANYID=1 and b.sssyb is not null and b.SSSYBDM is not null)
+    </select>
+</mapper>

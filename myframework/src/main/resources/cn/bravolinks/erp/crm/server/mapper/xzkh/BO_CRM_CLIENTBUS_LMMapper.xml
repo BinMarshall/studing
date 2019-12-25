@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.xzkh.BO_CRM_CLIENTBUS_LM_DAO" >
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.tssx.BO_CRM_CLIENTBUS_LM" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="ORGNO" property="orgno" jdbcType="OTHER" />
+    <result column="BINDID" property="bindid" jdbcType="DECIMAL" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CREATEUSER" property="createuser" jdbcType="OTHER" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="UPDATEUSER" property="updateuser" jdbcType="OTHER" />
+    <result column="WORKFLOWID" property="workflowid" jdbcType="DECIMAL" />
+    <result column="WORKFLOWSTEPID" property="workflowstepid" jdbcType="DECIMAL" />
+    <result column="ISEND" property="isend" jdbcType="DECIMAL" />
+    <result column="LX" property="lx" jdbcType="OTHER" />
+    <result column="KHBH" property="khbh" jdbcType="OTHER" />
+    <result column="KHMC" property="khmc" jdbcType="OTHER" />
+    <result column="BMMC" property="bmmc" jdbcType="OTHER" />
+    <result column="BMXZDM" property="bmxzdm" jdbcType="OTHER" />
+    <result column="XM" property="xm" jdbcType="OTHER" />
+    <result column="YW" property="yw" jdbcType="OTHER" />
+    <result column="GJDM" property="gjdm" jdbcType="OTHER" />
+    <result column="MZDM" property="mzdm" jdbcType="OTHER" />
+    <result column="XBDM" property="xbdm" jdbcType="OTHER" />
+    <result column="CSRQ" property="csrq" jdbcType="TIMESTAMP" />
+    <result column="HYZKDM" property="hyzkdm" jdbcType="OTHER" />
+    <result column="ZJXYDM" property="zjxydm" jdbcType="OTHER" />
+    <result column="ZZMMDM" property="zzmmdm" jdbcType="OTHER" />
+    <result column="QTSHJS" property="qtshjs" jdbcType="OTHER" />
+    <result column="IFDAM" property="ifdam" jdbcType="OTHER" />
+    <result column="CDGGJDQ" property="cdggjdq" jdbcType="OTHER" />
+    <result column="RYZTDM" property="ryztdm" jdbcType="OTHER" />
+    <result column="JSDM" property="jsdm" jdbcType="OTHER" />
+    <result column="ZWMC" property="zwmc" jdbcType="OTHER" />
+    <result column="XRZDWBH" property="xrzdwbh" jdbcType="OTHER" />
+    <result column="XRZDW" property="xrzdw" jdbcType="OTHER" />
+    <result column="DRZW" property="drzw" jdbcType="OTHER" />
+    <result column="DWDH" property="dwdh" jdbcType="OTHER" />
+    <result column="YDDH" property="yddh" jdbcType="OTHER" />
+    <result column="EMAIL" property="email" jdbcType="OTHER" />
+    <result column="JCFG" property="jcfg" jdbcType="OTHER" />
+    <result column="SJGJ" property="sjgj" jdbcType="OTHER" />
+    <result column="BMNDYLXRDM" property="bmndylxrdm" jdbcType="OTHER" />
+    <result column="BZ" property="bz" jdbcType="OTHER" />
+    <result column="FJ" property="fj" jdbcType="OTHER" />
+    <result column="TX" property="tx" jdbcType="OTHER" />
+    <result column="MP" property="mp" jdbcType="OTHER" />
+    <result column="ZBGZLL" property="zbgzll" jdbcType="OTHER" />
+    <result column="ZBXQAH" property="zbxqah" jdbcType="OTHER" />
+    <result column="ZBLSSJ" property="zblssj" jdbcType="OTHER" />
+    <result column="ZBXGLXR" property="zbxglxr" jdbcType="OTHER" />
+    <result column="PARENTSUBID" property="parentsubid" jdbcType="DECIMAL" />
+    <result column="BMBH" property="bmbh" jdbcType="OTHER" />
+    <result column="LXRBH" property="lxrbh" jdbcType="OTHER" />
+    <result column="ZJLXDM" property="zjlxdm" jdbcType="OTHER" />
+    <result column="ZJH" property="zjh" jdbcType="OTHER" />
+    <result column="ZJLX" property="zjlx" jdbcType="OTHER" />
+    <result column="ZJHM" property="zjhm" jdbcType="OTHER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORGNO, BINDID, CREATEDATE, CREATEUSER, UPDATEDATE, UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+    ISEND, LX, KHBH, KHMC, BMMC, BMXZDM, XM, YW, GJDM, MZDM, XBDM, CSRQ, HYZKDM, ZJXYDM, 
+    ZZMMDM, QTSHJS, IFDAM, CDGGJDQ, RYZTDM, JSDM, ZWMC, XRZDWBH, XRZDW, DRZW, DWDH, YDDH, 
+    EMAIL, JCFG, SJGJ, BMNDYLXRDM, BZ, FJ, TX, MP, ZBGZLL, ZBXQAH, ZBLSSJ, ZBXGLXR, PARENTSUBID, 
+    BMBH, LXRBH, ZJLXDM, ZJH, ZJLX, ZJHM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from  BO_CRM_CLIENTBUS_LM
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  
+     <!-- 查询所有 -->
+    <select id="selectByid" parameterType="String" resultMap="BaseResultMap">
+		select *
+		 from BO_CRM_CLIENTBUS_LM where bindid=#{0}
+    </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from  BO_CRM_CLIENTBUS_LM
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_CRM_CLIENTBUS_LM" >
+    insert into  BO_CRM_CLIENTBUS_LM (ID, ORGNO, BINDID, 
+      CREATEDATE, CREATEUSER, UPDATEDATE, 
+      UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+      ISEND, LX, KHBH, KHMC, 
+      BMMC, BMXZDM, XM, YW, 
+      GJDM, MZDM, XBDM, CSRQ, 
+      HYZKDM, ZJXYDM, ZZMMDM, QTSHJS, 
+      IFDAM, CDGGJDQ, RYZTDM, JSDM, 
+      ZWMC, XRZDWBH, XRZDW, DRZW, 
+      DWDH, YDDH, EMAIL, JCFG, 
+      SJGJ, BMNDYLXRDM, BZ, FJ, 
+      TX, MP, ZBGZLL, ZBXQAH, 
+      ZBLSSJ, ZBXGLXR, PARENTSUBID, 
+      BMBH, LXRBH, ZJLXDM, ZJH, 
+      ZJLX, ZJHM)
+    values (#{id,jdbcType=DECIMAL}, #{orgno,jdbcType=OTHER}, #{bindid,jdbcType=DECIMAL}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=OTHER}, #{updatedate,jdbcType=TIMESTAMP}, 
+      #{updateuser,jdbcType=OTHER}, #{workflowid,jdbcType=DECIMAL}, #{workflowstepid,jdbcType=DECIMAL}, 
+      #{isend,jdbcType=DECIMAL}, #{lx,jdbcType=OTHER}, #{khbh,jdbcType=OTHER}, #{khmc,jdbcType=OTHER}, 
+      #{bmmc,jdbcType=OTHER}, #{bmxzdm,jdbcType=OTHER}, #{xm,jdbcType=OTHER}, #{yw,jdbcType=OTHER}, 
+      #{gjdm,jdbcType=OTHER}, #{mzdm,jdbcType=OTHER}, #{xbdm,jdbcType=OTHER}, #{csrq,jdbcType=TIMESTAMP}, 
+      #{hyzkdm,jdbcType=OTHER}, #{zjxydm,jdbcType=OTHER}, #{zzmmdm,jdbcType=OTHER}, #{qtshjs,jdbcType=OTHER}, 
+      #{ifdam,jdbcType=OTHER}, #{cdggjdq,jdbcType=OTHER}, #{ryztdm,jdbcType=OTHER}, #{jsdm,jdbcType=OTHER}, 
+      #{zwmc,jdbcType=OTHER}, #{xrzdwbh,jdbcType=OTHER}, #{xrzdw,jdbcType=OTHER}, #{drzw,jdbcType=OTHER}, 
+      #{dwdh,jdbcType=OTHER}, #{yddh,jdbcType=OTHER}, #{email,jdbcType=OTHER}, #{jcfg,jdbcType=OTHER}, 
+      #{sjgj,jdbcType=OTHER}, #{bmndylxrdm,jdbcType=OTHER}, #{bz,jdbcType=OTHER}, #{fj,jdbcType=OTHER}, 
+      #{tx,jdbcType=OTHER}, #{mp,jdbcType=OTHER}, #{zbgzll,jdbcType=OTHER}, #{zbxqah,jdbcType=OTHER}, 
+      #{zblssj,jdbcType=OTHER}, #{zbxglxr,jdbcType=OTHER}, #{parentsubid,jdbcType=DECIMAL}, 
+      #{bmbh,jdbcType=OTHER}, #{lxrbh,jdbcType=OTHER}, #{zjlxdm,jdbcType=OTHER}, #{zjh,jdbcType=OTHER}, 
+      #{zjlx,jdbcType=OTHER}, #{zjhm,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_CRM_CLIENTBUS_LM" >
+    insert into  BO_CRM_CLIENTBUS_LM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgno != null" >
+        ORGNO,
+      </if>
+      <if test="bindid != null" >
+        BINDID,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER,
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID,
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID,
+      </if>
+      <if test="isend != null" >
+        ISEND,
+      </if>
+      <if test="lx != null" >
+        LX,
+      </if>
+      <if test="khbh != null" >
+        KHBH,
+      </if>
+      <if test="khmc != null" >
+        KHMC,
+      </if>
+      <if test="bmmc != null" >
+        BMMC,
+      </if>
+      <if test="bmxzdm != null" >
+        BMXZDM,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="yw != null" >
+        YW,
+      </if>
+      <if test="gjdm != null" >
+        GJDM,
+      </if>
+      <if test="mzdm != null" >
+        MZDM,
+      </if>
+      <if test="xbdm != null" >
+        XBDM,
+      </if>
+      <if test="csrq != null" >
+        CSRQ,
+      </if>
+      <if test="hyzkdm != null" >
+        HYZKDM,
+      </if>
+      <if test="zjxydm != null" >
+        ZJXYDM,
+      </if>
+      <if test="zzmmdm != null" >
+        ZZMMDM,
+      </if>
+      <if test="qtshjs != null" >
+        QTSHJS,
+      </if>
+      <if test="ifdam != null" >
+        IFDAM,
+      </if>
+      <if test="cdggjdq != null" >
+        CDGGJDQ,
+      </if>
+      <if test="ryztdm != null" >
+        RYZTDM,
+      </if>
+      <if test="jsdm != null" >
+        JSDM,
+      </if>
+      <if test="zwmc != null" >
+        ZWMC,
+      </if>
+      <if test="xrzdwbh != null" >
+        XRZDWBH,
+      </if>
+      <if test="xrzdw != null" >
+        XRZDW,
+      </if>
+      <if test="drzw != null" >
+        DRZW,
+      </if>
+      <if test="dwdh != null" >
+        DWDH,
+      </if>
+      <if test="yddh != null" >
+        YDDH,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="jcfg != null" >
+        JCFG,
+      </if>
+      <if test="sjgj != null" >
+        SJGJ,
+      </if>
+      <if test="bmndylxrdm != null" >
+        BMNDYLXRDM,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="fj != null" >
+        FJ,
+      </if>
+      <if test="tx != null" >
+        TX,
+      </if>
+      <if test="mp != null" >
+        MP,
+      </if>
+      <if test="zbgzll != null" >
+        ZBGZLL,
+      </if>
+      <if test="zbxqah != null" >
+        ZBXQAH,
+      </if>
+      <if test="zblssj != null" >
+        ZBLSSJ,
+      </if>
+      <if test="zbxglxr != null" >
+        ZBXGLXR,
+      </if>
+      <if test="parentsubid != null" >
+        PARENTSUBID,
+      </if>
+      <if test="bmbh != null" >
+        BMBH,
+      </if>
+      <if test="lxrbh != null" >
+        LXRBH,
+      </if>
+      <if test="zjlxdm != null" >
+        ZJLXDM,
+      </if>
+      <if test="zjh != null" >
+        ZJH,
+      </if>
+      <if test="zjlx != null" >
+        ZJLX,
+      </if>
+      <if test="zjhm != null" >
+        ZJHM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orgno != null" >
+        #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="lx != null" >
+        #{lx,jdbcType=OTHER},
+      </if>
+      <if test="khbh != null" >
+        #{khbh,jdbcType=OTHER},
+      </if>
+      <if test="khmc != null" >
+        #{khmc,jdbcType=OTHER},
+      </if>
+      <if test="bmmc != null" >
+        #{bmmc,jdbcType=OTHER},
+      </if>
+      <if test="bmxzdm != null" >
+        #{bmxzdm,jdbcType=OTHER},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=OTHER},
+      </if>
+      <if test="yw != null" >
+        #{yw,jdbcType=OTHER},
+      </if>
+      <if test="gjdm != null" >
+        #{gjdm,jdbcType=OTHER},
+      </if>
+      <if test="mzdm != null" >
+        #{mzdm,jdbcType=OTHER},
+      </if>
+      <if test="xbdm != null" >
+        #{xbdm,jdbcType=OTHER},
+      </if>
+      <if test="csrq != null" >
+        #{csrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hyzkdm != null" >
+        #{hyzkdm,jdbcType=OTHER},
+      </if>
+      <if test="zjxydm != null" >
+        #{zjxydm,jdbcType=OTHER},
+      </if>
+      <if test="zzmmdm != null" >
+        #{zzmmdm,jdbcType=OTHER},
+      </if>
+      <if test="qtshjs != null" >
+        #{qtshjs,jdbcType=OTHER},
+      </if>
+      <if test="ifdam != null" >
+        #{ifdam,jdbcType=OTHER},
+      </if>
+      <if test="cdggjdq != null" >
+        #{cdggjdq,jdbcType=OTHER},
+      </if>
+      <if test="ryztdm != null" >
+        #{ryztdm,jdbcType=OTHER},
+      </if>
+      <if test="jsdm != null" >
+        #{jsdm,jdbcType=OTHER},
+      </if>
+      <if test="zwmc != null" >
+        #{zwmc,jdbcType=OTHER},
+      </if>
+      <if test="xrzdwbh != null" >
+        #{xrzdwbh,jdbcType=OTHER},
+      </if>
+      <if test="xrzdw != null" >
+        #{xrzdw,jdbcType=OTHER},
+      </if>
+      <if test="drzw != null" >
+        #{drzw,jdbcType=OTHER},
+      </if>
+      <if test="dwdh != null" >
+        #{dwdh,jdbcType=OTHER},
+      </if>
+      <if test="yddh != null" >
+        #{yddh,jdbcType=OTHER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=OTHER},
+      </if>
+      <if test="jcfg != null" >
+        #{jcfg,jdbcType=OTHER},
+      </if>
+      <if test="sjgj != null" >
+        #{sjgj,jdbcType=OTHER},
+      </if>
+      <if test="bmndylxrdm != null" >
+        #{bmndylxrdm,jdbcType=OTHER},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=OTHER},
+      </if>
+      <if test="fj != null" >
+        #{fj,jdbcType=OTHER},
+      </if>
+      <if test="tx != null" >
+        #{tx,jdbcType=OTHER},
+      </if>
+      <if test="mp != null" >
+        #{mp,jdbcType=OTHER},
+      </if>
+      <if test="zbgzll != null" >
+        #{zbgzll,jdbcType=OTHER},
+      </if>
+      <if test="zbxqah != null" >
+        #{zbxqah,jdbcType=OTHER},
+      </if>
+      <if test="zblssj != null" >
+        #{zblssj,jdbcType=OTHER},
+      </if>
+      <if test="zbxglxr != null" >
+        #{zbxglxr,jdbcType=OTHER},
+      </if>
+      <if test="parentsubid != null" >
+        #{parentsubid,jdbcType=DECIMAL},
+      </if>
+      <if test="bmbh != null" >
+        #{bmbh,jdbcType=OTHER},
+      </if>
+      <if test="lxrbh != null" >
+        #{lxrbh,jdbcType=OTHER},
+      </if>
+      <if test="zjlxdm != null" >
+        #{zjlxdm,jdbcType=OTHER},
+      </if>
+      <if test="zjh != null" >
+        #{zjh,jdbcType=OTHER},
+      </if>
+      <if test="zjlx != null" >
+        #{zjlx,jdbcType=OTHER},
+      </if>
+      <if test="zjhm != null" >
+        #{zjhm,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_CRM_CLIENTBUS_LM" >
+    update  BO_CRM_CLIENTBUS_LM
+    <set >
+      <if test="orgno != null" >
+        ORGNO = #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        BINDID = #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER = #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        ISEND = #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="lx != null" >
+        LX = #{lx,jdbcType=OTHER},
+      </if>
+      <if test="khbh != null" >
+        KHBH = #{khbh,jdbcType=OTHER},
+      </if>
+      <if test="khmc != null" >
+        KHMC = #{khmc,jdbcType=OTHER},
+      </if>
+      <if test="bmmc != null" >
+        BMMC = #{bmmc,jdbcType=OTHER},
+      </if>
+      <if test="bmxzdm != null" >
+        BMXZDM = #{bmxzdm,jdbcType=OTHER},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=OTHER},
+      </if>
+      <if test="yw != null" >
+        YW = #{yw,jdbcType=OTHER},
+      </if>
+      <if test="gjdm != null" >
+        GJDM = #{gjdm,jdbcType=OTHER},
+      </if>
+      <if test="mzdm != null" >
+        MZDM = #{mzdm,jdbcType=OTHER},
+      </if>
+      <if test="xbdm != null" >
+        XBDM = #{xbdm,jdbcType=OTHER},
+      </if>
+      <if test="csrq != null" >
+        CSRQ = #{csrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hyzkdm != null" >
+        HYZKDM = #{hyzkdm,jdbcType=OTHER},
+      </if>
+      <if test="zjxydm != null" >
+        ZJXYDM = #{zjxydm,jdbcType=OTHER},
+      </if>
+      <if test="zzmmdm != null" >
+        ZZMMDM = #{zzmmdm,jdbcType=OTHER},
+      </if>
+      <if test="qtshjs != null" >
+        QTSHJS = #{qtshjs,jdbcType=OTHER},
+      </if>
+      <if test="ifdam != null" >
+        IFDAM = #{ifdam,jdbcType=OTHER},
+      </if>
+      <if test="cdggjdq != null" >
+        CDGGJDQ = #{cdggjdq,jdbcType=OTHER},
+      </if>
+      <if test="ryztdm != null" >
+        RYZTDM = #{ryztdm,jdbcType=OTHER},
+      </if>
+      <if test="jsdm != null" >
+        JSDM = #{jsdm,jdbcType=OTHER},
+      </if>
+      <if test="zwmc != null" >
+        ZWMC = #{zwmc,jdbcType=OTHER},
+      </if>
+      <if test="xrzdwbh != null" >
+        XRZDWBH = #{xrzdwbh,jdbcType=OTHER},
+      </if>
+      <if test="xrzdw != null" >
+        XRZDW = #{xrzdw,jdbcType=OTHER},
+      </if>
+      <if test="drzw != null" >
+        DRZW = #{drzw,jdbcType=OTHER},
+      </if>
+      <if test="dwdh != null" >
+        DWDH = #{dwdh,jdbcType=OTHER},
+      </if>
+      <if test="yddh != null" >
+        YDDH = #{yddh,jdbcType=OTHER},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=OTHER},
+      </if>
+      <if test="jcfg != null" >
+        JCFG = #{jcfg,jdbcType=OTHER},
+      </if>
+      <if test="sjgj != null" >
+        SJGJ = #{sjgj,jdbcType=OTHER},
+      </if>
+      <if test="bmndylxrdm != null" >
+        BMNDYLXRDM = #{bmndylxrdm,jdbcType=OTHER},
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz,jdbcType=OTHER},
+      </if>
+      <if test="fj != null" >
+        FJ = #{fj,jdbcType=OTHER},
+      </if>
+      <if test="tx != null" >
+        TX = #{tx,jdbcType=OTHER},
+      </if>
+      <if test="mp != null" >
+        MP = #{mp,jdbcType=OTHER},
+      </if>
+      <if test="zbgzll != null" >
+        ZBGZLL = #{zbgzll,jdbcType=OTHER},
+      </if>
+      <if test="zbxqah != null" >
+        ZBXQAH = #{zbxqah,jdbcType=OTHER},
+      </if>
+      <if test="zblssj != null" >
+        ZBLSSJ = #{zblssj,jdbcType=OTHER},
+      </if>
+      <if test="zbxglxr != null" >
+        ZBXGLXR = #{zbxglxr,jdbcType=OTHER},
+      </if>
+      <if test="parentsubid != null" >
+        PARENTSUBID = #{parentsubid,jdbcType=DECIMAL},
+      </if>
+      <if test="bmbh != null" >
+        BMBH = #{bmbh,jdbcType=OTHER},
+      </if>
+      <if test="lxrbh != null" >
+        LXRBH = #{lxrbh,jdbcType=OTHER},
+      </if>
+      <if test="zjlxdm != null" >
+        ZJLXDM = #{zjlxdm,jdbcType=OTHER},
+      </if>
+      <if test="zjh != null" >
+        ZJH = #{zjh,jdbcType=OTHER},
+      </if>
+      <if test="zjlx != null" >
+        ZJLX = #{zjlx,jdbcType=OTHER},
+      </if>
+      <if test="zjhm != null" >
+        ZJHM = #{zjhm,jdbcType=OTHER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_CRM_CLIENTBUS_LM" >
+    update  BO_CRM_CLIENTBUS_LM
+    set ORGNO = #{orgno,jdbcType=OTHER},
+      BINDID = #{bindid,jdbcType=DECIMAL},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATEUSER = #{createuser,jdbcType=OTHER},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      ISEND = #{isend,jdbcType=DECIMAL},
+      LX = #{lx,jdbcType=OTHER},
+      KHBH = #{khbh,jdbcType=OTHER},
+      KHMC = #{khmc,jdbcType=OTHER},
+      BMMC = #{bmmc,jdbcType=OTHER},
+      BMXZDM = #{bmxzdm,jdbcType=OTHER},
+      XM = #{xm,jdbcType=OTHER},
+      YW = #{yw,jdbcType=OTHER},
+      GJDM = #{gjdm,jdbcType=OTHER},
+      MZDM = #{mzdm,jdbcType=OTHER},
+      XBDM = #{xbdm,jdbcType=OTHER},
+      CSRQ = #{csrq,jdbcType=TIMESTAMP},
+      HYZKDM = #{hyzkdm,jdbcType=OTHER},
+      ZJXYDM = #{zjxydm,jdbcType=OTHER},
+      ZZMMDM = #{zzmmdm,jdbcType=OTHER},
+      QTSHJS = #{qtshjs,jdbcType=OTHER},
+      IFDAM = #{ifdam,jdbcType=OTHER},
+      CDGGJDQ = #{cdggjdq,jdbcType=OTHER},
+      RYZTDM = #{ryztdm,jdbcType=OTHER},
+      JSDM = #{jsdm,jdbcType=OTHER},
+      ZWMC = #{zwmc,jdbcType=OTHER},
+      XRZDWBH = #{xrzdwbh,jdbcType=OTHER},
+      XRZDW = #{xrzdw,jdbcType=OTHER},
+      DRZW = #{drzw,jdbcType=OTHER},
+      DWDH = #{dwdh,jdbcType=OTHER},
+      YDDH = #{yddh,jdbcType=OTHER},
+      EMAIL = #{email,jdbcType=OTHER},
+      JCFG = #{jcfg,jdbcType=OTHER},
+      SJGJ = #{sjgj,jdbcType=OTHER},
+      BMNDYLXRDM = #{bmndylxrdm,jdbcType=OTHER},
+      BZ = #{bz,jdbcType=OTHER},
+      FJ = #{fj,jdbcType=OTHER},
+      TX = #{tx,jdbcType=OTHER},
+      MP = #{mp,jdbcType=OTHER},
+      ZBGZLL = #{zbgzll,jdbcType=OTHER},
+      ZBXQAH = #{zbxqah,jdbcType=OTHER},
+      ZBLSSJ = #{zblssj,jdbcType=OTHER},
+      ZBXGLXR = #{zbxglxr,jdbcType=OTHER},
+      PARENTSUBID = #{parentsubid,jdbcType=DECIMAL},
+      BMBH = #{bmbh,jdbcType=OTHER},
+      LXRBH = #{lxrbh,jdbcType=OTHER},
+      ZJLXDM = #{zjlxdm,jdbcType=OTHER},
+      ZJH = #{zjh,jdbcType=OTHER},
+      ZJLX = #{zjlx,jdbcType=OTHER},
+      ZJHM = #{zjhm,jdbcType=OTHER}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+   <!-- 查询id -->
+   <select id=" " resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select * from BO_CRM_CLIENTBUS_LM where bindid = #{0}
+  </select>
+</mapper>

@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.tssx.BO_PRM_PTT_CSC_SPECON_S_DAO" >
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.tssx.BO_PRM_PTT_CSC_SPECON_S" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="ORGNO" property="orgno" jdbcType="OTHER" />
+    <result column="BINDID" property="bindid" jdbcType="DECIMAL" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CREATEUSER" property="createuser" jdbcType="OTHER" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="UPDATEUSER" property="updateuser" jdbcType="OTHER" />
+    <result column="WORKFLOWID" property="workflowid" jdbcType="DECIMAL" />
+    <result column="WORKFLOWSTEPID" property="workflowstepid" jdbcType="DECIMAL" />
+    <result column="ISEND" property="isend" jdbcType="DECIMAL" />
+    <result column="ZYXDM" property="zyxdm" jdbcType="OTHER" />
+    <result column="XXXDM" property="xxxdm" jdbcType="OTHER" />
+    <result column="NR" property="nr" jdbcType="OTHER" />
+    <result column="GYSBH" property="gysbh" jdbcType="OTHER" />
+    <result column="GYSMC" property="gysmc" jdbcType="OTHER" />
+    <result column="SL" property="sl" jdbcType="DECIMAL" />
+    <result column="DW" property="dw" jdbcType="OTHER" />
+    <result column="SL1" property="sl1" jdbcType="DECIMAL" />
+    <result column="DW1" property="dw1" jdbcType="OTHER" />
+    <result column="CBDJ" property="cbdj" jdbcType="DECIMAL" />
+    <result column="CBXJ" property="cbxj" jdbcType="DECIMAL" />
+    <result column="BZDM" property="bzdm" jdbcType="OTHER" />
+    <result column="RMBXJ" property="rmbxj" jdbcType="DECIMAL" />
+    <result column="GYSFWFL" property="gysfwfl" jdbcType="DECIMAL" />
+    <result column="GYSFWFE" property="gysfwfe" jdbcType="DECIMAL" />
+    <result column="HL" property="hl" jdbcType="DECIMAL" />
+    <result column="GRSDS" property="grsds" jdbcType="DECIMAL" />
+    <result column="GYSCJK" property="gyscjk" jdbcType="OTHER" />
+    <result column="SXDM" property="sxdm" jdbcType="OTHER" />
+    <result column="CBFPNR" property="cbfpnr" jdbcType="OTHER" />
+    <result column="QDFPKPRQ" property="qdfpkprq" jdbcType="OTHER" />
+    <result column="FKRQ" property="fkrq" jdbcType="OTHER" />
+    <result column="TSSXDM" property="tssxdm" jdbcType="OTHER" />
+    <result column="SFDL" property="sfdl" jdbcType="OTHER" />
+    <result column="TSSXID" property="tssxid" jdbcType="OTHER" />
+    <result column="ZXJG" property="zxjg" jdbcType="DECIMAL" />
+    <result column="GYSBM" property="gysbm" jdbcType="OTHER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORGNO, BINDID, CREATEDATE, CREATEUSER, UPDATEDATE, UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+    ISEND, ZYXDM, XXXDM, NR, GYSBH, GYSMC, SL, DW, SL1, DW1, CBDJ, CBXJ, BZDM, RMBXJ, 
+    GYSFWFL, GYSFWFE, HL, GRSDS, GYSCJK, SXDM, CBFPNR, QDFPKPRQ, FKRQ, TSSXDM, SFDL, 
+    TSSXID, ZXJG, GYSBM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from PSPBPM1330313.BO_PRM_PTT_CSC_SPECON_S
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PSPBPM1330313.BO_PRM_PTT_CSC_SPECON_S
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_PRM_PTT_CSC_SPECON_S" >
+    insert into PSPBPM1330313.BO_PRM_PTT_CSC_SPECON_S (ID, ORGNO, BINDID, 
+      CREATEDATE, CREATEUSER, UPDATEDATE, 
+      UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+      ISEND, ZYXDM, XXXDM, NR, 
+      GYSBH, GYSMC, SL, DW, 
+      SL1, DW1, CBDJ, CBXJ, 
+      BZDM, RMBXJ, GYSFWFL, 
+      GYSFWFE, HL, GRSDS, 
+      GYSCJK, SXDM, CBFPNR, QDFPKPRQ, 
+      FKRQ, TSSXDM, SFDL, TSSXID, 
+      ZXJG, GYSBM)
+    values (#{id,jdbcType=DECIMAL}, #{orgno,jdbcType=OTHER}, #{bindid,jdbcType=DECIMAL}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=OTHER}, #{updatedate,jdbcType=TIMESTAMP}, 
+      #{updateuser,jdbcType=OTHER}, #{workflowid,jdbcType=DECIMAL}, #{workflowstepid,jdbcType=DECIMAL}, 
+      #{isend,jdbcType=DECIMAL}, #{zyxdm,jdbcType=OTHER}, #{xxxdm,jdbcType=OTHER}, #{nr,jdbcType=OTHER}, 
+      #{gysbh,jdbcType=OTHER}, #{gysmc,jdbcType=OTHER}, #{sl,jdbcType=DECIMAL}, #{dw,jdbcType=OTHER}, 
+      #{sl1,jdbcType=DECIMAL}, #{dw1,jdbcType=OTHER}, #{cbdj,jdbcType=DECIMAL}, #{cbxj,jdbcType=DECIMAL}, 
+      #{bzdm,jdbcType=OTHER}, #{rmbxj,jdbcType=DECIMAL}, #{gysfwfl,jdbcType=DECIMAL}, 
+      #{gysfwfe,jdbcType=DECIMAL}, #{hl,jdbcType=DECIMAL}, #{grsds,jdbcType=DECIMAL}, 
+      #{gyscjk,jdbcType=OTHER}, #{sxdm,jdbcType=OTHER}, #{cbfpnr,jdbcType=OTHER}, #{qdfpkprq,jdbcType=OTHER}, 
+      #{fkrq,jdbcType=OTHER}, #{tssxdm,jdbcType=OTHER}, #{sfdl,jdbcType=OTHER}, #{tssxid,jdbcType=OTHER}, 
+      #{zxjg,jdbcType=DECIMAL}, #{gysbm,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_PRM_PTT_CSC_SPECON_S" >
+    insert into PSPBPM1330313.BO_PRM_PTT_CSC_SPECON_S
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgno != null" >
+        ORGNO,
+      </if>
+      <if test="bindid != null" >
+        BINDID,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER,
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID,
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID,
+      </if>
+      <if test="isend != null" >
+        ISEND,
+      </if>
+      <if test="zyxdm != null" >
+        ZYXDM,
+      </if>
+      <if test="xxxdm != null" >
+        XXXDM,
+      </if>
+      <if test="nr != null" >
+        NR,
+      </if>
+      <if test="gysbh != null" >
+        GYSBH,
+      </if>
+      <if test="gysmc != null" >
+        GYSMC,
+      </if>
+      <if test="sl != null" >
+        SL,
+      </if>
+      <if test="dw != null" >
+        DW,
+      </if>
+      <if test="sl1 != null" >
+        SL1,
+      </if>
+      <if test="dw1 != null" >
+        DW1,
+      </if>
+      <if test="cbdj != null" >
+        CBDJ,
+      </if>
+      <if test="cbxj != null" >
+        CBXJ,
+      </if>
+      <if test="bzdm != null" >
+        BZDM,
+      </if>
+      <if test="rmbxj != null" >
+        RMBXJ,
+      </if>
+      <if test="gysfwfl != null" >
+        GYSFWFL,
+      </if>
+      <if test="gysfwfe != null" >
+        GYSFWFE,
+      </if>
+      <if test="hl != null" >
+        HL,
+      </if>
+      <if test="grsds != null" >
+        GRSDS,
+      </if>
+      <if test="gyscjk != null" >
+        GYSCJK,
+      </if>
+      <if test="sxdm != null" >
+        SXDM,
+      </if>
+      <if test="cbfpnr != null" >
+        CBFPNR,
+      </if>
+      <if test="qdfpkprq != null" >
+        QDFPKPRQ,
+      </if>
+      <if test="fkrq != null" >
+        FKRQ,
+      </if>
+      <if test="tssxdm != null" >
+        TSSXDM,
+      </if>
+      <if test="sfdl != null" >
+        SFDL,
+      </if>
+      <if test="tssxid != null" >
+        TSSXID,
+      </if>
+      <if test="zxjg != null" >
+        ZXJG,
+      </if>
+      <if test="gysbm != null" >
+        GYSBM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orgno != null" >
+        #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="zyxdm != null" >
+        #{zyxdm,jdbcType=OTHER},
+      </if>
+      <if test="xxxdm != null" >
+        #{xxxdm,jdbcType=OTHER},
+      </if>
+      <if test="nr != null" >
+        #{nr,jdbcType=OTHER},
+      </if>
+      <if test="gysbh != null" >
+        #{gysbh,jdbcType=OTHER},
+      </if>
+      <if test="gysmc != null" >
+        #{gysmc,jdbcType=OTHER},
+      </if>
+      <if test="sl != null" >
+        #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="dw != null" >
+        #{dw,jdbcType=OTHER},
+      </if>
+      <if test="sl1 != null" >
+        #{sl1,jdbcType=DECIMAL},
+      </if>
+      <if test="dw1 != null" >
+        #{dw1,jdbcType=OTHER},
+      </if>
+      <if test="cbdj != null" >
+        #{cbdj,jdbcType=DECIMAL},
+      </if>
+      <if test="cbxj != null" >
+        #{cbxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bzdm != null" >
+        #{bzdm,jdbcType=OTHER},
+      </if>
+      <if test="rmbxj != null" >
+        #{rmbxj,jdbcType=DECIMAL},
+      </if>
+      <if test="gysfwfl != null" >
+        #{gysfwfl,jdbcType=DECIMAL},
+      </if>
+      <if test="gysfwfe != null" >
+        #{gysfwfe,jdbcType=DECIMAL},
+      </if>
+      <if test="hl != null" >
+        #{hl,jdbcType=DECIMAL},
+      </if>
+      <if test="grsds != null" >
+        #{grsds,jdbcType=DECIMAL},
+      </if>
+      <if test="gyscjk != null" >
+        #{gyscjk,jdbcType=OTHER},
+      </if>
+      <if test="sxdm != null" >
+        #{sxdm,jdbcType=OTHER},
+      </if>
+      <if test="cbfpnr != null" >
+        #{cbfpnr,jdbcType=OTHER},
+      </if>
+      <if test="qdfpkprq != null" >
+        #{qdfpkprq,jdbcType=OTHER},
+      </if>
+      <if test="fkrq != null" >
+        #{fkrq,jdbcType=OTHER},
+      </if>
+      <if test="tssxdm != null" >
+        #{tssxdm,jdbcType=OTHER},
+      </if>
+      <if test="sfdl != null" >
+        #{sfdl,jdbcType=OTHER},
+      </if>
+      <if test="tssxid != null" >
+        #{tssxid,jdbcType=OTHER},
+      </if>
+      <if test="zxjg != null" >
+        #{zxjg,jdbcType=DECIMAL},
+      </if>
+      <if test="gysbm != null" >
+        #{gysbm,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_PRM_PTT_CSC_SPECON_S" >
+    update PSPBPM1330313.BO_PRM_PTT_CSC_SPECON_S
+    <set >
+      <if test="orgno != null" >
+        ORGNO = #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        BINDID = #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER = #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        ISEND = #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="zyxdm != null" >
+        ZYXDM = #{zyxdm,jdbcType=OTHER},
+      </if>
+      <if test="xxxdm != null" >
+        XXXDM = #{xxxdm,jdbcType=OTHER},
+      </if>
+      <if test="nr != null" >
+        NR = #{nr,jdbcType=OTHER},
+      </if>
+      <if test="gysbh != null" >
+        GYSBH = #{gysbh,jdbcType=OTHER},
+      </if>
+      <if test="gysmc != null" >
+        GYSMC = #{gysmc,jdbcType=OTHER},
+      </if>
+      <if test="sl != null" >
+        SL = #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="dw != null" >
+        DW = #{dw,jdbcType=OTHER},
+      </if>
+      <if test="sl1 != null" >
+        SL1 = #{sl1,jdbcType=DECIMAL},
+      </if>
+      <if test="dw1 != null" >
+        DW1 = #{dw1,jdbcType=OTHER},
+      </if>
+      <if test="cbdj != null" >
+        CBDJ = #{cbdj,jdbcType=DECIMAL},
+      </if>
+      <if test="cbxj != null" >
+        CBXJ = #{cbxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bzdm != null" >
+        BZDM = #{bzdm,jdbcType=OTHER},
+      </if>
+      <if test="rmbxj != null" >
+        RMBXJ = #{rmbxj,jdbcType=DECIMAL},
+      </if>
+      <if test="gysfwfl != null" >
+        GYSFWFL = #{gysfwfl,jdbcType=DECIMAL},
+      </if>
+      <if test="gysfwfe != null" >
+        GYSFWFE = #{gysfwfe,jdbcType=DECIMAL},
+      </if>
+      <if test="hl != null" >
+        HL = #{hl,jdbcType=DECIMAL},
+      </if>
+      <if test="grsds != null" >
+        GRSDS = #{grsds,jdbcType=DECIMAL},
+      </if>
+      <if test="gyscjk != null" >
+        GYSCJK = #{gyscjk,jdbcType=OTHER},
+      </if>
+      <if test="sxdm != null" >
+        SXDM = #{sxdm,jdbcType=OTHER},
+      </if>
+      <if test="cbfpnr != null" >
+        CBFPNR = #{cbfpnr,jdbcType=OTHER},
+      </if>
+      <if test="qdfpkprq != null" >
+        QDFPKPRQ = #{qdfpkprq,jdbcType=OTHER},
+      </if>
+      <if test="fkrq != null" >
+        FKRQ = #{fkrq,jdbcType=OTHER},
+      </if>
+      <if test="tssxdm != null" >
+        TSSXDM = #{tssxdm,jdbcType=OTHER},
+      </if>
+      <if test="sfdl != null" >
+        SFDL = #{sfdl,jdbcType=OTHER},
+      </if>
+      <if test="tssxid != null" >
+        TSSXID = #{tssxid,jdbcType=OTHER},
+      </if>
+      <if test="zxjg != null" >
+        ZXJG = #{zxjg,jdbcType=DECIMAL},
+      </if>
+      <if test="gysbm != null" >
+        GYSBM = #{gysbm,jdbcType=OTHER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_PRM_PTT_CSC_SPECON_S" >
+    update PSPBPM1330313.BO_PRM_PTT_CSC_SPECON_S
+    set ORGNO = #{orgno,jdbcType=OTHER},
+      BINDID = #{bindid,jdbcType=DECIMAL},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATEUSER = #{createuser,jdbcType=OTHER},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      ISEND = #{isend,jdbcType=DECIMAL},
+      ZYXDM = #{zyxdm,jdbcType=OTHER},
+      XXXDM = #{xxxdm,jdbcType=OTHER},
+      NR = #{nr,jdbcType=OTHER},
+      GYSBH = #{gysbh,jdbcType=OTHER},
+      GYSMC = #{gysmc,jdbcType=OTHER},
+      SL = #{sl,jdbcType=DECIMAL},
+      DW = #{dw,jdbcType=OTHER},
+      SL1 = #{sl1,jdbcType=DECIMAL},
+      DW1 = #{dw1,jdbcType=OTHER},
+      CBDJ = #{cbdj,jdbcType=DECIMAL},
+      CBXJ = #{cbxj,jdbcType=DECIMAL},
+      BZDM = #{bzdm,jdbcType=OTHER},
+      RMBXJ = #{rmbxj,jdbcType=DECIMAL},
+      GYSFWFL = #{gysfwfl,jdbcType=DECIMAL},
+      GYSFWFE = #{gysfwfe,jdbcType=DECIMAL},
+      HL = #{hl,jdbcType=DECIMAL},
+      GRSDS = #{grsds,jdbcType=DECIMAL},
+      GYSCJK = #{gyscjk,jdbcType=OTHER},
+      SXDM = #{sxdm,jdbcType=OTHER},
+      CBFPNR = #{cbfpnr,jdbcType=OTHER},
+      QDFPKPRQ = #{qdfpkprq,jdbcType=OTHER},
+      FKRQ = #{fkrq,jdbcType=OTHER},
+      TSSXDM = #{tssxdm,jdbcType=OTHER},
+      SFDL = #{sfdl,jdbcType=OTHER},
+      TSSXID = #{tssxid,jdbcType=OTHER},
+      ZXJG = #{zxjg,jdbcType=DECIMAL},
+      GYSBM = #{gysbm,jdbcType=OTHER}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

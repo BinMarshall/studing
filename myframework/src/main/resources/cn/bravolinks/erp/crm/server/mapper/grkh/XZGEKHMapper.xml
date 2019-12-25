@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.grkh.XZGRKHDao">
+	
+	<!-- 个人客户信息 -->
+	<select id="getGrkh" parameterType="string" resultType="map">
+		select ID,XM,SJLYDM,KHDJ,YW,GJDM,MZDM,XBDM,CSRQ,HYZKDM,ZJXYDM,ZZMMDM,QTSHJS,
+		IFDAM,CDGGJDQ,JSDM,YDDH,EMAIL,JCFG,SJGJ,ZJLXDM,ZJH,BZ,FJ,
+		LYXQYS,KHJLZH,KHJLXM,KHJLSSBM,LXRBINDID,KHDJ,KHBH,BMBH,WHLXDM from BO_CRM_INDCLIENTBUS_P where BINDID = #{bindid}
+	</select>
+	
+	<!-- 更新个人客户信息主表的lx类型字段 -->
+	<update id="updateKhlx" parameterType="map" >
+		update BO_CRM_INDCLIENTBUS_P set LX = '个人客户',LXRBH=#{khbh} where bindid=#{bindid}
+	</update>
+	
+	<!-- 向个人客户档案主表插入新的信息 -->
+	<insert id="insertKhda" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="ID">
+		<selectKey resultType="long" order="BEFORE" keyProperty="projectId"> 
+			select BO_CRM_INDCLIENT_P_SEQ.nextval from dual
+		</selectKey>
+	 		insert into BO_CRM_INDCLIENT_P(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,ISEND,
+	 			LX,KHBH,XM,YW,GJDM,MZDM,XBDM,CSRQ,HYZKDM,ZJXYDM,ZZMMDM,QTSHJS,
+	 			IFDAM,CDGGJDQ,JSDM,YDDH,EMAIL,JCFG,SJGJ,ZJLXDM,ZJH,BZ,FJ,LXRBH,BMBH,SJLYDM,LYXQYS,
+	 			KHJLZH,KHJLMC,KHJLSSBM,LXRBINDID,KHDJ) 
+	 		values (#{projectId},#{ORGNO},#{BINDID},#{CREATEUSER},#{UPDATEUSER},#{WFID},#{WFSID},#{ISEND},
+	 			#{LX,jdbcType=VARCHAR},#{KHBH,jdbcType=VARCHAR},#{XM,jdbcType=VARCHAR},#{YW,jdbcType=VARCHAR},
+	 			#{GJDM,jdbcType=VARCHAR},#{MZDM,jdbcType=VARCHAR},#{XBDM,jdbcType=VARCHAR},#{CSRQ,jdbcType=TIMESTAMP},
+	 			#{HYZKDM,jdbcType=VARCHAR},#{ZJXYDM,jdbcType=VARCHAR},#{ZZMMDM,jdbcType=VARCHAR},#{QTSHJS,jdbcType=VARCHAR},
+	 			#{IFDAM,jdbcType=VARCHAR},#{CDGGJDQ,jdbcType=VARCHAR},#{JSDM,jdbcType=VARCHAR},#{YDDH,jdbcType=VARCHAR},
+	 			#{EMAIL,jdbcType=VARCHAR},#{JCFG,jdbcType=VARCHAR},#{SJGJ,jdbcType=VARCHAR},#{ZJLXDM,jdbcType=VARCHAR},#{ZJH,jdbcType=VARCHAR},
+	 			#{BZ,jdbcType=VARCHAR},#{FJ,jdbcType=VARCHAR},#{LXRBH,jdbcType=VARCHAR},#{BMBH,jdbcType=VARCHAR},
+	 			#{SJLYDM,jdbcType=VARCHAR},#{LYXQYS,jdbcType=INTEGER},#{KHJLZH,jdbcType=VARCHAR},#{KHJLMC,jdbcType=VARCHAR},
+	 			#{KHJLSSBM,jdbcType=VARCHAR},#{LXRBINDID,jdbcType=VARCHAR},#{KHDJ,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 插入日志信息 -->
+	<insert id="insertLog" parameterType="java.util.Map">
+   		insert into BO_CRM_CLIENT_LOG(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,GSID,
+   					GSDM,GSMC,BMID,BMMC,CZRZH,CZRXM,KHBH,KHMC,WHSJ,WHLXDM ) 
+   			values  (BO_CRM_CLIENT_LOG_SEQ.nextval,#{ORGID},#{BINDID},#{USERID},#{USERID},#{WFID},#{WFSID},#{GSID},#{GSDM},#{GSMC},
+   					#{DEPARTMENTID},#{DEPARTMENTNAME},#{USERID},#{USERNAME},#{khbh},#{khmc},sysdate,#{whlxdm}) 
+    </insert>
+	
+	<!-- 工作履历 -->
+	<select id="getGzll" parameterType="string" resultType="map"> 
+		select GZDW,SZBM,DWDH,ZW,ZYLY,RZRQ,LZRQ,PARENTSUBID from BO_CRM_INDCLIENTBUS_TR where BINDID = #{bindid}
+	</select>
+	
+	<!-- 相关联系人 -->
+	<select id="getXglxr" parameterType="string" resultType="map">
+		select XM,XB,GXDM,DH,SJ,CSRQ,BZ,PARENTSUBID from BO_CRM_INDCLIENTBUS_LM where BINDID = #{bindid}
+	</select>
+	
+	<!-- 个人偏好 -->
+	<select id="getGrph" parameterType="string" resultType="map">
+		select XQAHFLDM,MS,PARENTSUBID from BO_CRM_INDCLIENTBUS_HOB where BINDID = #{bindid}
+	</select>
+	
+	<!-- 历史事件 -->
+	<select id="getLssj" parameterType="string" resultType="map">
+		select FSRQ,FSDD,LSSJ,PARENTSUBID from BO_CRM_INDCLIENTBUS_EVE where BINDID = #{bindid}
+	</select>
+	
+	<!-- 保存工作履历档案子表 -->
+	<insert id="insertGzll" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="ID">
+		<selectKey resultType="long" order="BEFORE" keyProperty="projectId"> 
+			select BO_CRM_INDCLIENT_TR_SEQ.nextval from dual
+		</selectKey>
+	 		insert into BO_CRM_INDCLIENT_TR(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,ISEND,
+	 			GZDW,SZBM,DWDH,ZW,ZYLY,RZRQ,LZRQ,PARENTSUBID) 
+	 		values (#{projectId},#{ORGNO},#{BINDID},#{CREATEUSER},#{UPDATEUSER},#{WFID},#{WFSID},#{ISEND},
+	 			#{GZDW,jdbcType=VARCHAR},#{SZBM,jdbcType=VARCHAR},#{DWDH,jdbcType=VARCHAR},#{ZW,jdbcType=VARCHAR},
+	 			#{ZYLY,jdbcType=VARCHAR},#{RZRQ,jdbcType=TIMESTAMP},#{LZRQ,jdbcType=TIMESTAMP},#{PARENTSUBID})
+	</insert>
+	
+	<!-- 保存相关联系人档案子表 -->
+	<insert id="insertXglxr" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="ID">
+		<selectKey resultType="long" order="BEFORE" keyProperty="projectId"> 
+			select BO_CRM_INDCLIENT_LM_SEQ.nextval from dual
+		</selectKey>
+	 		insert into BO_CRM_INDCLIENT_LM(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,ISEND,
+	 			XM,XB,GXDM,DH,SJ,CSRQ,BZ,PARENTSUBID)
+	 		values (#{projectId},#{ORGNO},#{BINDID},#{CREATEUSER},#{UPDATEUSER},#{WFID},#{WFSID},#{ISEND},
+	 			#{XM,jdbcType=VARCHAR},#{XB,jdbcType=VARCHAR},#{GXDM,jdbcType=VARCHAR},#{DH,jdbcType=VARCHAR},
+	 			#{SJ,jdbcType=VARCHAR},#{CSRQ,jdbcType=TIMESTAMP},#{BZ,jdbcType=VARCHAR},#{PARENTSUBID})
+	</insert>	
+	   
+	<!-- 保存兴趣爱好档案子表 -->
+	<insert id="insertGrph" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="ID">
+		<selectKey resultType="long" order="BEFORE" keyProperty="projectId"> 
+			select BO_CRM_INDCLIENT_LM_SEQ.nextval from dual
+		</selectKey>
+	 		insert into BO_CRM_INDCLIENT_HOB(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,ISEND,
+	 			XQAHFLDM,MS,PARENTSUBID)  
+	 		values (#{projectId},#{ORGNO},#{BINDID},#{CREATEUSER},#{UPDATEUSER},#{WFID},#{WFSID},#{ISEND},
+	 			#{XQAHFLDM,jdbcType=VARCHAR},#{MS,jdbcType=VARCHAR},#{PARENTSUBID})
+	</insert>
+	
+	<!-- 保存历史事件档案子表 -->
+	<insert id="insertLssj" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="ID">
+		<selectKey resultType="long" order="BEFORE" keyProperty="projectId"> 
+			select BO_CRM_INDCLIENT_LM_SEQ.nextval from dual
+		</selectKey>
+	 		insert into BO_CRM_INDCLIENT_EVE(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,ISEND,
+	 			LSSJ,FSRQ,FSDD,PARENTSUBID)  
+	 		values (#{projectId},#{ORGNO},#{BINDID},#{CREATEUSER},#{UPDATEUSER},#{WFID},#{WFSID},#{ISEND},
+	 			#{LSSJ,jdbcType=TIMESTAMP},#{FSRQ,jdbcType=VARCHAR},#{FSDD,jdbcType=VARCHAR},#{PARENTSUBID})
+	</insert> 
+	
+	<!-- 获取标题 -->
+	<select id="getTaskTitle" parameterType="string" resultType="string">
+   		select title from wf_task where id = #{taskid}
+	</select>
+	
+	<!-- 修改联系人编号 -->
+    <select id="zhuiZong" parameterType="string" resultType="map">
+   		SELECT
+            a.AUDITDESC,
+            b.Username,
+            a.DEPTNAME,
+            a.POSITIONNAME,
+            a.CREATE_DATE,
+            a.ISAGREE,
+            a.OPINION
+        FROM
+          WF_MESSAGEOPINION a,
+          ORGUSER b
+        WHERE
+          a.CREATE_USER = b.USERID
+         AND a.PARENT_ID=to_number(#{bindid})
+         ORDER BY a.CREATE_DATE asc
+	</select>
+	
+	<!-- 通过用户userid获取用户信息 -->
+	<sql id="userfields">a.id,
+						 a.userid,
+						 a.roleid,
+						 a.username,
+						 b.companyid,
+						 a.departmentid,
+						 b.departmentname,
+						 c.gsdm,
+						 c.gsmc,
+						 c.sssyb,
+						 c.sssybdm,
+						 c.gsfl,
+						 c.fwlb,
+						 d.id gsid
+	</sql>
+	<select id="getUserByUserid" parameterType="java.lang.String" resultType="java.util.Map">
+		select <include refid="userfields" />
+		from orguser a 
+		left join orgdepartment b on a.departmentid = b.id
+		left join bo_org_ext_dept c on b.id = c.departmentid
+		left join orgdepartment d on b.parentdepartmentid = d.id
+		where a.userid = #{userid}
+	</select>
+	
+	<!-- 通过任务实例ID获取当前节点信息 -->
+	<sql id="stepTaskfields">id taskid, 
+					 		 owner senduser, 
+					 		 target targetuser, 
+					 		 bind_id bindid, 
+					 		 wfid, 
+					 		 wfsid,
+					 		 orgid orgid,
+					 		 dptid targedptid,
+					 		 owner_dpt_id senddptid,
+					 		 roleid,
+					 		 title,
+					 		 status
+	</sql>
+	<select id="getCurrentStepTaskByTaskid" parameterType="java.lang.Integer" resultType="java.util.Map">
+		select * from (
+			select <include refid="stepTaskfields" /> from wf_task
+			union all 
+			select <include refid="stepTaskfields" /> from wf_task_log
+		) A where A.taskid=#{taskid}
+	</select>
+	
+	<!-- 查询文件UUID -->
+	<select id="getFileUUID" parameterType="java.util.Map" resultType="java.lang.String">
+		select s.uuid UUID from sys_business_metadata p join sys_business_metadata_map s on p.id = s.metadata_id where s.field_name = #{fieldName} and p.entity_name = #{tableName}
+    </select>
+    
+    <!-- 查询id -->
+	<select id="getId" parameterType="java.lang.String" resultType="java.lang.String">
+		select ID from BO_CRM_INDCLIENTBUS_P where bindid = #{bindid}
+    </select>
+    
+    <!-- 查询国籍名称 -->
+	<select id="getGjmc" parameterType="java.lang.String" resultType="java.lang.String">
+		select GJ mc from BO_CYTS_CITY_P where dm is not null and dm = #{gjdm} 
+		and id in (select max(id) from BO_CYTS_CITY_P group by dm) order by xh nulls first
+    </select>
+    
+    <!-- 查询政治面貌名称 -->
+	<select id="getZzmmmc" parameterType="java.lang.String" resultType="java.lang.String">
+		select zwmc mc from bo_cyts_baseinfo where dl='个人客户' and lx='政治面貌' and zt='有效' and dm=#{zzmmdm} order by sn 
+    </select>
+    
+    <!-- 查询证件类型名称 -->
+	<select id="getZjlxmc" parameterType="java.lang.String" resultType="java.lang.String">
+		select zwmc mc from bo_cyts_baseinfo where dl='个人客户' and lx='证件类型' and zt='有效' and dm=#{zjlxdm} order by sn
+    </select>
+    
+    <!-- 查询角色名称 -->
+	<select id="getJsmc" parameterType="java.lang.String" resultType="java.lang.String">
+		select zwmc mc from bo_cyts_baseinfo where dl='个人客户' and lx='角色' and zt='有效' and dm=#{jsdm} order by sn
+    </select>
+    
+    <!-- 查询婚姻状况名称 -->
+	<select id="getHyzkmc" parameterType="java.lang.String" resultType="java.lang.String">
+		select zwmc mc from bo_cyts_baseinfo where dl='个人客户' and lx='婚姻状况' and zt='有效' and dm=#{hyzkdm} order by sn
+    </select>
+    
+    <!-- 查询婚姻状况名称 -->
+	<select id="getZjxymc" parameterType="java.lang.String" resultType="java.lang.String">
+		select zwmc mc from bo_cyts_baseinfo where dl='个人客户' and lx='宗教信仰' and zt='有效' and dm=#{zjxydm} order by sn
+    </select>
+    
+    <!-- 查询民族名称 -->
+	<select id="getMzmc" parameterType="java.lang.String" resultType="java.lang.String">
+		select zwmc mc from bo_cyts_baseinfo where dl='个人客户' and lx='民族' and zt='有效' and dm=#{mzdm} order by sn 
+    </select>
+    
+    <!-- 查询客户等级 -->
+	<select id="getKhdjmc" parameterType="java.lang.String" resultType="java.lang.String">
+		select zwmc mc from bo_cyts_baseinfo where dl='个人客户' and lx='客户等级' and zt='有效' and dm=#{khdj} order by sn 
+    </select>
+    
+    <!-- 查询数据来源 -->
+	<select id="getSjlymc" parameterType="java.lang.String" resultType="java.lang.String">
+		select zwmc mc from bo_cyts_baseinfo where dl='个人客户' and lx='数据来源' and zt='有效' and dm=#{sjlydm} and dm != '2' order by sn
+    </select>
+    
+    <!-- 查询相关联系人关系名称 -->
+	<select id="getGxmc" parameterType="java.lang.String" resultType="java.lang.String">
+		select zwmc from bo_cyts_baseinfo where dl='个人客户' and lx='关系' and zt='有效' and dm=#{gxdm} order by sn
+    </select>
+    
+    <!-- 查询兴趣爱好名称 -->
+	<select id="getXqahflmc" parameterType="java.lang.String" resultType="java.lang.String">
+		select zwmc from bo_cyts_baseinfo where dl='个人客户' and lx='兴趣爱好' and zt='有效' and dm=#{xqahfldm} order by sn
+    </select>
+    
+    <!-- 获取联系人编号 -->
+	<select id="getLxrbh" parameterType="int" resultType="java.lang.String">
+		select LXRBH from BO_CRM_INDCLIENT_P where LXRBH like 'C%' and length(LXRBH)=#{length} group by LXRBH order by LXRBH
+    </select>
+    
+</mapper> 

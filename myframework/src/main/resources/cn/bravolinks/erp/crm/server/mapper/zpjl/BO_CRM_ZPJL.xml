@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.zpjl.ZpjlDao">
+	<!-- 从单位客户信息-服务部门 查询部门ID -->
+	<select id="getBMIDForSerDpt" parameterType="java.lang.Integer" resultType="java.util.Map">
+		select distinct BMID from BO_CRM_CLIENTBUS_SERDPT where bindid = #{bindid}
+	</select>
+	<!-- 删除单位客户信息-服务部门 查询部门通过ID -->
+	<delete id="delzpjl" parameterType="java.lang.Integer">
+		delete from BO_CRM_CLIENTBUS_SERDPT where id = #{id}
+	</delete>
+	<!-- 单位客户信息-服务部门 查询byID -->
+	<select id="getSerDptById" parameterType="java.lang.Integer" resultType="java.util.Map">
+		select * from BO_CRM_CLIENTBUS_SERDPT where id = #{id}
+	</select>
+	<!-- 新增 -->
+	<insert id="addDate" parameterType="map">
+		insert into BO_CRM_CLIENTBUS_SERDPT(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,KHBMBH,KHBMMC,KHJLXM,
+				KHJLZH,BMID,BMMC) 
+			values (BO_CRM_CLIENTBUS_SERDPT_SEQ.nextval,#{ORGID},#{BINDID},#{userid},#{userid},#{WFID},#{WFSID},
+				#{khbmbh},#{khbmmc},#{khjlxm},#{khjlzh},#{bmid},#{bmmc})
+	</insert>
+	<!-- 编辑 -->
+	<update id="updDate" parameterType="map">
+		update BO_CRM_CLIENTBUS_SERDPT set UPDATEDATE=sysdate,UPDATEUSER=#{userid}, KHBMBH=#{khbmbh},KHBMMC=#{khbmmc},KHJLXM=#{khjlxm},
+				KHJLZH=#{khjlzh},BMID=#{bmid},BMMC=#{bmmc} where id=#{id}
+	</update>
+	<!-- 查询客户经理和服务部门 -->
+	<select id="getKhjlAndBM" parameterType="java.util.Map" resultType="java.util.Map">
+		select * from (select * from (select a.userid, a.username, b.id, b.departmentname
+             from orguser a inner join orgdepartment b on a.departmentid = b.id and a.disenable = 0
+                union
+                select distinct u.userid,
+                                u.username,
+                                m.departmentid as id,
+                                d.departmentname
+                  from orguser u
+                 inner join orgusermap m on m.mapid = u.id
+                 inner join orgdepartment d on d.id = m.departmentid
+                                           and u.disenable = 0) s
+         where id in
+               (select u.departmentid as bmid
+                  from orguser u
+                 inner join orgrole r on u.roleid = r.id
+                                     and r.id in (188597, 228689)
+                                     and u.userid = #{userid}
+                                     and u.departmentid in
+                                         (select distinct bmid
+                                            from BO_CRM_CLIENT_SERDPT
+                                           where khbh = #{khbh})
+                union
+                select m.departmentid as bmid
+                  from orguser u
+                 inner join orgusermap m on u.id = m.mapid
+                                        and m.departmentid in
+                                            (select distinct bmid
+                                               from BO_CRM_CLIENT_SERDPT
+                                              where khbh = #{khbh})
+                 inner join orgrole r on r.id = u.roleid
+                                     and u.userid = #{userid}
+                                     and m.roleid in (188597, 228689))
+         order by departmentname desc)
+ 		where 1 = 1 
+ 		<if test="val != null and val != ''">
+ 			and  USERNAME like CONCAT(CONCAT('%',#{val}),'%')
+ 		</if>
+	</select>
+	
+	<!-- 查询客户部门列表 -->
+	<select id="getkhbmList" parameterType="java.lang.String" resultType="java.util.Map">
+		select * from (select distinct KHBMBH, KHBMMC
+          from BO_CRM_CLIENT_SERDPT  where bindid =
+               (select bindid
+                  from BO_CRM_CLIENT_P
+                 where KHBH =#{khbh}))
+<!--  where 1 = 1
+   and ? ? ? -->
+	</select>
+	<!-- 判断是否有在途流程 -->
+	<select id="pdztlc" parameterType="map" resultType="int">
+		select count(*) as NUM from BO_CRM_CLIENTBUS_P where khbh=#{khbh} and createuser=#{userid} and isend=0
+	</select>
+	<!-- 通过部门id获取所在公司的信息(ID、代码、名称) -->
+   <select id="getGSXXByBmid" parameterType="java.lang.String" resultType="java.util.Map">
+   		select dp.id,p.gsmc,p.gsdm from BO_ORG_EXT_DEPT p  inner join 
+			(select id,departmentno from orgdepartment union select id,companyno from orgcompany ) dp
+			on p.gsdm=dp.departmentno where departmentid=#{bmid}
+   </select>
+   <!-- 更新BO_CRM_CLIENTBUS_SERDPT -->
+   <update id="updSerdpt" parameterType="java.util.Map">
+   		update BO_CRM_CLIENTBUS_SERDPT set gsid=#{ID},gsdm=#{GSDM},gsmc=#{GSMC} where bindid=#{bindid} and bmid=#{bmid}
+   </update>
+   <!-- 通过boid获取KHBMBH ,DAID-->
+   <select id="getKHBMBHById" parameterType="java.lang.Integer" resultType="java.util.Map">
+   		select KHBMBH,DAID from BO_CRM_CLIENTBUS_SERDPT where id=#{boId}
+   </select>
+   <!-- 通过bindid 查询所有信息 -->
+   <select id="getAllSerdptByBindid" parameterType="java.lang.Integer" resultType="java.util.Map">
+   		select * from BO_CRM_CLIENTBUS_SERDPT where bindid = #{bindid}
+   </select>
+   <!--  由于存储表中有两种情况，客户经理账号‘shaof’和‘shaof<邵非>’所以多加了判断 -->
+   <select id="getSerdptCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+   		select count(*) count from BO_CRM_CLIENTBUS_SERDPT where khbmbh=#{khbmbh} and bmid =#{bmid}
+   			and (khjlzh = #{khjlzh} or khjlzh = #{khjlzh1}) and bindid=#{bindid}
+   </select>
+   <!--单位客户信息主表(BO_CRM_CLIENTBUS_P) by bindid -->
+   <select id="getBoCrmClientbusPByBindid" parameterType="java.lang.Integer" resultType="java.util.Map">
+   		select * from BO_CRM_CLIENTBUS_P where bindid = #{bindid}
+   </select>
+   <!-- 单位客户信息-服务部门(BO_CRM_CLIENTBUS_SERDPT) -->
+   <select id="getoCrmClientbusSerdptbyBindid" parameterType="java.lang.Integer" resultType="java.util.Map">
+   		select * from BO_CRM_CLIENTBUS_SERDPT where bindid = #{bindid} order by id
+   </select>
+    <select id="extSql" parameterType="java.lang.String" resultType="java.util.Map">
+   		select c.gsid, e.departmentid, c.gsdm, c.gsjc from BO_ORG_EXT_DEPT e inner join BO_CYTS_COMPANY c 
+   			on e.gsdm = c.gsdm and e.departmentid = #{bmid}
+   </select>
+   <!-- 更新BO_CRM_CLIENT_SERDPT -->
+   <update id="updClientSerdpt" parameterType="java.util.Map">
+   		update BO_CRM_CLIENT_SERDPT set khjlzh=#{khjlzh},khjlxm=#{khjlxm},bmid=#{bmid},bmmc=#{bmmc},gsdm=#{gsdm},gsmc=#{gsmc},gsid=#{gsid}
+   			where khbmbh=#{khbmbh} and id=#{daid}
+   </update>
+   <select id="ykhjlzhSql" parameterType="java.util.Map" resultType="java.util.Map">
+   		 select khbmmc,khjlzh,khjlxm from bo_crm_client_serdpt where khbmbh =#{khbmbh} and id=#{daid}
+   </select>
+  <!-- 通过任务实例ID获取当前节点信息 -->
+	<sql id="stepTaskfields">id taskid, 
+					 		 owner senduser, 
+					 		 target targetuser, 
+					 		 bind_id bindid, 
+					 		 wfid, 
+					 		 wfsid,
+					 		 orgid orgid,
+					 		 dptid targedptid,
+					 		 owner_dpt_id senddptid,
+					 		 roleid,
+					 		 title,
+					 		 status
+	</sql>
+	<select id="getCurrentStepTaskByTaskid" parameterType="java.lang.Integer" resultType="java.util.Map">
+		select * from (
+			select <include refid="stepTaskfields" /> from wf_task
+			union all 
+			select <include refid="stepTaskfields" /> from wf_task_log
+		) A where A.taskid=#{taskid}
+	</select>
+   <!-- 增加一条数据到BO_CRM_CLIENT_SERDPT ,DKHZJZH,DKHZJXM,SSGSDM,SSGSMC  ,#{DKHZJZH},#{DKHZJXM},#{SSGSDM},#{SSGSMC}-->
+   <insert id="insertClientSerdpt" parameterType="java.util.Map">
+   		insert into BO_CRM_CLIENT_SERDPT(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,GSID,GSDM,GSMC,
+   				BMID,BMMC,KHBMMC,KHBMBH,KHJLZH,KHJLXM,KHBH)
+   			values(BO_CRM_CLIENT_SERDPT_SEQ.nextval,#{ORGID},#{BINDID},#{USERID},#{USERID},#{WFID},#{WFSID},#{GSID},#{GSDM},#{GSMC},
+   				#{BMID},#{BMMC},#{KHBMMC},#{KHBMBH},#{KHJLZH},#{KHJLXM},#{KHBH}
+   			)
+   </insert>
+   <delete id="removeClientSerdpt" parameterType="java.lang.Integer">
+   		delete from BO_CRM_CLIENT_SERDPT where id=#{id}
+   </delete>
+   <!-- 通过id 查询BO_CRM_CLIENT_SERDPT -->
+   <select id="getkhxxForClientSerdpt" resultType="map" parameterType="string">
+   		select KHBMMC,BMMC,KHJLXM from BO_CRM_CLIENT_SERDPT where id=#{clientSerdptId}
+   </select>
+   <!-- 通过用户userid获取用户信息 -->
+	<sql id="userfields">a.id,
+						 a.userid,
+						 a.roleid,
+						 a.username,
+						 b.companyid,
+						 a.departmentid,
+						 b.departmentname,
+						 c.gsdm,
+						 c.gsmc,
+						 c.sssyb,
+						 c.sssybdm,
+						 c.gsfl,
+						 c.fwlb,
+						 d.id gsid
+	</sql>
+	<select id="getUserByUserid" parameterType="java.lang.String" resultType="java.util.Map">
+		select <include refid="userfields" />
+		from orguser a 
+		left join orgdepartment b on a.departmentid = b.id
+		left join bo_org_ext_dept c on b.id = c.departmentid
+		left join orgdepartment d on b.parentdepartmentid = d.id
+		where a.userid = #{userid}
+	</select>
+   <insert id="insertLog" parameterType="java.util.Map">
+   		insert into BO_CRM_CLIENT_LOG(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,GSID,
+   					GSDM,GSMC,BMID,BMMC,CZRZH,CZRXM,KHBH,KHMC,WHSJ,WHLXDM ) 
+   			values  (BO_CRM_CLIENT_LOG_SEQ.nextval,#{ORGID},#{BINDID},#{USERID},#{USERID},#{WFID},#{WFSID},#{COMPANYID},#{GSDM},#{GSMC},
+   					#{DEPARTMENTID},#{DEPARTMENTNAME},#{USERID},#{USERNAME},#{khbh},#{khmc},sysdate,#{whlxdm}) 
+   </insert>
+   <!-- 获取大客户总监的账号和邮箱 -->
+   <select id="getDkhzjxx" parameterType="java.lang.String" resultType="java.util.Map">
+   		select distinct dkhzjxm,dkhzjzh from bo_crm_client_serdpt where khbh = #{khbh} and dkhzjxm is not null and dkhzjzh is not null
+   </select>
+   <!-- 获取大客户总监的邮箱 -->
+   <select id="getdkhzjEmial" parameterType="java.lang.String" resultType="java.lang.String">
+   		select email from orguser where userid = #{dkhzjzh}
+   </select>
+   <select id="getdkhxx" parameterType="java.lang.String" resultType="java.util.Map">
+   		select distinct dkhzjzh, dkhzjxm, ssgsdm, ssgsmc from BO_CRM_CLIENT_SERDPT where khbh = #{khbh} and dkhzjzh is not null and dkhzjxm is not null and ssgsdm is not null and ssgsmc is not null
+   </select>
+   <!-- 更新单位客户档案-服务部门表的大客户总监账号 -->
+   <update id="updDkhzh" parameterType="java.util.Map">
+   		update BO_CRM_CLIENT_SERDPT set dkhzjxm =#{DKHZJXM},dkhzjzh = #{DKHZJZH},ssgsdm = #{SSGSDM},ssgsmc = #{SSGSMC} where khbh = #{KHBH}
+   </update>
+   <!-- 获取当前用户下的单位客户列表 -->
+   <select id="getAllCust" parameterType="java.util.Map" resultType="java.util.Map">
+   		select * from (select  a.*,b.KHJLXM khjlmc from (select * from BO_CRM_CLIENT_P
+       where khbh in (select d.khbh
+            from bo_crm_client_serdpt d
+           where (d.bmid in
+               (select u.departmentid as bmid
+                   from orguser u
+                  inner join orgrole r on u.roleid = r.id
+                                      and r.id in (188597, 228689)
+                                      and u.userid = #{userid}
+                 union
+                 select m.departmentid as bmid
+                   from orguser u
+                  inner join orgusermap m on u.id = m.mapid
+                  inner join orgrole r on r.id = u.roleid
+                                      and u.userid = #{userid}
+                                      and m.roleid in (188597, 228689)))
+		         group by d.khbh)  or 'admin' = #{userid})a  join 
+             (select listagg (KHJLXM,'|') within group (order by KHJLXM) KHJLXM, khbh  from 
+			(select distinct KHJLXM,khbh from bo_crm_client_serdpt where KHJLXM is not null) group by khbh) b on a.khbh = b.khbh)
+			where 1=1 
+			<if test="khjlmc != null and khjlmc != ''">
+				and KHMC like CONCAT('%',CONCAT(#{khjlmc},'%'))
+			</if>
+   </select>
+   <!-- 通过客户编号 查询bindid -->
+   <select id="getBindid" parameterType="java.lang.String" resultType="java.util.Map">
+   		select bindid,khmc from BO_CRM_CLIENT_P WHERE KHBH=#{khbh}
+   </select>
+   <!-- 通过userid 获取username -->
+   <select id="getUserName" parameterType="java.lang.String" resultType="java.lang.String">
+   		select  username from orguser where userid=#{userid}
+   </select>
+   <!-- 单位客户档案主表 -->
+   <select id="CustomerDesignateDate" parameterType="java.lang.Integer" resultType="java.util.Map">
+   		select KHMC,KHBH,JTWLKH,BINDID DAID from BO_CRM_CLIENT_P where bindid = #{bindid}
+   </select>
+   <!-- 查询当前用户管辖部门和管辖部门的子部门 递归查询所有的管辖部门 -->
+   <select id="getbmid1" parameterType="java.lang.String" resultType="java.util.Map">
+   		select id BMID from orgdepartment m start with m.id in(select departmentid from orguser where userid = #{userid} and ismanager = 1) 
+			connect by m.parentdepartmentid=prior m.id
+   </select>
+   <!-- 查询当前用户兼职管辖部门和兼职管辖部门的子部门 递归查询所有的管辖部门 -->
+   <select id="getbmid2" parameterType="java.lang.String" resultType="java.util.Map">
+		select distinct(id) BMID
+          from orgdepartment m
+         start with m.id in
+                    (select departmentid
+                       from orgusermap
+                      where mapid in
+                            (select id from orguser where userid = #{userid}) and ismanager =1)
+        connect by m.parentdepartmentid = prior m.id 
+				  union select departmentid from orguser where userid = #{userid} and ismanager =1 and roleid = 188597
+   </select>
+   <select id="CustomerDesignateDate2" parameterType="java.util.Map" resultType="java.util.Map">
+   		select KHBMBH,KHBMMC,KHJLZH,KHJLXM,GSID,GSDM,GSMC,BMID,BMMC,ID DAID from bo_crm_client_serdpt where bindid=#{bindid} 
+   			and ((1 <![CDATA[ <> ]]>  ${str}) or updateuser = #{userid})
+   </select>
+   <!-- 插入单位客户信息主表(BO_CRM_CLIENTBUS_P) 并返回主键 -->
+   <insert id="insertCrmClientbusP" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="ID">
+  		<selectKey resultType="long" order="BEFORE" keyProperty="projectId"> 
+			select BO_CRM_CLIENTBUS_P_SEQ.nextval from dual
+		</selectKey>
+   		insert into BO_CRM_CLIENTBUS_P(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,KHMC,KHBH,JTWLKH,DAID) 
+   		values(#{projectId},#{ORGID},#{BINDID},#{userid},#{userid},#{WFID},#{WFSID},#{KHMC},#{KHBH},#{JTWLKH},#{DAID})
+   </insert>
+   <!-- 插入数据到BO_CRM_CLIENTBUS_SERDPT -->
+   <insert id="insertCrmClientbusSerdpt" parameterType="java.util.Map">
+   		insert into BO_CRM_CLIENTBUS_SERDPT(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,KHBMBH,KHBMMC,
+   			KHJLZH,KHJLXM,GSID,GSDM,GSMC,BMID,BMMC,DAID) 
+   		values(BO_CRM_CLIENTBUS_SERDPT_SEQ.nextval,#{ORGID},#{BINDID},#{userid},#{userid},#{WFID},#{WFSID},#{KHBMBH},#{KHBMMC},
+   		#{KHJLZH},#{KHJLXM},#{GSID},#{GSDM},#{GSMC},#{BMID},#{BMMC},#{DAID})
+   </insert>
+   <!-- 更新BO_CRM_CLIENTBUS_P的原客户经理ID -->
+   <update id="updClientbusPYKHJLID" parameterType="java.util.Map">
+   		update BO_CRM_CLIENTBUS_P set YKHJLID=#{ykhjlid} where ID=#{crmClientbusPID}
+   </update>
+   <!--  -->
+   <select id="getZpjlList" parameterType="java.lang.Integer" resultType="map">
+   		select * from BO_CRM_CLIENTBUS_SERDPT where bindid = #{bindid}
+   </select>
+    <!-- 根据taskid合bindid 查询任务状态 -->
+  <select id="getDbStatusOfTask" parameterType="map" resultType="string">
+  	select status from wf_task where bind_id = #{bindid} and id = #{taskid}
+  </select>
+    <!-- 根据taskid合bindid 查询已办任务状态 -->
+  <select id="getYbStatusOfTask" parameterType="map" resultType="string">
+  	select status from wf_task_log where bind_id = #{bindid} and id = #{taskid}
+  </select>
+   <!-- 清空主从表数据 -->
+   <delete id="delbo_crm_clientbus_p" parameterType="java.lang.Integer">
+   		delete from BO_CRM_CLIENTBUS_P where bindid = #{bindid}
+   </delete>
+    <delete id="delbo_crm_clientbus_serdpt" parameterType="java.lang.Integer">
+   		delete from BO_CRM_CLIENTBUS_SERDPT where bindid = #{bindid}
+   </delete>
+   <!-- 查询邮箱信息 -->
+   <select id="getMailXX" resultType="map">
+  	 	select bz,YWMC,SYFW from bo_cyts_baseinfo where dl='通用' and lx='指派客户经理邮箱' and zt='有效'
+   </select>
+</mapper>

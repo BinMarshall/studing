@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.WF_TASK_DAO">
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.WF_TASK">
+  </resultMap>
+  
+  <!-- 更加taskid查询发送加签任务信息  getTaskMessageByTaskid -->
+  <select id="getTaskMessageByTaskid" parameterType="string" resultMap="BaseResultMap">
+  	select owner,from_point fromPoint from wf_task where id = #{task_id} and status = '11'
+  	union
+  	select owner,from_point fromPoint from wf_task_log where id = #{task_id} and status = '11'
+  </select>
+  
+  <!-- 根据id查询任务标题  getTaskTitleByTaskid -->
+  <select id="getTaskTitleByTaskid" parameterType="int" resultType="string">
+  	select title from wf_task where id = #{taskid}
+  </select>
+  
+  <!-- 根据bindid和taskID查询已办任务的审核菜单  比如 同意 不同意 等 getYbyjByTaskidAndBindid -->
+  <select id="getYbyjByTaskidAndBindid" parameterType="map" resultType="string">
+  	select m.isagree
+	  from sysflowstep s
+	 inner join wf_messageopinion m on m.wfs_id = s.id and m.parent_id = #{bindid} and m.task_id = #{taskid}
+  </select>
+  
+  <!-- 根据taskid合bindid 查询任务状态 -->
+  <select id="getStatusByTaskIdAndBindid" parameterType="map" resultType="string">
+  	select status from wf_task where bind_id = #{bindid} and id = #{taskid}
+  </select>
+  
+  
+  <!-- 根据bindid 查询待办任务 getWF_TASK -->
+  <select id="getWF_TASK" parameterType="string" resultMap="BaseResultMap">
+  	select * from wf_task where bind_id = #{bindid}
+  </select>
+  
+  <!-- 根据bindid合同target 查询待办任务 getWF_TASK -->
+  <select id="getWF_TASKByBindidAndTarget" parameterType="map" resultMap="BaseResultMap">
+  	select * from wf_task where bind_id = #{bindid} and target=#{target}
+  </select>
+  
+</mapper>

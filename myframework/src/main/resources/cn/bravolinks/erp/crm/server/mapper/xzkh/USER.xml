@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.xzkh.USER_DAO">
+   <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.xzkh.User">
+  </resultMap>
+ 
+ 
+  <!-- 查询ERP所有人员信息 getAllOrgUser -->
+  <select id="getAllOrgUser" resultType="cn.bravolinks.erp.crm.server.model.xzkh.User" >
+     select u.userid,
+       u.username name,
+       u.position_name position,
+       u.mobile,
+       u.email,
+       d.departmentname,
+       ((select departmentname
+	          from orgdepartment
+	         where id = d.parentdepartmentid) || '/' || d.departmentname) bmqc
+	  from orguser u
+	 inner join orgdepartment d on u.departmentid = d.id
+	                           and d.companyid = 1
+	                           and u.disenable = 0
+  </select>
+  <!-- 根据部门id查询部门下的人员 getUsersByID -->
+  <select id="getUsersByID" parameterType="int" resultType="cn.bravolinks.erp.crm.server.model.xzkh.User" >
+     select userid, username name, position_name position, mobile, email
+	  from orguser
+	 where departmentid = #{id}
+	   and disenable = 0
+  </select>
+  
+  <!-- 根据部门id查询子部门getDeptsByID -->
+  <select id="getDeptsByID" parameterType="int" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+     select id, departmentname as name, parentdepartmentid as parentid
+	  from orgdepartment
+	 where companyid = 1 and parentdepartmentid = #{id}
+  </select>
+  
+  <!-- 查询ERP组织架构部门根部门getRootDept -->
+  <select id="getRootDeptById" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+     SELECT  b.id, b.departmentname as name FROM ORGDEPARTMENT b  LEFT JOIN BO_CYTS_COMPANY A ON b.parentdepartmentid = A .gsid
+			where  b.parentdepartmentid=#{id}
+  </select>
+  <!-- 查询ERP组织架构部门根部门getRootDeptById -->
+  <select id="getRootDept" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+     select id, departmentname as name, parentdepartmentid as parentid
+	  from orgdepartment
+	 where companyid = 1 and parentdepartmentid = 0
+  </select>
+  
+  <select id="getUserExtByUserid" parameterType="string" resultMap="BaseResultMap">
+  	 	select u.userid,
+	          u.username as name
+	  from orguser u
+	 inner join orgdepartment d on d.id = u.departmentid
+	 inner join BO_ORG_EXT_DEPT e on e.departmentid = d.id
+	 inner join BO_CYTS_COMPANY c on c.gsdm = e.gsdm
+	 where u.userid = #{userid}
+  </select>
+  
+    <!-- 根据部门id查询公司代码和公司名称 -->
+  <select id="getGS" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+    select GSMC as name , gsdm  from BO_ORG_EXT_DEPT where DEPARTMENTID=#{id}
+								
+  </select>
+  
+      <!-- 部门总监姓名和账户 -->
+  <select id="getUser" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+    select USERID as userid,USERNAME as name from orguser where roleid=188597 
+	and departmentid =#{0}  union select USERID as userid,USERNAME as name from orguser where id in 
+	(select mapid from orgusermap where roleid=188597 and departmentid =#{0})
+								
+  </select>
+  
+        <!-- 根据名字查询gsdm -->
+  <select id="getUserGSDM" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+   select gsdm from BO_ORG_EXT_DEPT where departmentid in (select departmentid from ORGUSER where userid = #{0})
+								
+  </select>
+  
+          <!-- 根据gsdm查询gsid -->
+  <select id="getGsid" resultType="java.lang.String"  parameterType="java.lang.String" >
+  	select GSID as id from BO_CYTS_COMPANY where gsdm=#{0}
+ </select>
+  
+  
+  
+         <!-- 根据gsdm 查询GSMC-->
+  <select id="getGsdmGSMC" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+   select DEPARTMENTNAME AS name from ORGDEPARTMENT where departmentno=#{0}
+								
+								
+  </select>
+          <!-- 根据客户编号查询bmid-->
+  <select id="getKhBMID" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+   select DEPARTMENTID as gsdm  from orguser where userid = #{0}
+								
+								
+  </select>
+  
+          <!-- 根据GSID 查询name-->
+  <select id="getGsdmGSID" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+  	 select DEPARTMENTNAME as name from ORGDEPARTMENT where id=#{0}							
+								
+  </select>
+          <!-- 根据szbmid查询代码-->
+  <select id="getBMidGS" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+  	 select GSDM from BO_ORG_EXT_DEPT where DEPARTMENTID =#{0}							
+								
+  </select>
+          <!-- 根据部门代码 查询公司名称-->
+  <select id="getBMidGSID" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+  	select GSMC as name  from BO_ORG_EXT_DEPT where DEPARTMENTID =#{0}							
+								
+  </select>
+  
+  <!-- 查询公司-->
+  <select id="getGSName" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+  	select GSJC as mc ,GSDM dm,GSID as dm2 from BO_CYTS_COMPANY 						
+								
+  </select>
+  
+    <!-- 根据公司id查询部门 -->
+  <select id="getDeptByGSId" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+       SELECT  b.id as dm, b.departmentname as mc FROM ORGDEPARTMENT b  LEFT JOIN BO_CYTS_COMPANY A ON b.parentdepartmentid = A .gsid
+			where  b.parentdepartmentid=#{id}
+  </select>
+
+      <!-- 根据部门id 查询该部门下所有的人信息 -->
+  <select id="getPeopleByBMId" resultType="cn.bravolinks.erp.crm.server.model.xzkh.Dept" >
+  		select distinct userid as dm,username as mc from orguser b 
+  		inner join orgusermap c on b.id=c.mapid and b.disenable = 0
+		and (c .departmentid = #{id})
+		union 
+		select distinct userid as dm,username as mc from orguser b 
+		where b.departmentid=#{id} and  b.disenable = 0
+
+  </select>
+ 
+</mapper>

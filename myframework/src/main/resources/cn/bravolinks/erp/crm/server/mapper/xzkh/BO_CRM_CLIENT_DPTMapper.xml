@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.xzkh.BO_CRM_CLIENT_DPT_DAO" >
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENT_DPT" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="ORGNO" property="orgno" jdbcType="OTHER" />
+    <result column="BINDID" property="bindid" jdbcType="DECIMAL" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CREATEUSER" property="createuser" jdbcType="OTHER" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="UPDATEUSER" property="updateuser" jdbcType="OTHER" />
+    <result column="WORKFLOWID" property="workflowid" jdbcType="DECIMAL" />
+    <result column="WORKFLOWSTEPID" property="workflowstepid" jdbcType="DECIMAL" />
+    <result column="ISEND" property="isend" jdbcType="DECIMAL" />
+    <result column="BMMC" property="bmmc" jdbcType="OTHER" />
+    <result column="SJBMMC" property="sjbmmc" jdbcType="OTHER" />
+    <result column="KHBH" property="khbh" jdbcType="OTHER" />
+    <result column="BZ" property="bz" jdbcType="OTHER" />
+    <result column="BMXZDM" property="bmxzdm" jdbcType="OTHER" />
+    <result column="BMBH" property="bmbh" jdbcType="OTHER" />
+    <result column="SJBMBH" property="sjbmbh" jdbcType="OTHER" />
+    <result column="SFYSJBM" property="sfysjbm" jdbcType="OTHER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORGNO, BINDID, CREATEDATE, CREATEUSER, UPDATEDATE, UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+    ISEND, BMMC, SJBMMC, KHBH, BZ, BMXZDM, BMBH, SJBMBH, SFYSJBM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from  BO_CRM_CLIENT_DPT
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from  BO_CRM_CLIENT_DPT
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insertSelective" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENT_DPT" >
+    insert into  BO_CRM_CLIENT_DPT (ID, ORGNO, BINDID, 
+      CREATEDATE, CREATEUSER, UPDATEDATE, 
+      UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+      ISEND, BMMC, SJBMMC, KHBH, 
+      BZ, BMXZDM, BMBH, SJBMBH, 
+      SFYSJBM)
+    values (#{id,jdbcType=DECIMAL}, #{orgno,jdbcType=OTHER}, #{bindid,jdbcType=DECIMAL}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=OTHER}, #{updatedate,jdbcType=TIMESTAMP}, 
+      #{updateuser,jdbcType=OTHER}, #{workflowid,jdbcType=DECIMAL}, #{workflowstepid,jdbcType=DECIMAL}, 
+      #{isend,jdbcType=DECIMAL}, #{bmmc,jdbcType=OTHER}, #{sjbmmc,jdbcType=OTHER}, #{khbh,jdbcType=OTHER}, 
+      #{bz,jdbcType=OTHER}, #{bmxzdm,jdbcType=OTHER}, #{bmbh,jdbcType=OTHER}, #{sjbmbh,jdbcType=OTHER}, 
+      #{sfysjbm,jdbcType=OTHER})
+  </insert>
+  <insert id="insert" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENT_DPT" >
+  	<selectKey resultType="int" order="BEFORE" keyProperty="id">
+      SELECT BO_CRM_CLIENT_DPT_SEQ.NEXTVAL FROM dual
+	</selectKey>  
+    insert into  BO_CRM_CLIENT_DPT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgno != null" >
+        ORGNO,
+      </if>
+      <if test="bindid != null" >
+        BINDID,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER,
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID,
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID,
+      </if>
+      <if test="isend != null" >
+        ISEND,
+      </if>
+      <if test="bmmc != null" >
+        BMMC,
+      </if>
+      <if test="sjbmmc != null" >
+        SJBMMC,
+      </if>
+      <if test="khbh != null" >
+        KHBH,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="bmxzdm != null" >
+        BMXZDM,
+      </if>
+      <if test="bmbh != null" >
+        BMBH,
+      </if>
+      <if test="sjbmbh != null" >
+        SJBMBH,
+      </if>
+      <if test="sfysjbm != null" >
+        SFYSJBM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orgno != null" >
+        #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="bmmc != null" >
+        #{bmmc,jdbcType=OTHER},
+      </if>
+      <if test="sjbmmc != null" >
+        #{sjbmmc,jdbcType=OTHER},
+      </if>
+      <if test="khbh != null" >
+        #{khbh,jdbcType=OTHER},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=OTHER},
+      </if>
+      <if test="bmxzdm != null" >
+        #{bmxzdm,jdbcType=OTHER},
+      </if>
+      <if test="bmbh != null" >
+        #{bmbh,jdbcType=OTHER},
+      </if>
+      <if test="sjbmbh != null" >
+        #{sjbmbh,jdbcType=OTHER},
+      </if>
+      <if test="sfysjbm != null" >
+        #{sfysjbm,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENT_DPT" >
+    update  BO_CRM_CLIENT_DPT
+    <set >
+      <if test="orgno != null" >
+        ORGNO = #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        BINDID = #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER = #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        ISEND = #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="bmmc != null" >
+        BMMC = #{bmmc,jdbcType=OTHER},
+      </if>
+      <if test="sjbmmc != null" >
+        SJBMMC = #{sjbmmc,jdbcType=OTHER},
+      </if>
+      <if test="khbh != null" >
+        KHBH = #{khbh,jdbcType=OTHER},
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz,jdbcType=OTHER},
+      </if>
+      <if test="bmxzdm != null" >
+        BMXZDM = #{bmxzdm,jdbcType=OTHER},
+      </if>
+      <if test="bmbh != null" >
+        BMBH = #{bmbh,jdbcType=OTHER},
+      </if>
+      <if test="sjbmbh != null" >
+        SJBMBH = #{sjbmbh,jdbcType=OTHER},
+      </if>
+      <if test="sfysjbm != null" >
+        SFYSJBM = #{sfysjbm,jdbcType=OTHER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENT_DPT" >
+    update  BO_CRM_CLIENT_DPT
+    set ORGNO = #{orgno,jdbcType=OTHER},
+      BINDID = #{bindid,jdbcType=DECIMAL},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATEUSER = #{createuser,jdbcType=OTHER},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      ISEND = #{isend,jdbcType=DECIMAL},
+      BMMC = #{bmmc,jdbcType=OTHER},
+      SJBMMC = #{sjbmmc,jdbcType=OTHER},
+      KHBH = #{khbh,jdbcType=OTHER},
+      BZ = #{bz,jdbcType=OTHER},
+      BMXZDM = #{bmxzdm,jdbcType=OTHER},
+      BMBH = #{bmbh,jdbcType=OTHER},
+      SJBMBH = #{sjbmbh,jdbcType=OTHER},
+      SFYSJBM = #{sfysjbm,jdbcType=OTHER}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

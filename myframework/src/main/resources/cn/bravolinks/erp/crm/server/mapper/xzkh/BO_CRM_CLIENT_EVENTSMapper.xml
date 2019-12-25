@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.xzkh.BO_CRM_CLIENT_EVENTS_DAO" >
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENT_EVENTS" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="ORGNO" property="orgno" jdbcType="OTHER" />
+    <result column="BINDID" property="bindid" jdbcType="DECIMAL" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CREATEUSER" property="createuser" jdbcType="OTHER" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="UPDATEUSER" property="updateuser" jdbcType="OTHER" />
+    <result column="WORKFLOWID" property="workflowid" jdbcType="DECIMAL" />
+    <result column="WORKFLOWSTEPID" property="workflowstepid" jdbcType="DECIMAL" />
+    <result column="ISEND" property="isend" jdbcType="DECIMAL" />
+    <result column="HZDW" property="hzdw" jdbcType="OTHER" />
+    <result column="LSSJ" property="lssj" jdbcType="OTHER" />
+    <result column="XMRYGM" property="xmrygm" jdbcType="OTHER" />
+    <result column="XMJE" property="xmje" jdbcType="DECIMAL" />
+    <result column="MDD" property="mdd" jdbcType="OTHER" />
+    <result column="CBZT" property="cbzt" jdbcType="OTHER" />
+    <result column="XMKSRQ" property="xmksrq" jdbcType="TIMESTAMP" />
+    <result column="XMJSRQ" property="xmjsrq" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORGNO, BINDID, CREATEDATE, CREATEUSER, UPDATEDATE, UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+    ISEND, HZDW, LSSJ, XMRYGM, XMJE, MDD, CBZT, XMKSRQ, XMJSRQ
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from  BO_CRM_CLIENT_EVENTS
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from  BO_CRM_CLIENT_EVENTS
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_INDCLIENT_EVE" >
+    insert into  BO_CRM_CLIENT_EVENTS (ID, ORGNO, BINDID, 
+      CREATEDATE, CREATEUSER, UPDATEDATE, 
+      UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+      ISEND, HZDW, LSSJ, XMRYGM, 
+      XMJE, MDD, CBZT, XMKSRQ, 
+      XMJSRQ)
+    values (#{id,jdbcType=DECIMAL}, #{orgno,jdbcType=OTHER}, #{bindid,jdbcType=DECIMAL}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=OTHER}, #{updatedate,jdbcType=TIMESTAMP}, 
+      #{updateuser,jdbcType=OTHER}, #{workflowid,jdbcType=DECIMAL}, #{workflowstepid,jdbcType=DECIMAL}, 
+      #{isend,jdbcType=DECIMAL}, #{hzdw,jdbcType=OTHER}, #{lssj,jdbcType=OTHER}, #{xmrygm,jdbcType=OTHER}, 
+      #{xmje,jdbcType=DECIMAL}, #{mdd,jdbcType=OTHER}, #{cbzt,jdbcType=OTHER}, #{xmksrq,jdbcType=TIMESTAMP}, 
+      #{xmjsrq,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_INDCLIENT_EVE" >
+    insert into  BO_CRM_CLIENT_EVENTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgno != null" >
+        ORGNO,
+      </if>
+      <if test="bindid != null" >
+        BINDID,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER,
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID,
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID,
+      </if>
+      <if test="isend != null" >
+        ISEND,
+      </if>
+      <if test="hzdw != null" >
+        HZDW,
+      </if>
+      <if test="lssj != null" >
+        LSSJ,
+      </if>
+      <if test="xmrygm != null" >
+        XMRYGM,
+      </if>
+      <if test="xmje != null" >
+        XMJE,
+      </if>
+      <if test="mdd != null" >
+        MDD,
+      </if>
+      <if test="cbzt != null" >
+        CBZT,
+      </if>
+      <if test="xmksrq != null" >
+        XMKSRQ,
+      </if>
+      <if test="xmjsrq != null" >
+        XMJSRQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orgno != null" >
+        #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="hzdw != null" >
+        #{hzdw,jdbcType=OTHER},
+      </if>
+      <if test="lssj != null" >
+        #{lssj,jdbcType=OTHER},
+      </if>
+      <if test="xmrygm != null" >
+        #{xmrygm,jdbcType=OTHER},
+      </if>
+      <if test="xmje != null" >
+        #{xmje,jdbcType=DECIMAL},
+      </if>
+      <if test="mdd != null" >
+        #{mdd,jdbcType=OTHER},
+      </if>
+      <if test="cbzt != null" >
+        #{cbzt,jdbcType=OTHER},
+      </if>
+      <if test="xmksrq != null" >
+        #{xmksrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xmjsrq != null" >
+        #{xmjsrq,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <insert id="insertSelectiveFromBus" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENTBUS_EVE" >
+    insert into  BO_CRM_CLIENT_EVENTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgno != null" >
+        ORGNO,
+      </if>
+      <if test="bindid != null" >
+        BINDID,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER,
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID,
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID,
+      </if>
+      <if test="isend != null" >
+        ISEND,
+      </if>
+      <if test="hzdw != null" >
+        HZDW,
+      </if>
+      <if test="lssj != null" >
+        LSSJ,
+      </if>
+      <if test="xmrygm != null" >
+        XMRYGM,
+      </if>
+      <if test="xmje != null" >
+        XMJE,
+      </if>
+      <if test="mdd != null" >
+        MDD,
+      </if>
+      <if test="cbzt != null" >
+        CBZT,
+      </if>
+      <if test="xmksrq != null" >
+        XMKSRQ,
+      </if>
+      <if test="xmjsrq != null" >
+        XMJSRQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orgno != null" >
+        #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="hzdw != null" >
+        #{hzdw,jdbcType=OTHER},
+      </if>
+      <if test="lssj != null" >
+        #{lssj,jdbcType=OTHER},
+      </if>
+      <if test="xmrygm != null" >
+        #{xmrygm,jdbcType=OTHER},
+      </if>
+      <if test="xmje != null" >
+        #{xmje,jdbcType=DECIMAL},
+      </if>
+      <if test="mdd != null" >
+        #{mdd,jdbcType=OTHER},
+      </if>
+      <if test="cbzt != null" >
+        #{cbzt,jdbcType=OTHER},
+      </if>
+      <if test="xmksrq != null" >
+        #{xmksrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xmjsrq != null" >
+        #{xmjsrq,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENT_EVENTS" >
+    update  BO_CRM_CLIENT_EVENTS
+    <set >
+      <if test="orgno != null" >
+        ORGNO = #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        BINDID = #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER = #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        ISEND = #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="hzdw != null" >
+        HZDW = #{hzdw,jdbcType=OTHER},
+      </if>
+      <if test="lssj != null" >
+        LSSJ = #{lssj,jdbcType=OTHER},
+      </if>
+      <if test="xmrygm != null" >
+        XMRYGM = #{xmrygm,jdbcType=OTHER},
+      </if>
+      <if test="xmje != null" >
+        XMJE = #{xmje,jdbcType=DECIMAL},
+      </if>
+      <if test="mdd != null" >
+        MDD = #{mdd,jdbcType=OTHER},
+      </if>
+      <if test="cbzt != null" >
+        CBZT = #{cbzt,jdbcType=OTHER},
+      </if>
+      <if test="xmksrq != null" >
+        XMKSRQ = #{xmksrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xmjsrq != null" >
+        XMJSRQ = #{xmjsrq,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENT_EVENTS" >
+    update  BO_CRM_CLIENT_EVENTS
+    set ORGNO = #{orgno,jdbcType=OTHER},
+      BINDID = #{bindid,jdbcType=DECIMAL},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATEUSER = #{createuser,jdbcType=OTHER},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      ISEND = #{isend,jdbcType=DECIMAL},
+      HZDW = #{hzdw,jdbcType=OTHER},
+      LSSJ = #{lssj,jdbcType=OTHER},
+      XMRYGM = #{xmrygm,jdbcType=OTHER},
+      XMJE = #{xmje,jdbcType=DECIMAL},
+      MDD = #{mdd,jdbcType=OTHER},
+      CBZT = #{cbzt,jdbcType=OTHER},
+      XMKSRQ = #{xmksrq,jdbcType=TIMESTAMP},
+      XMJSRQ = #{xmjsrq,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+  <delete id="deleteByBindid" parameterType="java.lang.Integer" >
+    DELETE FROM BO_CRM_CLIENT_EVENTS WHERE BINDID = #{bindid}
+  </delete>
+</mapper>

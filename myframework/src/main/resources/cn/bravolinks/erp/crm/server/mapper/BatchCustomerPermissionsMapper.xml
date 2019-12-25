@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.BatchCustomerPermissionsDao">
+
+    <!--查询维护数据ResultMap-->
+    <resultMap id="selectWeihuDataResultMap" type="map">
+        <collection property="sfs" column="temp" select="selectSf" ofType="map"/>
+    </resultMap>
+    <!--查询维护数据-->
+    <select id="selectWeihuData" resultMap="selectWeihuDataResultMap">
+        select 1 temp from dual
+    </select>
+
+    <!--身份-->
+    <select id="selectSf" resultType="map">
+        select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where  dl='客户权限维护' and lx='角色' and zt='有效' order by sn
+    </select>
+
+    <!--查询list-->
+    <select id="selectList" resultType="map">
+
+        select * from (
+        select rownum rn,s.id id,p.khbh khbh,p.khmc khmc,s.khbmmc,s.dkhzjzh,s.dkhzjxm,s.ssgsmc,s.bmmc,s.gsmc,s.khjlxm from BO_CRM_CLIENT_P p left join
+        BO_CRM_CLIENT_SERDPT s on p.bindid=s.bindid where 1=1
+        <if test='sfType == null or cusname == null or sfType=="" or cusname==""'>
+            and 1=2)
+        </if>
+        <if test='sfType != null and sfType != "" and sfType=="2"'>
+            and (s.khjlzh like #{cusname}||'&lt;%' or s.khjlzh = #{cusname})
+            and rownum &lt;= #{max})
+            WHERE rn &gt; #{min}
+        </if>
+        <if test='sfType != null and sfType != "" and sfType=="1"'>
+            and (s.dkhzjzh like '%&lt;'||#{cusname}||'>%'
+                OR
+                s.dkhzjzh like #{cusname}||'&lt;%'
+                OR
+                s.dkhzjzh=#{cusname})
+            and rownum &lt;= #{max})
+            WHERE rn &gt; #{min}
+        </if>
+
+    </select>
+
+    <!--查询用户-->
+    <!--<select id="selectYhm" resultType="map">
+        select userid "id",username || '&lt;' || userid || '>' "text" from orguser where disenable=1 order by userid
+    </select>-->
+    <select id="selectYhm" resultType="map">
+        select dep.id,dep.departmentname depname, dep.parentdepartmentid pid, u.departmentid depid, u.userid, u.username name, u.disenable from orgdepartment dep
+         left join BO_ORG_EXT_DEPT b on dep.id = b.departmentid
+         left join orguser u on dep.id = u.departmentid
+         where dep.companyid = 1 and b.isdepartment='1'
+    </select>
+
+    <!--查询用户账号-->
+    <select id="selectUserId" resultType="String" parameterType="String">
+        select '&lt;' || userid || '>' || username "userid" from orguser where username=#{ndkhzj} and rownum=1
+    </select>
+
+    <!--查询count-->
+    <select id="selectCounts" resultType="int" >
+        select count(1) from BO_CRM_CLIENT_SERDPT where 1=1
+        <if test='sfType == null or cusname == null or sfType=="" or cusname==""'>
+            and 1=2
+        </if>
+        <if test='sfType != null and sfType != "" and sfType=="2"'>
+            and (khjlzh like #{cusname}||'&lt;%' or khjlzh = #{cusname})
+        </if>
+        <if test='sfType != null and sfType != "" and sfType=="1"'>
+            and (dkhzjzh like #{cusname}||'&lt;%' or dkhzjzh like '%&lt;'||#{cusname}||'>%' or dkhzjzh=#{cusname})
+        </if>
+    </select>
+
+    <!--更新大客户总监-->
+    <update id="updateDKHZJ" >
+        update BO_CRM_CLIENT_SERDPT set dkhzjxm = #{ndkhzj},dkhzjzh=#{ndkhzjId}||'&lt;'||#{ndkhzj}||'>' where
+        khbh in
+        <foreach collection="khbh" item="arr" open="(" close=")" separator=",">
+            #{arr}
+        </foreach>
+    </update>
+
+    <!--更新客户经理-->
+    <update id="updateKHJL" >
+        update BO_CRM_CLIENT_SERDPT set khjlzh = '',khjlxm='' where id in
+        <foreach collection="idarr" item="arr" open="(" close=")" separator=",">
+            #{arr}
+        </foreach>
+    </update>
+
+    <!--模糊查询用户-->
+    <select id="checkLikeUsername" resultType="map" parameterType="String">
+        select dep.id,dep.departmentname depname, dep.parentdepartmentid pid, u.departmentid depid, u.userid, u.username name, u.disenable,e.gsdm,e.gsmc from orgdepartment dep left join orguser u on dep.id = u.departmentid
+        left join BO_ORG_EXT_DEPT e on e.departmentid = dep.id
+        where dep.companyid = 1
+        and u.username like '%'||#{username}||'%'
+    </select>
+
+    <!--查询用户信息-->
+    <select id="getUsers" resultType="map">
+        select u.userid,u.username, u.username||'  ('||e.gsmc||'/'||dep.departmentname||')' name from orgdepartment dep left join orguser u on dep.id = u.departmentid
+        left join BO_ORG_EXT_DEPT e on e.departmentid = dep.id
+        where dep.companyid = 1 and u.username is not null
+    </select>
+</mapper>

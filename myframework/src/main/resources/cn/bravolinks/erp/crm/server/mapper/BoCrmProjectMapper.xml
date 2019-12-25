@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.BoCrmProjectDao" >
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.BoCrmProject" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="PROSOURCE" property="prosource" jdbcType="DECIMAL" />
+    <result column="CREUSER" property="creuser" jdbcType="VARCHAR" />
+    <result column="UPDUSER" property="upduser" jdbcType="VARCHAR" />
+    <result column="CRETIME" property="cretime" jdbcType="TIMESTAMP" />
+    <result column="UPDTIME" property="updtime" jdbcType="TIMESTAMP" />
+    <result column="CUSNAME" property="cusname" jdbcType="VARCHAR" />
+    <result column="PRONAME" property="proname" jdbcType="VARCHAR" />
+    <result column="SERVICE_TYPE" property="serviceType" jdbcType="DECIMAL" />
+    <result column="SERVICE_CONTENT" property="serviceContent" jdbcType="VARCHAR" />
+    <result column="START_DATE_YEAR" property="startDateYear" jdbcType="DECIMAL" />
+    <result column="START_DATE_MONTH" property="startDateMonth" jdbcType="DECIMAL" />
+    <result column="START_DATE_DAY" property="startDateDay" jdbcType="DECIMAL" />
+    <result column="END_DATE_YEAR" property="endDateYear" jdbcType="DECIMAL" />
+    <result column="END_DATE_MONTH" property="endDateMonth" jdbcType="DECIMAL" />
+    <result column="END_DATE_DAY" property="endDateDay" jdbcType="DECIMAL" />
+    <result column="REGION_TYPE" property="regionType" jdbcType="DECIMAL" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="YGRS" property="ygrs" jdbcType="DECIMAL" />
+    <result column="MONEY" property="money" jdbcType="DECIMAL" />
+    <result column="PROBLEM" property="problem" jdbcType="VARCHAR" />
+    <result column="EXPECT_ASSIST_DEPT" property="expectAssistDept" jdbcType="VARCHAR" />
+    <result column="NEW_STATUS" property="newStatus" jdbcType="DECIMAL" />
+    <result column="DATA_SOURCE" property="dataSource" jdbcType="DECIMAL" />
+    <result column="STATUS_DESC" property="statusDesc" jdbcType="VARCHAR" />
+    <result column="ZZBM" property="zzbm" jdbcType="DECIMAL" />
+    <result column="SSGS" property="ssgs" jdbcType="DECIMAL" />
+    <result column="XMFZR" property="xmfzr" jdbcType="DECIMAL" />
+    <result column="XMZGLD" property="xmzgld" jdbcType="DECIMAL" />
+    <result column="XTBM" property="xtbm" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="HYDM" property="hydm" jdbcType="VARCHAR" />
+    <result column="HYXLDM" property="hyxldm" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PROSOURCE, CREUSER, UPDUSER, CRETIME, UPDTIME, CUSNAME, PRONAME, SERVICE_TYPE, 
+    SERVICE_CONTENT, START_DATE_YEAR, START_DATE_MONTH, START_DATE_DAY, END_DATE_YEAR, 
+    END_DATE_MONTH, END_DATE_DAY, REGION_TYPE, CITY, YGRS, MONEY, PROBLEM, EXPECT_ASSIST_DEPT, 
+    NEW_STATUS, DATA_SOURCE, STATUS_DESC, ZZBM, SSGS, XMFZR, XMZGLD, XTBM, NOTE,HYDM,HYXLDM
+  </sql>
+
+  <!--查询-->
+  <select id="selectById" parameterType="integer" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from BO_CRM_PROJECT
+    where id = #{0}
+  </select>
+
+  <!--插入-->
+  <insert id="insert" parameterType="cn.bravolinks.erp.crm.server.model.BoCrmProject" >
+    <selectKey order="BEFORE" keyProperty="id" resultType="integer">
+      select BO_CRM_PROJECT_SEQ.nextval from dual
+    </selectKey>
+    insert into BO_CRM_PROJECT (ID, PROSOURCE, CREUSER,
+      UPDUSER, CRETIME, UPDTIME,
+      CUSNAME, PRONAME, SERVICE_TYPE, 
+      SERVICE_CONTENT, START_DATE_YEAR, START_DATE_MONTH, 
+      START_DATE_DAY, END_DATE_YEAR, END_DATE_MONTH, 
+      END_DATE_DAY, REGION_TYPE, CITY, 
+      YGRS, MONEY, PROBLEM, 
+      EXPECT_ASSIST_DEPT, NEW_STATUS, DATA_SOURCE, 
+      STATUS_DESC, ZZBM, SSGS, 
+      XMFZR, XMZGLD, XTBM, 
+      NOTE,HYDM,HYXLDM)
+    values (#{id,jdbcType=DECIMAL}, #{prosource,jdbcType=DECIMAL}, #{creuser,jdbcType=VARCHAR},
+      #{upduser,jdbcType=VARCHAR}, #{cretime,jdbcType=TIMESTAMP}, #{updtime,jdbcType=TIMESTAMP},
+      #{cusname,jdbcType=VARCHAR}, #{proname,jdbcType=VARCHAR}, #{serviceType,jdbcType=DECIMAL}, 
+      #{serviceContent,jdbcType=VARCHAR}, #{startDateYear,jdbcType=DECIMAL}, #{startDateMonth,jdbcType=DECIMAL},
+      #{startDateDay,jdbcType=DECIMAL}, #{endDateYear,jdbcType=DECIMAL}, #{endDateMonth,jdbcType=DECIMAL}, 
+      #{endDateDay,jdbcType=DECIMAL}, #{regionType,jdbcType=DECIMAL}, #{city,jdbcType=VARCHAR},
+      #{ygrs,jdbcType=DECIMAL}, #{money,jdbcType=DECIMAL}, #{problem,jdbcType=VARCHAR}, 
+      #{expectAssistDept,jdbcType=VARCHAR}, #{newStatus,jdbcType=DECIMAL}, #{dataSource,jdbcType=DECIMAL}, 
+      #{statusDesc,jdbcType=VARCHAR}, #{zzbm,jdbcType=DECIMAL}, #{ssgs,jdbcType=DECIMAL}, 
+      #{xmfzr,jdbcType=DECIMAL}, #{xmzgld,jdbcType=DECIMAL}, #{xtbm,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR},#{hydm,jdbcType=VARCHAR},#{hyxldm,jdbcType=VARCHAR}
+    )
+  </insert>
+  <!--更新-->
+  <update id="updateByPrimaryKey" parameterType="cn.bravolinks.erp.crm.server.model.BoCrmProject" >
+    update BO_CRM_PROJECT
+    set
+    UPDUSER = #{upduser,jdbcType=VARCHAR},
+    UPDTIME = #{updtime,jdbcType=TIMESTAMP},
+    <if test="cusname!=null and cusname!=''">
+    CUSNAME = #{cusname,jdbcType=VARCHAR},
+    </if>
+    PRONAME = #{proname,jdbcType=VARCHAR},
+    SERVICE_TYPE = #{serviceType,jdbcType=DECIMAL},
+    SERVICE_CONTENT = #{serviceContent,jdbcType=VARCHAR},
+    START_DATE_YEAR = #{startDateYear,jdbcType=DECIMAL},
+    START_DATE_MONTH = #{startDateMonth,jdbcType=DECIMAL},
+    START_DATE_DAY = #{startDateDay,jdbcType=DECIMAL},
+    END_DATE_YEAR = #{endDateYear,jdbcType=DECIMAL},
+    END_DATE_MONTH = #{endDateMonth,jdbcType=DECIMAL},
+    END_DATE_DAY = #{endDateDay,jdbcType=DECIMAL},
+    REGION_TYPE = #{regionType,jdbcType=DECIMAL},
+    CITY = #{city,jdbcType=VARCHAR},
+    YGRS = #{ygrs,jdbcType=DECIMAL},
+    MONEY = #{money,jdbcType=DECIMAL},
+    PROBLEM = #{problem,jdbcType=VARCHAR},
+    EXPECT_ASSIST_DEPT = #{expectAssistDept,jdbcType=VARCHAR},
+    NEW_STATUS = #{newStatus,jdbcType=DECIMAL},
+    DATA_SOURCE = #{dataSource,jdbcType=DECIMAL},
+    STATUS_DESC = #{statusDesc,jdbcType=VARCHAR},
+    ZZBM = #{zzbm,jdbcType=DECIMAL},
+    SSGS = #{ssgs,jdbcType=DECIMAL},
+    XMFZR = #{xmfzr,jdbcType=DECIMAL},
+    XMZGLD = #{xmzgld,jdbcType=DECIMAL},
+    XTBM = #{xtbm,jdbcType=VARCHAR},
+    NOTE = #{note,jdbcType=VARCHAR},
+    HYDM = #{hydm,jdbcType=VARCHAR},
+    HYXLDM = #{hyxldm,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+
+
+</mapper>

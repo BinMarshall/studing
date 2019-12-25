@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.CustomerInfoDao" >
+
+  <!--查询条数，根据bindid-->
+  <select id="getCountByBindid" parameterType="integer" resultType="integer">
+    select Count(1) from CRM_CUSTOMER_INFO where is_delete=1 and bindid=#{0}
+  </select>
+
+  <!--逻辑删除数据，根据bindid-->
+  <update id="delCustomerInfoByBindid" parameterType="integer">
+update CRM_CUSTOMER_INFO set IS_DELETE=0 where bindid=#{0}
+  </update>
+
+  <!--查询该客户有没有其他在途的客户档案扩展合同信息流程-->
+  <select id="getCountWorkflowBykhmc" parameterType="string" resultType="integer">
+    select count(1) from CRM_CUSTOMER_INFO where KHMC=#{0} and ISEND=0 and IS_DELETE=1
+  </select>
+
+  <!--查询客户名称-->
+  <select id="getKHMC" parameterType="integer" resultType="string">
+    select khmc from CRM_CUSTOMER_INFO where BINDID=#{0}
+  </select>
+
+  <!--查询用户名-->
+  <select id="getUsername" parameterType="string" resultType="string">
+select username from orguser where userid=#{0}
+  </select>
+
+  <!--跟新流程是否结束标识-->
+  <update id="updateIsend" parameterType="integer">
+    update CRM_CUSTOMER_INFO set ISEND=1 where BINDID=#{0} and is_delete=1
+  </update>
+
+
+  <!--根据bindid查询客户信息-->
+  <select id="getKhxxByBindid" parameterType="integer" resultType="map">
+    select a.*,b.mc HYDL_MC,c.mc KHZT_MC,d.mc HYXL_MC from
+(SELECT KHBH,KHJC,DWXZ,HYDL,HYXL,KHZT,ZGJG,ZJDH,GFWZ,BGDZ,KHMC FROM CRM_CUSTOMER_INFO where BINDID=#{0} and is_delete=1) a LEFT JOIN
+(select dm,case when 'cn'='cn' then zwmc else ywmc end mc from BO_INDUSTRY_P where zt='有效' order by sn) b on a.hydl=b.dm
+LEFT JOIN
+  (select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where dl='单位客户' and lx='客户状态' and zt='有效' order by sn) c
+  on a.khzt = c.dm
+    LEFT JOIN
+  (select dm,case when 'cn'='cn' then zwmc else ywmc end mc from BO_INDUSTRY_S where zt='有效') d
+  on a.hyxl=d.dm
+  </select>
+
+  <!--查询币种-->
+  <select id="getBIZHONG" resultType="map">
+    SELECT BZDM dm,BZMC mc FROM BO_FIN_MAP_CUR ORDER BY dm
+  </select>
+
+  <!--查询供应商条数-->
+  <select id="getGYSCOUNT" parameterType="map" resultType="integer">
+    SELECT Count(1) FROM (
+    select a.gysmc,a.gysbh from
+    BO_PRM_PR_P a INNER JOIN BO_PRM_PR_HTKJ_S b on a.BINDID=b.BINDID where b.YWBMKJZT='002'
+    and qygsdm=(
+    select gsdm from BO_CYTS_COMPANY where GSJC=#{qygs})
+    <if test="serach!=null and serach !=''">
+      and
+      gysmc like '%${serach}%'
+    </if>
+    )
+  </select>
+
+  <!--查询供应商-->
+  <select id="getGYS" parameterType="map" resultType="map">
+    select * from (
+    SELECT rownum rn,GYSBH,GYSMC FROM (
+    select a.gysmc,a.gysbh from
+    (SELECT p.bindid,p.gysmc,p.gysbh from BO_PRM_PR_P p INNER JOIN bo_cyts_baseinfo o on p.gysjb=o.dm and o.dl='供应商' and o.lx='供应商级别' and o.zt='有效' and o.dm!='001'
+    ) a JOIN BO_PRM_PR_HTKJ_S b on a.BINDID=b.BINDID where b.YWBMKJZT='002' 
+    and qygsdm=(
+    select gsdm from BO_CYTS_COMPANY where GSJC=#{qygs}) 
+    <if test="serach!=null and serach !=''">
+      and
+      a.gysmc like '%${serach}%'
+    </if>
+    GROUP BY a.gysmc,a.gysbh)
+    ) where rn&gt;#{min} and rn&lt;=#{max}
+  </select>
+
+  <!--查询目的地类型-->
+  <select id="getMDDLX" resultType="map">
+    select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where dl='商机' and lx='目的地类型' and zt='有效' order by sn
+  </select>
+
+  <!--查询业务属性-->
+  <select id="getYWSX" resultType="map">
+    select dm,case when 'cn'='cn' then zwmc else ywmc end mc from bo_cyts_baseinfo where dl='商机' and lx='业务属性' and zt='有效' and dm in (3,11,9,1,2,22,10,23) order by sn
+  </select>
+
+  <!--查询客户的合同信息条数-->
+  <select id="getHTXXCOUNT" parameterType="string" resultType="integer">
+    SELECT COUNT(1)
+FROM BO_HT_SALESCONTRACT_P WHERE ISEND=1 and KHMC=#{khmc}
+  </select>
+
+
+  <!--查询客户的合同信息-->
+  <select id="getHTXX" parameterType="map" resultType="map">
+select * from (
+select ROWNUM rn,a.* from (
+SELECT BINDID,HTBBH HTBH,HTMC,WFGLGS,WFGLGSDM,HTQSRQ,HTZZRQ
+FROM BO_HT_SALESCONTRACT_P WHERE ISEND=1 and KHMC=#{khmc} order by HTQSRQ DESC
+) a ) where rn&gt;#{min} and rn&lt;=#{max}
+  </select>
+
+  <!--更新客户信息-->
+  <update id="updateKHINFO" parameterType="map">
+    update CRM_CUSTOMER_INFO set
+    KHMC=#{khmc,jdbcType=VARCHAR},
+    KHBH=#{khbh,jdbcType=VARCHAR},
+    KHJC=#{khjc,jdbcType=VARCHAR},
+    DWXZ=#{dwxz,jdbcType=VARCHAR},
+    HYDL=#{hydl,jdbcType=VARCHAR},
+    HYXL=#{hyxl,jdbcType=VARCHAR},
+    KHZT=#{khzt,jdbcType=VARCHAR},
+    ZGJG=#{zgjg,jdbcType=VARCHAR},
+    ZJDH=#{zjdh,jdbcType=VARCHAR},
+    GFWZ=#{gfwz,jdbcType=VARCHAR},
+    BGDZ=#{bgdz,jdbcType=VARCHAR},
+    UPDATE_DATE=#{updateDate,jdbcType=TIMESTAMP}
+    where bindid=#{bindid,jdbcType=DECIMAL} and IS_DELETE=1
+  </update>
+
+  <!--查询客户总数-->
+  <select id="getKhCount" resultType="integer" parameterType="string">
+    select sum(1) from (
+    select * from (
+    WITH cte as (select #{userid}||'&lt;'||(select username from orguser where userid=#{userid})||'>' userid from dual)
+    select p.KHBH,p.KHMC
+    from bo_crm_client_p p
+    inner join bo_crm_client_serdpt s on s.khbh = p.khbh
+    and s.khjlzh in
+    (#{userid}, (select * from cte))
+    union
+    select p.KHBH,p.KHMC
+    from bo_crm_client_p p
+    where p.khjlzh in (#{userid},  (select * from cte))
+    )
+    <if test="serach!=null and serach !=''">
+      where
+      khmc like '%${serach}%'
+    </if>
+    )
+  </select>
+
+  <!--查询客户-->
+  <select id="getKhInfo" parameterType="map" resultType="map">
+    select * from (
+    select rownum rn,rs.* from (
+    select * from (
+    WITH cte as (select #{userid}||'&lt;'||(select username from orguser where userid=#{userid})||'>' userid from dual)
+    select p.KHBH,p.KHMC
+    from bo_crm_client_p p
+    inner join bo_crm_client_serdpt s on s.khbh = p.khbh
+    and s.khjlzh in
+    (#{userid}, (select * from cte))
+    union
+    select p.KHBH,p.KHMC
+    from bo_crm_client_p p
+    where p.khjlzh in (#{userid},  (select * from cte))
+    )
+    <if test="serach!=null and serach !=''">
+      where
+      khmc like '%${serach}%'
+    </if>
+    ) rs ) where rn&gt;#{min} and rn&lt;=#{max}
+  </select>
+
+  <!--根据客户名称查询，客户信息-->
+  <select id="getKHXXByKHMC" parameterType="string" resultType="map">
+select KHBH,KHJC,DWXZ,HYDM,HYXLDM,KHZT,ZGJG,ZJDH,GFWZ,BGDZ,KHMC from BO_CRM_CLIENT_P where KHMC=#{0}
+  </select>
+
+  <sql id="Base_Column_List" >
+    ID, KHMC, KHBH, KHJC, DWXZ, HYDL, HYXL, KHZT, ZGJG, ZJDH, GFWZ, BGDZ, BINDID, ISEND,
+    CREATE_DATE, UPDATE_DATE, IS_DELETE
+  </sql>
+
+  <insert id="insert" parameterType="cn.bravolinks.erp.crm.server.model.CustomerInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      select CRM_CUSTOMER_CONTRACT_INFO_SEQ.nextval FROM dual
+    </selectKey>
+    insert into CRM_CUSTOMER_INFO (ID, KHMC, KHBH, KHJC,
+    DWXZ, HYDL, HYXL, KHZT,
+    ZGJG, ZJDH, GFWZ, BGDZ,
+    BINDID, ISEND, CREATE_DATE,
+    UPDATE_DATE, IS_DELETE)
+    values (#{id,jdbcType=DECIMAL}, #{khmc,jdbcType=VARCHAR}, #{khbh,jdbcType=VARCHAR}, #{khjc,jdbcType=VARCHAR},
+    #{dwxz,jdbcType=VARCHAR}, #{hydl,jdbcType=VARCHAR}, #{hyxl,jdbcType=VARCHAR}, #{khzt,jdbcType=VARCHAR},
+    #{zgjg,jdbcType=VARCHAR}, #{zjdh,jdbcType=VARCHAR}, #{gfwz,jdbcType=VARCHAR}, #{bgdz,jdbcType=VARCHAR},
+    #{bindid,jdbcType=DECIMAL}, #{isend,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP},
+    #{updateDate,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=DECIMAL})
+  </insert>
+
+
+  <!--<resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.CustomerInfo" >-->
+    <!--<id column="ID" property="id" jdbcType="DECIMAL" />-->
+    <!--<result column="KHMC" property="khmc" jdbcType="VARCHAR" />-->
+    <!--<result column="KHBH" property="khbh" jdbcType="VARCHAR" />-->
+    <!--<result column="KHJC" property="khjc" jdbcType="VARCHAR" />-->
+    <!--<result column="DWXZ" property="dwxz" jdbcType="VARCHAR" />-->
+    <!--<result column="HYDL" property="hydl" jdbcType="VARCHAR" />-->
+    <!--<result column="HYXL" property="hyxl" jdbcType="VARCHAR" />-->
+    <!--<result column="KHZT" property="khzt" jdbcType="VARCHAR" />-->
+    <!--<result column="ZGJG" property="zgjg" jdbcType="VARCHAR" />-->
+    <!--<result column="ZJDH" property="zjdh" jdbcType="VARCHAR" />-->
+    <!--<result column="GFWZ" property="gfwz" jdbcType="VARCHAR" />-->
+    <!--<result column="BGDZ" property="bgdz" jdbcType="VARCHAR" />-->
+    <!--<result column="BINDID" property="bindid" jdbcType="DECIMAL" />-->
+    <!--<result column="ISEND" property="isend" jdbcType="DECIMAL" />-->
+    <!--<result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />-->
+    <!--<result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />-->
+    <!--<result column="IS_DELETE" property="isDelete" jdbcType="DECIMAL" />-->
+  <!--</resultMap>-->
+
+
+
+
+
+</mapper>

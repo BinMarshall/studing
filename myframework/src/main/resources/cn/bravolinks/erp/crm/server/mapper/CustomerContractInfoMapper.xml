@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.CustomerContractInfoDao" >
+
+  <!--逻辑删除数据，根据bindid-->
+  <update id="deleteCustomerContractByBindid" parameterType="integer">
+update CRM_CUSTOMER_CONTRACT_INFO set IS_DELETE=0 where bindid=#{0}
+  </update>
+
+  <!--跟新流程是否结束标识-->
+  <update id="updateIsend" parameterType="integer">
+    update CRM_CUSTOMER_CONTRACT_INFO set ISEND=1 where BINDID=#{0} and is_delete=1
+  </update>
+
+  <!--查询重复的条数-->
+  <select id="getChongfuCount" parameterType="map" resultType="integer">
+select * from (
+select COUNT(1) count from (
+SELECT * FROM CRM_CUSTOMER_CONTRACT_INFO where IS_DELETE=1 and KHMC=#{khmc,jdbcType=VARCHAR}
+) GROUP BY HTBH,HTMC,QYGS,HTQSRQ,HTZZRQ,KHBH,KHMC,YWSX,RSDY,RSXY,MDDLX,XMJEDY,XMJEXY,ZDGYS,FWF,FWFBZ,FWFL,SFSBX
+  ) where count>1
+  </select>
+
+  <!--删除，根据id-->
+  <update id="delCustomerContractInfoById" parameterType="integer">
+update CRM_CUSTOMER_CONTRACT_INFO set IS_DELETE=0 where id=#{0}
+  </update>
+
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.CustomerContractInfo" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="HTBH" property="htbh" jdbcType="VARCHAR" />
+    <result column="HTMC" property="htmc" jdbcType="VARCHAR" />
+    <result column="QYGS" property="qygs" jdbcType="VARCHAR" />
+    <result column="HTQSRQ" property="htqsrq" jdbcType="DATE" />
+    <result column="HTZZRQ" property="htzzrq" jdbcType="DATE" />
+    <result column="KHBH" property="khbh" jdbcType="VARCHAR" />
+    <result column="KHMC" property="khmc" jdbcType="VARCHAR" />
+    <result column="YWSX" property="ywsx" jdbcType="DECIMAL" />
+    <result column="RSDY" property="rsdy" jdbcType="DECIMAL" />
+    <result column="RSXY" property="rsxy" jdbcType="DECIMAL" />
+    <result column="MDDLX" property="mddlx" jdbcType="DECIMAL" />
+    <result column="XMJEDY" property="xmjedy" jdbcType="DECIMAL" />
+    <result column="XMJEXY" property="xmjexy" jdbcType="DECIMAL" />
+    <result column="ZDGYS" property="zdgys" jdbcType="VARCHAR" />
+    <result column="FWF" property="fwf" jdbcType="DECIMAL" />
+    <result column="FWFBZ" property="fwfbz" jdbcType="VARCHAR" />
+    <result column="FWFL" property="fwfl" jdbcType="DECIMAL" />
+    <result column="ISEND" property="isend" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="IS_DELETE" property="isDelete" jdbcType="DECIMAL" />
+    <result column="BINDID" property="bindid" jdbcType="DECIMAL" />
+    <result column="HT_BINDID" property="htBindid" jdbcType="DECIMAL" />
+    <result column="ZDGYSBH" property="zdgysbh" jdbcType="VARCHAR" />
+    <result column="HTBBH_BINDID" property="tempHTBindid" jdbcType="DECIMAL" />
+    <result column="SFSBX" property="sfsbx" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <!--查询客户合同信息表条数-->
+  <select id="getCustomerContractInfoCount" parameterType="map" resultType="integer">
+select COUNT(1) from (
+SELECT * FROM CRM_CUSTOMER_CONTRACT_INFO where IS_DELETE=1 and ISEND=0 and KHMC=#{khmc,jdbcType=VARCHAR} and BINDID=#{bindid,jdbcType=DECIMAL}
+UNION ALL
+SELECT * FROM CRM_CUSTOMER_CONTRACT_INFO where IS_DELETE=1 and ISEND=1 and KHMC=#{khmc,jdbcType=VARCHAR}
+)
+  </select>
+
+  <!--查询客户合同信息表-->
+  <select id="getCustomerContractInfo" parameterType="map" resultMap="BaseResultMap">
+select * from (
+select rownum rn,c.*,b.BINDID HTBBH_BINDID from (
+SELECT * FROM CRM_CUSTOMER_CONTRACT_INFO where IS_DELETE=1 and KHMC=#{khmc,jdbcType=VARCHAR}
+) c LEFT JOIN BO_HT_SALESCONTRACT_P b on c.HTBH=b.HTBBH order by c.CREATE_DATE desc
+) where rn&gt;#{min,jdbcType=DECIMAL} and rn&lt;=#{max,jdbcType=DECIMAL}
+  </select>
+
+  <!-- 添加记录到临时表  -->
+  <insert id="insertCustomerContractInfo" parameterType="cn.bravolinks.erp.crm.server.model.CustomerContractInfo">
+    <selectKey keyProperty="id" resultType="integer" order="BEFORE">
+      select CRM_CUSTOMER_CONTRACT_INFO_SEQ.nextval from dual
+    </selectKey>
+    insert into CRM_CUSTOMER_CONTRACT_INFO values
+    (
+      #{id,jdbcType=DECIMAL},
+      #{htbh,jdbcType=VARCHAR},
+      #{htmc,jdbcType=VARCHAR},
+      #{qygs,jdbcType=VARCHAR},
+      #{htqsrq,jdbcType=DATE},
+      #{htzzrq,jdbcType=DATE},
+      #{khbh,jdbcType=VARCHAR},
+      #{khmc,jdbcType=VARCHAR},
+      #{ywsx,jdbcType=DECIMAL},
+      #{rsdy,jdbcType=DECIMAL},
+      #{rsxy,jdbcType=DECIMAL},
+      #{mddlx,jdbcType=DECIMAL},
+      #{xmjedy,jdbcType=DECIMAL},
+      #{xmjexy,jdbcType=DECIMAL},
+      #{zdgys,jdbcType=VARCHAR},
+      #{fwf,jdbcType=DECIMAL},
+      #{fwfbz,jdbcType=VARCHAR},
+      #{fwfl,jdbcType=DECIMAL},
+      #{isend,jdbcType=DECIMAL},
+      #{createDate,jdbcType=TIMESTAMP},
+      #{updateDate,jdbcType=TIMESTAMP},
+      #{isDelete,jdbcType=DECIMAL},
+      #{bindid,jdbcType=DECIMAL},
+      #{htBindid,jdbcType=DECIMAL},
+      #{zdgysbh,jdbcType=VARCHAR},
+      #{sfsbx,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="cn.bravolinks.erp.crm.server.model.CustomerContractInfo" >
+    update CRM_CUSTOMER_CONTRACT_INFO
+    set
+      HTBH = #{htbh,jdbcType=VARCHAR},
+      HTMC = #{htmc,jdbcType=VARCHAR},
+      QYGS = #{qygs,jdbcType=VARCHAR},
+      HTQSRQ = #{htqsrq,jdbcType=TIMESTAMP},
+      HTZZRQ = #{htzzrq,jdbcType=TIMESTAMP},
+      YWSX = #{ywsx,jdbcType=DECIMAL},
+      RSDY = #{rsdy,jdbcType=DECIMAL},
+      RSXY = #{rsxy,jdbcType=DECIMAL},
+      MDDLX = #{mddlx,jdbcType=DECIMAL},
+      XMJEDY = #{xmjedy,jdbcType=DECIMAL},
+      XMJEXY = #{xmjexy,jdbcType=DECIMAL},
+      ZDGYS = #{zdgys,jdbcType=VARCHAR},
+      FWF = #{fwf,jdbcType=DECIMAL},
+      FWFBZ = #{fwfbz,jdbcType=VARCHAR},
+      FWFL = #{fwfl,jdbcType=DECIMAL},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      SFSBX = #{sfsbx,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL} and IS_DELETE=1 and ISEND=0
+  </update>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.xzkh.WF_TA_LOG_DAO">
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.xzkh.WF_TASK_LOG">
+  </resultMap>
+  
+  <!-- 根据taskid合bindid 查询已办任务状态 -->
+  <select id="getStatusByTaskIdAndBindid" parameterType="map" resultType="string">
+  	select status from wf_task_log where bind_id = #{bindid} and id = #{taskid}
+  </select>
+  
+  <!-- 根据bindid和办理人 查询已办任务 getWF_TASK_LOG -->
+  <select id="getWF_TASK_LOG" parameterType="string" resultMap="BaseResultMap">
+  	select * from wf_task_log where bind_id = #{bindid}
+  </select>
+  
+  <!-- 根据bindid和办理人 查询已办任务 getWF_TASK_LOG -->
+  <select id="getWF_TASK_LOGByBindidAndTarget" parameterType="map" resultMap="BaseResultMap">
+  	select * from wf_task_log where bind_id = #{bindid} and target = #{target}
+  </select>
+  
+</mapper>

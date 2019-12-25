@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.BoCrmUpdrecordDao" >
+  <cache/>
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.BoCrmUpdrecord" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="UPDTIME" property="updtime" jdbcType="TIMESTAMP" />
+    <result column="USER" property="user" jdbcType="VARCHAR" />
+    <result column="UPDTYPE" property="updtype" jdbcType="DECIMAL" />
+    <result column="UPDFIELD" property="updfield" jdbcType="VARCHAR" />
+    <result column="UPDBEFORE" property="updbefore" jdbcType="VARCHAR" />
+    <result column="UPDAFTER" property="updafter" jdbcType="VARCHAR" />
+    <result column="PROID" property="proid" jdbcType="DECIMAL" />
+    <result column="UPDBEFORE_CODE" property="updbeforeCode" jdbcType="VARCHAR" />
+    <result column="UPDAFTER_CODE" property="updafterCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, UPDTIME, "USER", UPDTYPE, UPDFIELD, UPDBEFORE, UPDAFTER, PROID,UPDBEFORE_CODE,UPDAFTER_CODE
+  </sql>
+  <select id="select" resultType="map" parameterType="integer">
+    select aa.*,bb.count from (
+SELECT a.id,a.UPDTIME,b.USERNAME,a.UPDTYPE,a.UPDFIELD,a.UPDBEFORE,a.UPDAFTER FROM BO_CRM_UPDRECORD a
+  INNER JOIN orguser b on a."USER" = b.USERID
+  where a.PROID=#{0}
+) aa
+INNER JOIN (
+select UPDTIME,count(UPDTIME) count from BO_CRM_UPDRECORD GROUP BY UPDTIME) bb on aa.UPDTIME = bb.UPDTIME
+  order by aa.UPDTIME,aa.ID
+  </select>
+
+  <!--插入-->
+  <insert id="insert" parameterType="cn.bravolinks.erp.crm.server.model.BoCrmUpdrecord" >
+    <selectKey resultType="integer" keyProperty="id" order="BEFORE">
+      select BO_CRM_UPDRECORD_SEQ.nextval from dual
+    </selectKey>
+    insert into BO_CRM_UPDRECORD (<include refid="Base_Column_List"/> )
+    values (#{id,jdbcType=DECIMAL}, #{updtime,jdbcType=TIMESTAMP}, #{user,jdbcType=VARCHAR}, 
+      #{updtype,jdbcType=DECIMAL}, #{updfield,jdbcType=VARCHAR}, #{updbefore,jdbcType=VARCHAR},
+      #{updafter,jdbcType=VARCHAR}, #{proid,jdbcType=DECIMAL},
+      #{updbeforeCode,jdbcType=VARCHAR},#{updafterCode,jdbcType=VARCHAR}
+      )
+  </insert>
+
+</mapper>

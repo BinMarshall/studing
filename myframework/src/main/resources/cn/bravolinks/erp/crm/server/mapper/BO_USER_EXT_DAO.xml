@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.BO_USER_EXT_DAO">
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.BO_USER_EXT">
+  </resultMap>
+  
+  
+  <!-- 根据userid查询扩展信息 -->
+  <select id="getUserExtByUserid" parameterType="string" resultMap="BaseResultMap">
+  	select u.userid,
+	       u.id,
+	       u.roleid,
+	       u.username,
+	       u.email,
+	       u.mobile,
+	       u.departmentid,
+	       d.departmentname,
+	       d.departmentno,
+	       d.parentdepartmentid,
+	       e.gsdm,
+	       e.gsmc,
+	       e.sssyb,
+	       e.sssybdm,
+	       c.gsjc,
+	       c.gsmc gsqc,
+	       c.gsid
+	  from orguser u
+	 inner join orgdepartment d on d.id = u.departmentid
+	 inner join BO_ORG_EXT_DEPT e on e.departmentid = d.id
+	 inner join BO_CYTS_COMPANY c on c.gsdm = e.gsdm
+	 where u.userid = #{userid}
+  </select>
+  
+</mapper>

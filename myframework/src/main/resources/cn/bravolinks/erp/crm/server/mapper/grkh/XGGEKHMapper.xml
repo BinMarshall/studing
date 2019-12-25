@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.grkh.XGGRKHDao">
+
+	<!-- 获得个人客户信息 -->
+	<select id="getGrkh" parameterType="string" resultType="map">
+		select ID,XM,SJLYDM,KHDJ,YW,GJDM,MZDM,XBDM,CSRQ,HYZKDM,ZJXYDM,ZZMMDM,QTSHJS,
+		IFDAM,CDGGJDQ,JSDM,YDDH,EMAIL,JCFG,SJGJ,ZJLXDM,ZJH,BZ,FJ,DAID,LXRBH,
+		LYXQYS,KHJLZH,KHJLXM,KHJLSSBM,LXRBINDID,KHBH,BMBH,WHLXDM, 
+		YXM,YYW,YGJDM,YMZDM,YXBDM,YCSRQ,YHYZKDM,YZJXYDM,YZZMMDM,YYDDH,YQTSHJS,
+		YEMAIL,YJCFG,YJSDM,YCDGGJDQ,YSJGJ,YZJLXDM,YZJH from BO_CRM_INDCLIENTBUS_P where BINDID = #{bindid}
+	</select>
+
+	<!-- 查找个人客户档案id -->
+	<select id="getCustomerId" parameterType="int" resultType="map">
+		select ID,LXRBINDID from BO_CRM_INDCLIENT_P where BINDID = #{bindid}
+	</select>
+	
+	<!-- 更新个人客户信息主表的lx类型字段 -->
+	<update id="updateLxr" parameterType="map" >
+		update BO_CRM_INDCLIENT_P set xbdm = #{xbdm},yddh = #{yddh},email = #{email},jsdm = #{jsdm} where bindid = #{lxrbindid}
+	</update>
+	
+	<!-- 查找日志初始化数据 -->
+	<select id="getLogData" parameterType="int" resultType="map">
+		select lxrbh,xm from BO_CRM_INDCLIENT_P where lxrbindid = #{lxrbindid}
+	</select>
+	
+	<!-- 删除个人履历 -->
+	<delete id="deleteGrllArchives" parameterType="int">
+		delete from BO_CRM_INDCLIENT_TR where bindid= #{oldbindid}
+	</delete>
+	
+	<!-- 删除相关联系人 -->
+	<delete id="deleteXglxrArchives" parameterType="int">
+		delete from BO_CRM_INDCLIENT_LM where bindid= #{oldbindid}
+	</delete>
+	
+	<!-- 删除兴趣爱好 -->
+	<delete id="deleteXqahArchives" parameterType="int">
+		delete from BO_CRM_INDCLIENT_HOB where bindid= #{oldbindid}
+	</delete>
+	
+	<!-- 删除历史事件 -->
+	<delete id="deleteLssjArchives" parameterType="int">
+		delete from BO_CRM_INDCLIENT_EVE where bindid= #{oldbindid}
+	</delete>
+	
+	<!-- 更新个人客户信息档案 -->
+	<update id="updateView" parameterType="map" >
+		update BO_CRM_INDCLIENT_P set 
+		XM = #{XM,jdbcType=VARCHAR},YW = #{YW,jdbcType=VARCHAR},GJDM = #{GJDM,jdbcType=VARCHAR},
+		MZDM = #{MZDM,jdbcType=VARCHAR},XBDM = #{XBDM,jdbcType=VARCHAR},CSRQ = #{CSRQ,jdbcType=TIMESTAMP},
+		HYZKDM = #{HYZKDM,jdbcType=VARCHAR},ZJXYDM = #{ZJXYDM,jdbcType=VARCHAR},ZZMMDM = #{ZZMMDM,jdbcType=VARCHAR},
+		YDDH = #{YDDH,jdbcType=VARCHAR},QTSHJS = #{QTSHJS,jdbcType=VARCHAR},EMAIL = #{EMAIL,jdbcType=VARCHAR},
+		JCFG = #{JCFG,jdbcType=VARCHAR},JSDM = #{JSDM,jdbcType=VARCHAR},CDGGJDQ = #{CDGGJDQ,jdbcType=VARCHAR},
+		SJGJ = #{SJGJ,jdbcType=VARCHAR},ZJLXDM = #{ZJLXDM,jdbcType=VARCHAR},ZJH = #{ZJH,jdbcType=VARCHAR},
+		FJ = #{FJ,jdbcType=VARCHAR},BZ = #{BZ,jdbcType=VARCHAR}
+		where id = #{oldid}
+	</update>
+	
+	<!-- 插入日志信息 -->
+	<insert id="insertLog" parameterType="java.util.Map">
+   		insert into BO_CRM_CLIENT_LOG(ID,ORGNO,BINDID,CREATEUSER,UPDATEUSER,WORKFLOWID,WORKFLOWSTEPID,GSID,
+   					GSDM,GSMC,BMID,BMMC,CZRZH,CZRXM,KHBH,KHMC,WHSJ,WHLXDM ) 
+   			values  (BO_CRM_CLIENT_LOG_SEQ.nextval,#{ORGID},#{BINDID},#{loginuser},#{loginuser},#{WFID},#{WFSID},#{GSID},#{GSDM},#{GSMC},
+   					#{DEPARTMENTID},#{DEPARTMENTNAME},#{USERID},#{USERNAME},#{khbh},#{khmc},sysdate,#{whlxdm}) 
+    </insert>
+	   
+</mapper> 

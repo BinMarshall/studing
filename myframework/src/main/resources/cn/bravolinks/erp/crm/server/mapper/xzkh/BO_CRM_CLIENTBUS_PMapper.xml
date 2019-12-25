@@ -1,0 +1,1771 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.xzkh.BO_CRM_CLIENTBUS_P_DAO" >
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENTBUS_P" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="ORGNO" property="orgno" jdbcType="OTHER" />
+    <result column="BINDID" property="bindid" jdbcType="DECIMAL" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CREATEUSER" property="createuser" jdbcType="OTHER" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="UPDATEUSER" property="updateuser" jdbcType="OTHER" />
+    <result column="WORKFLOWID" property="workflowid" jdbcType="DECIMAL" />
+    <result column="WORKFLOWSTEPID" property="workflowstepid" jdbcType="DECIMAL" />
+    <result column="ISEND" property="isend" jdbcType="DECIMAL" />
+    <result column="GSID" property="gsid" jdbcType="OTHER" />
+    <result column="GSDM" property="gsdm" jdbcType="OTHER" />
+    <result column="GSMC" property="gsmc" jdbcType="OTHER" />
+    <result column="SSSYB" property="sssyb" jdbcType="OTHER" />
+    <result column="BMID" property="bmid" jdbcType="OTHER" />
+    <result column="BMQLJID" property="bmqljid" jdbcType="OTHER" />
+    <result column="BMMC" property="bmmc" jdbcType="OTHER" />
+    <result column="ZDRZH" property="zdrzh" jdbcType="OTHER" />
+    <result column="ZDR" property="zdr" jdbcType="OTHER" />
+    <result column="ZDRQ" property="zdrq" jdbcType="TIMESTAMP" />
+    <result column="KHBH" property="khbh" jdbcType="OTHER" />
+    <result column="KHMC" property="khmc" jdbcType="OTHER" />
+    <result column="KHJC" property="khjc" jdbcType="OTHER" />
+    <result column="HYDM" property="hydm" jdbcType="OTHER" />
+    <result column="DWXZDM" property="dwxzdm" jdbcType="OTHER" />
+    <result column="ZJDH" property="zjdh" jdbcType="OTHER" />
+    <result column="GFWZ" property="gfwz" jdbcType="OTHER" />
+    <result column="ZGJG" property="zgjg" jdbcType="OTHER" />
+    <result column="TZCDZ" property="tzcdz" jdbcType="OTHER" />
+    <result column="BGDZ" property="bgdz" jdbcType="OTHER" />
+    <result column="CLRQ" property="clrq" jdbcType="OTHER" />
+    <result column="SFSS" property="sfss" jdbcType="OTHER" />
+    <result column="ZCZB" property="zczb" jdbcType="OTHER" />
+    <result column="HYDWDM" property="hydwdm" jdbcType="OTHER" />
+    <result column="DWGMDM" property="dwgmdm" jdbcType="OTHER" />
+    <result column="SCFE" property="scfe" jdbcType="DECIMAL" />
+    <result column="JYFW" property="jyfw" jdbcType="OTHER" />
+    <result column="CSDM" property="csdm" jdbcType="OTHER" />
+    <result column="GJ" property="gj" jdbcType="OTHER" />
+    <result column="SF" property="sf" jdbcType="OTHER" />
+    <result column="CS" property="cs" jdbcType="OTHER" />
+    <result column="XXDZ" property="xxdz" jdbcType="OTHER" />
+    <result column="ZYLY" property="zyly" jdbcType="OTHER" />
+    <result column="NSRZGDM" property="nsrzgdm" jdbcType="OTHER" />
+    <result column="NSRSBH" property="nsrsbh" jdbcType="OTHER" />
+    <result column="FPTT" property="fptt" jdbcType="OTHER" />
+    <result column="ZH" property="zh" jdbcType="OTHER" />
+    <result column="HM" property="hm" jdbcType="OTHER" />
+    <result column="KHH" property="khh" jdbcType="OTHER" />
+    <result column="FJ" property="fj" jdbcType="OTHER" />
+    <result column="BZ" property="bz" jdbcType="OTHER" />
+    <result column="SJDW" property="sjdw" jdbcType="OTHER" />
+    <result column="FWBMMC" property="fwbmmc" jdbcType="OTHER" />
+    <result column="FWBMID" property="fwbmid" jdbcType="OTHER" />
+    <result column="FWBMSSGSMC" property="fwbmssgsmc" jdbcType="OTHER" />
+    <result column="FWBMSSGSDM" property="fwbmssgsdm" jdbcType="OTHER" />
+    <result column="BMZJZH" property="bmzjzh" jdbcType="OTHER" />
+    <result column="BMZJXM" property="bmzjxm" jdbcType="OTHER" />
+    <result column="KHJLXM" property="khjlxm" jdbcType="OTHER" />
+    <result column="KHJLZH" property="khjlzh" jdbcType="OTHER" />
+    <result column="JTWLKH" property="jtwlkh" jdbcType="DECIMAL" />
+    <result column="DKHZJZH" property="dkhzjzh" jdbcType="OTHER" />
+    <result column="DKHZJXM" property="dkhzjxm" jdbcType="OTHER" />
+    <result column="LOGO" property="logo" jdbcType="OTHER" />
+    <result column="XGZD" property="xgzd" jdbcType="OTHER" />
+    <result column="XGNR" property="xgnr" jdbcType="OTHER" />
+    <result column="TZZH" property="tzzh" jdbcType="OTHER" />
+    <result column="WHLX" property="whlx" jdbcType="OTHER" />
+    <result column="OGSID" property="ogsid" jdbcType="OTHER" />
+    <result column="OGSDM" property="ogsdm" jdbcType="OTHER" />
+    <result column="OGSMC" property="ogsmc" jdbcType="OTHER" />
+    <result column="OSSSYB" property="osssyb" jdbcType="OTHER" />
+    <result column="OBMID" property="obmid" jdbcType="OTHER" />
+    <result column="OBMQLJID" property="obmqljid" jdbcType="OTHER" />
+    <result column="OBMMC" property="obmmc" jdbcType="OTHER" />
+    <result column="OZDRZH" property="ozdrzh" jdbcType="OTHER" />
+    <result column="OZDR" property="ozdr" jdbcType="OTHER" />
+    <result column="OZDRQ" property="ozdrq" jdbcType="TIMESTAMP" />
+    <result column="OKHBH" property="okhbh" jdbcType="OTHER" />
+    <result column="OKHMC" property="okhmc" jdbcType="OTHER" />
+    <result column="OKHJC" property="okhjc" jdbcType="OTHER" />
+    <result column="OHYDM" property="ohydm" jdbcType="OTHER" />
+    <result column="ODWXZDM" property="odwxzdm" jdbcType="OTHER" />
+    <result column="OZJDH" property="ozjdh" jdbcType="OTHER" />
+    <result column="OGFWZ" property="ogfwz" jdbcType="OTHER" />
+    <result column="OZGJD" property="ozgjd" jdbcType="OTHER" />
+    <result column="OTZCDZ" property="otzcdz" jdbcType="OTHER" />
+    <result column="OBGDZ" property="obgdz" jdbcType="OTHER" />
+    <result column="OCLRQ" property="oclrq" jdbcType="OTHER" />
+    <result column="OSFSS" property="osfss" jdbcType="OTHER" />
+    <result column="OZCZB" property="ozczb" jdbcType="OTHER" />
+    <result column="OHYDWDM" property="ohydwdm" jdbcType="OTHER" />
+    <result column="ODWGMDM" property="odwgmdm" jdbcType="OTHER" />
+    <result column="ODWGM" property="odwgm" jdbcType="OTHER" />
+    <result column="OSCFE" property="oscfe" jdbcType="DECIMAL" />
+    <result column="OJYFW" property="ojyfw" jdbcType="OTHER" />
+    <result column="OCSDM" property="ocsdm" jdbcType="OTHER" />
+    <result column="OGJ" property="ogj" jdbcType="OTHER" />
+    <result column="OSF" property="osf" jdbcType="OTHER" />
+    <result column="OCS" property="ocs" jdbcType="OTHER" />
+    <result column="OXXDZ" property="oxxdz" jdbcType="OTHER" />
+    <result column="OZYLY" property="ozyly" jdbcType="OTHER" />
+    <result column="ONSRZGDM" property="onsrzgdm" jdbcType="OTHER" />
+    <result column="ONSRSBH" property="onsrsbh" jdbcType="OTHER" />
+    <result column="OFPTT" property="ofptt" jdbcType="OTHER" />
+    <result column="OZH" property="ozh" jdbcType="OTHER" />
+    <result column="OHM" property="ohm" jdbcType="OTHER" />
+    <result column="OKHH" property="okhh" jdbcType="OTHER" />
+    <result column="OFJ" property="ofj" jdbcType="OTHER" />
+    <result column="OBZ" property="obz" jdbcType="OTHER" />
+    <result column="OSJDW" property="osjdw" jdbcType="OTHER" />
+    <result column="OFWBMMC" property="ofwbmmc" jdbcType="OTHER" />
+    <result column="OFWBMID" property="ofwbmid" jdbcType="OTHER" />
+    <result column="OFWBMSSGSMC" property="ofwbmssgsmc" jdbcType="OTHER" />
+    <result column="OFWBMSSGSDM" property="ofwbmssgsdm" jdbcType="OTHER" />
+    <result column="OBMZJZH" property="obmzjzh" jdbcType="OTHER" />
+    <result column="OBMZJXM" property="obmzjxm" jdbcType="OTHER" />
+    <result column="OKHJLXM" property="okhjlxm" jdbcType="OTHER" />
+    <result column="OKHJLZH" property="okhjlzh" jdbcType="OTHER" />
+    <result column="OJTWLKH" property="ojtwlkh" jdbcType="DECIMAL" />
+    <result column="ODKHZJZH" property="odkhzjzh" jdbcType="OTHER" />
+    <result column="ODKHZJXM" property="odkhzjxm" jdbcType="OTHER" />
+    <result column="OLOGO" property="ologo" jdbcType="OTHER" />
+    <result column="OXGZD" property="oxgzd" jdbcType="OTHER" />
+    <result column="OXGNR" property="oxgnr" jdbcType="OTHER" />
+    <result column="OTZZH" property="otzzh" jdbcType="OTHER" />
+    <result column="OWHLX" property="owhlx" jdbcType="OTHER" />
+    <result column="KHZT" property="khzt" jdbcType="OTHER" />
+    <result column="OKHZT" property="okhzt" jdbcType="OTHER" />
+    <result column="CZ" property="cz" jdbcType="OTHER" />
+    <result column="OCZ" property="ocz" jdbcType="OTHER" />
+    <result column="WHLXDM" property="whlxdm" jdbcType="OTHER" />
+    <result column="DAID" property="daid" jdbcType="OTHER" />
+    <result column="SJDWBH" property="sjdwbh" jdbcType="OTHER" />
+    <result column="YGSSTLDM" property="ygsstldm" jdbcType="OTHER" />
+    <result column="OHYXLDM" property="ohyxldm" jdbcType="OTHER" />
+    <result column="HYXLDM" property="hyxldm" jdbcType="OTHER" />
+    <result column="YKHJLID" property="ykhjlid" jdbcType="OTHER" />
+    <result column="HYXLXNZD" property="hyxlxnzd" jdbcType="OTHER" />
+    <result column="OSJDWBH" property="osjdwbh" jdbcType="OTHER" />
+    <result column="SFYSJDW" property="sfysjdw" jdbcType="OTHER" />
+    <result column="OSFYSJDW" property="osfysjdw" jdbcType="OTHER" />
+    <result column="STEPNO" property="stepno" jdbcType="OTHER" />
+    <result column="ZCZB1" property="zczb1" jdbcType="OTHER" />
+    <result column="OZCZB1" property="ozczb1" jdbcType="OTHER" />
+    <result column="FLAG" property="flag" jdbcType="OTHER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORGNO, BINDID, CREATEDATE, CREATEUSER, UPDATEDATE, UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+    ISEND, GSID, GSDM, GSMC, SSSYB, BMID, BMQLJID, BMMC, ZDRZH, ZDR, ZDRQ, KHBH, KHMC, 
+    KHJC, HYDM, DWXZDM, ZJDH, GFWZ, ZGJG, TZCDZ, BGDZ, CLRQ, SFSS, ZCZB, HYDWDM, DWGMDM, 
+    SCFE, JYFW, CSDM, GJ, SF, CS, XXDZ, ZYLY, NSRZGDM, NSRSBH, FPTT, ZH, HM, KHH, FJ, 
+    BZ, SJDW, FWBMMC, FWBMID, FWBMSSGSMC, FWBMSSGSDM, BMZJZH, BMZJXM, KHJLXM, KHJLZH, 
+    JTWLKH, DKHZJZH, DKHZJXM, LOGO, XGZD, XGNR, TZZH, WHLX, OGSID, OGSDM, OGSMC, OSSSYB, 
+    OBMID, OBMQLJID, OBMMC, OZDRZH, OZDR, OZDRQ, OKHBH, OKHMC, OKHJC, OHYDM, ODWXZDM, 
+    OZJDH, OGFWZ, OZGJD, OTZCDZ, OBGDZ, OCLRQ, OSFSS, OZCZB, OHYDWDM, ODWGMDM, ODWGM, 
+    OSCFE, OJYFW, OCSDM, OGJ, OSF, OCS, OXXDZ, OZYLY, ONSRZGDM, ONSRSBH, OFPTT, OZH, 
+    OHM, OKHH, OFJ, OBZ, OSJDW, OFWBMMC, OFWBMID, OFWBMSSGSMC, OFWBMSSGSDM, OBMZJZH, 
+    OBMZJXM, OKHJLXM, OKHJLZH, OJTWLKH, ODKHZJZH, ODKHZJXM, OLOGO, OXGZD, OXGNR, OTZZH, 
+    OWHLX, KHZT, OKHZT, CZ, OCZ, WHLXDM, DAID, SJDWBH, YGSSTLDM, OHYXLDM, HYXLDM, YKHJLID, 
+    HYXLXNZD, OSJDWBH, SFYSJDW, OSFYSJDW, STEPNO, ZCZB1, OZCZB1, FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from  BO_CRM_CLIENTBUS_P
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <!-- 根据bindid 查询 单位客户信息主表 信息 -->
+   <select id="selectBybindid" parameterType="String" resultMap="BaseResultMap">
+    SELECT p.*,(select  zwmc  from BO_INDUSTRY_P where zt='有效' and dm=p.HYDM) hymc,
+    (select  zwmc  from BO_INDUSTRY_S where zt='有效' and bindid=(select bindid from BO_INDUSTRY_P where dm=p.HYDM) and dm=p.HYXLDM) hyxlmc,
+    (select zwmc  from bo_cyts_baseinfo where dl='单位客户' and lx='单位性质' and zt='有效' and dm = p.DWXZDM) dwxzmc FROM BO_CRM_CLIENTBUS_P p
+     WHERE bindid = #{0}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from  BO_CRM_CLIENTBUS_P
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENTBUS_P" >
+    insert into  BO_CRM_CLIENTBUS_P (ID, ORGNO, BINDID, 
+      CREATEDATE, CREATEUSER, UPDATEDATE, 
+      UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+      ISEND, GSID, GSDM, GSMC, 
+      SSSYB, BMID, BMQLJID, BMMC, 
+      ZDRZH, ZDR, ZDRQ, KHBH, 
+      KHMC, KHJC, HYDM, DWXZDM, 
+      ZJDH, GFWZ, ZGJG, TZCDZ, 
+      BGDZ, CLRQ, SFSS, ZCZB, 
+      HYDWDM, DWGMDM, SCFE, JYFW, 
+      CSDM, GJ, SF, CS, 
+      XXDZ, ZYLY, NSRZGDM, NSRSBH, 
+      FPTT, ZH, HM, KHH, 
+      FJ, BZ, SJDW, FWBMMC, 
+      FWBMID, FWBMSSGSMC, FWBMSSGSDM, 
+      BMZJZH, BMZJXM, KHJLXM, KHJLZH, 
+      JTWLKH, DKHZJZH, DKHZJXM, 
+      LOGO, XGZD, XGNR, TZZH, 
+      WHLX, OGSID, OGSDM, OGSMC, 
+      OSSSYB, OBMID, OBMQLJID, 
+      OBMMC, OZDRZH, OZDR, OZDRQ, 
+      OKHBH, OKHMC, OKHJC, OHYDM, 
+      ODWXZDM, OZJDH, OGFWZ, OZGJD, 
+      OTZCDZ, OBGDZ, OCLRQ, OSFSS, 
+      OZCZB, OHYDWDM, ODWGMDM, 
+      ODWGM, OSCFE, OJYFW, OCSDM, 
+      OGJ, OSF, OCS, OXXDZ, 
+      OZYLY, ONSRZGDM, ONSRSBH, 
+      OFPTT, OZH, OHM, OKHH, 
+      OFJ, OBZ, OSJDW, OFWBMMC, 
+      OFWBMID, OFWBMSSGSMC, OFWBMSSGSDM, 
+      OBMZJZH, OBMZJXM, OKHJLXM, 
+      OKHJLZH, OJTWLKH, ODKHZJZH, 
+      ODKHZJXM, OLOGO, OXGZD, OXGNR, 
+      OTZZH, OWHLX, KHZT, OKHZT, 
+      CZ, OCZ, WHLXDM, DAID, 
+      SJDWBH, YGSSTLDM, OHYXLDM, 
+      HYXLDM, YKHJLID, HYXLXNZD, 
+      OSJDWBH, SFYSJDW, OSFYSJDW, 
+      STEPNO, ZCZB1, OZCZB1, FLAG
+      )
+    values (#{id,jdbcType=DECIMAL}, #{orgno,jdbcType=OTHER}, #{bindid,jdbcType=DECIMAL}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=OTHER}, #{updatedate,jdbcType=TIMESTAMP}, 
+      #{updateuser,jdbcType=OTHER}, #{workflowid,jdbcType=DECIMAL}, #{workflowstepid,jdbcType=DECIMAL}, 
+      #{isend,jdbcType=DECIMAL}, #{gsid,jdbcType=OTHER}, #{gsdm,jdbcType=OTHER}, #{gsmc,jdbcType=OTHER}, 
+      #{sssyb,jdbcType=OTHER}, #{bmid,jdbcType=OTHER}, #{bmqljid,jdbcType=OTHER}, #{bmmc,jdbcType=OTHER}, 
+      #{zdrzh,jdbcType=OTHER}, #{zdr,jdbcType=OTHER}, #{zdrq,jdbcType=TIMESTAMP}, #{khbh,jdbcType=OTHER}, 
+      #{khmc,jdbcType=OTHER}, #{khjc,jdbcType=OTHER}, #{hydm,jdbcType=OTHER}, #{dwxzdm,jdbcType=OTHER}, 
+      #{zjdh,jdbcType=OTHER}, #{gfwz,jdbcType=OTHER}, #{zgjg,jdbcType=OTHER}, #{tzcdz,jdbcType=OTHER}, 
+      #{bgdz,jdbcType=OTHER}, #{clrq,jdbcType=OTHER}, #{sfss,jdbcType=OTHER}, #{zczb,jdbcType=OTHER}, 
+      #{hydwdm,jdbcType=OTHER}, #{dwgmdm,jdbcType=OTHER}, #{scfe,jdbcType=DECIMAL}, #{jyfw,jdbcType=OTHER}, 
+      #{csdm,jdbcType=OTHER}, #{gj,jdbcType=OTHER}, #{sf,jdbcType=OTHER}, #{cs,jdbcType=OTHER}, 
+      #{xxdz,jdbcType=OTHER}, #{zyly,jdbcType=OTHER}, #{nsrzgdm,jdbcType=OTHER}, #{nsrsbh,jdbcType=OTHER}, 
+      #{fptt,jdbcType=OTHER}, #{zh,jdbcType=OTHER}, #{hm,jdbcType=OTHER}, #{khh,jdbcType=OTHER}, 
+      #{fj,jdbcType=OTHER}, #{bz,jdbcType=OTHER}, #{sjdw,jdbcType=OTHER}, #{fwbmmc,jdbcType=OTHER}, 
+      #{fwbmid,jdbcType=OTHER}, #{fwbmssgsmc,jdbcType=OTHER}, #{fwbmssgsdm,jdbcType=OTHER}, 
+      #{bmzjzh,jdbcType=OTHER}, #{bmzjxm,jdbcType=OTHER}, #{khjlxm,jdbcType=OTHER}, #{khjlzh,jdbcType=OTHER}, 
+      #{jtwlkh,jdbcType=DECIMAL}, #{dkhzjzh,jdbcType=OTHER}, #{dkhzjxm,jdbcType=OTHER}, 
+      #{logo,jdbcType=OTHER}, #{xgzd,jdbcType=OTHER}, #{xgnr,jdbcType=OTHER}, #{tzzh,jdbcType=OTHER}, 
+      #{whlx,jdbcType=OTHER}, #{ogsid,jdbcType=OTHER}, #{ogsdm,jdbcType=OTHER}, #{ogsmc,jdbcType=OTHER}, 
+      #{osssyb,jdbcType=OTHER}, #{obmid,jdbcType=OTHER}, #{obmqljid,jdbcType=OTHER}, 
+      #{obmmc,jdbcType=OTHER}, #{ozdrzh,jdbcType=OTHER}, #{ozdr,jdbcType=OTHER}, #{ozdrq,jdbcType=TIMESTAMP}, 
+      #{okhbh,jdbcType=OTHER}, #{okhmc,jdbcType=OTHER}, #{okhjc,jdbcType=OTHER}, #{ohydm,jdbcType=OTHER}, 
+      #{odwxzdm,jdbcType=OTHER}, #{ozjdh,jdbcType=OTHER}, #{ogfwz,jdbcType=OTHER}, #{ozgjd,jdbcType=OTHER}, 
+      #{otzcdz,jdbcType=OTHER}, #{obgdz,jdbcType=OTHER}, #{oclrq,jdbcType=OTHER}, #{osfss,jdbcType=OTHER}, 
+      #{ozczb,jdbcType=OTHER}, #{ohydwdm,jdbcType=OTHER}, #{odwgmdm,jdbcType=OTHER}, 
+      #{odwgm,jdbcType=OTHER}, #{oscfe,jdbcType=DECIMAL}, #{ojyfw,jdbcType=OTHER}, #{ocsdm,jdbcType=OTHER}, 
+      #{ogj,jdbcType=OTHER}, #{osf,jdbcType=OTHER}, #{ocs,jdbcType=OTHER}, #{oxxdz,jdbcType=OTHER}, 
+      #{ozyly,jdbcType=OTHER}, #{onsrzgdm,jdbcType=OTHER}, #{onsrsbh,jdbcType=OTHER}, 
+      #{ofptt,jdbcType=OTHER}, #{ozh,jdbcType=OTHER}, #{ohm,jdbcType=OTHER}, #{okhh,jdbcType=OTHER}, 
+      #{ofj,jdbcType=OTHER}, #{obz,jdbcType=OTHER}, #{osjdw,jdbcType=OTHER}, #{ofwbmmc,jdbcType=OTHER}, 
+      #{ofwbmid,jdbcType=OTHER}, #{ofwbmssgsmc,jdbcType=OTHER}, #{ofwbmssgsdm,jdbcType=OTHER}, 
+      #{obmzjzh,jdbcType=OTHER}, #{obmzjxm,jdbcType=OTHER}, #{okhjlxm,jdbcType=OTHER}, 
+      #{okhjlzh,jdbcType=OTHER}, #{ojtwlkh,jdbcType=DECIMAL}, #{odkhzjzh,jdbcType=OTHER}, 
+      #{odkhzjxm,jdbcType=OTHER}, #{ologo,jdbcType=OTHER}, #{oxgzd,jdbcType=OTHER}, #{oxgnr,jdbcType=OTHER}, 
+      #{otzzh,jdbcType=OTHER}, #{owhlx,jdbcType=OTHER}, #{khzt,jdbcType=OTHER}, #{okhzt,jdbcType=OTHER}, 
+      #{cz,jdbcType=OTHER}, #{ocz,jdbcType=OTHER}, #{whlxdm,jdbcType=OTHER}, #{daid,jdbcType=OTHER}, 
+      #{sjdwbh,jdbcType=OTHER}, #{ygsstldm,jdbcType=OTHER}, #{ohyxldm,jdbcType=OTHER}, 
+      #{hyxldm,jdbcType=OTHER}, #{ykhjlid,jdbcType=OTHER}, #{hyxlxnzd,jdbcType=OTHER}, 
+      #{osjdwbh,jdbcType=OTHER}, #{sfysjdw,jdbcType=OTHER}, #{osfysjdw,jdbcType=OTHER}, 
+      #{stepno,jdbcType=OTHER}, #{zczb1,jdbcType=OTHER}, #{ozczb1,jdbcType=OTHER}, #{flag,jdbcType=OTHER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENTBUS_P" >
+    insert into  BO_CRM_CLIENTBUS_P
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgno != null" >
+        ORGNO,
+      </if>
+      <if test="bindid != null" >
+        BINDID,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER,
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID,
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID,
+      </if>
+      <if test="isend != null" >
+        ISEND,
+      </if>
+      <if test="gsid != null" >
+        GSID,
+      </if>
+      <if test="gsdm != null" >
+        GSDM,
+      </if>
+      <if test="gsmc != null" >
+        GSMC,
+      </if>
+      <if test="sssyb != null" >
+        SSSYB,
+      </if>
+      <if test="bmid != null" >
+        BMID,
+      </if>
+      <if test="bmqljid != null" >
+        BMQLJID,
+      </if>
+      <if test="bmmc != null" >
+        BMMC,
+      </if>
+      <if test="zdrzh != null" >
+        ZDRZH,
+      </if>
+      <if test="zdr != null" >
+        ZDR,
+      </if>
+      <if test="zdrq != null" >
+        ZDRQ,
+      </if>
+      <if test="khbh != null" >
+        KHBH,
+      </if>
+      <if test="khmc != null" >
+        KHMC,
+      </if>
+      <if test="khjc != null" >
+        KHJC,
+      </if>
+      <if test="hydm != null" >
+        HYDM,
+      </if>
+      <if test="dwxzdm != null" >
+        DWXZDM,
+      </if>
+      <if test="zjdh != null" >
+        ZJDH,
+      </if>
+      <if test="gfwz != null" >
+        GFWZ,
+      </if>
+      <if test="zgjg != null" >
+        ZGJG,
+      </if>
+      <if test="tzcdz != null" >
+        TZCDZ,
+      </if>
+      <if test="bgdz != null" >
+        BGDZ,
+      </if>
+      <if test="clrq != null" >
+        CLRQ,
+      </if>
+      <if test="sfss != null" >
+        SFSS,
+      </if>
+      <if test="zczb != null" >
+        ZCZB,
+      </if>
+      <if test="hydwdm != null" >
+        HYDWDM,
+      </if>
+      <if test="dwgmdm != null" >
+        DWGMDM,
+      </if>
+      <if test="scfe != null" >
+        SCFE,
+      </if>
+      <if test="jyfw != null" >
+        JYFW,
+      </if>
+      <if test="csdm != null" >
+        CSDM,
+      </if>
+      <if test="gj != null" >
+        GJ,
+      </if>
+      <if test="sf != null" >
+        SF,
+      </if>
+      <if test="cs != null" >
+        CS,
+      </if>
+      <if test="xxdz != null" >
+        XXDZ,
+      </if>
+      <if test="zyly != null" >
+        ZYLY,
+      </if>
+      <if test="nsrzgdm != null" >
+        NSRZGDM,
+      </if>
+      <if test="nsrsbh != null" >
+        NSRSBH,
+      </if>
+      <if test="fptt != null" >
+        FPTT,
+      </if>
+      <if test="zh != null" >
+        ZH,
+      </if>
+      <if test="hm != null" >
+        HM,
+      </if>
+      <if test="khh != null" >
+        KHH,
+      </if>
+      <if test="fj != null" >
+        FJ,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="sjdw != null" >
+        SJDW,
+      </if>
+      <if test="fwbmmc != null" >
+        FWBMMC,
+      </if>
+      <if test="fwbmid != null" >
+        FWBMID,
+      </if>
+      <if test="fwbmssgsmc != null" >
+        FWBMSSGSMC,
+      </if>
+      <if test="fwbmssgsdm != null" >
+        FWBMSSGSDM,
+      </if>
+      <if test="bmzjzh != null" >
+        BMZJZH,
+      </if>
+      <if test="bmzjxm != null" >
+        BMZJXM,
+      </if>
+      <if test="khjlxm != null" >
+        KHJLXM,
+      </if>
+      <if test="khjlzh != null" >
+        KHJLZH,
+      </if>
+      <if test="jtwlkh != null" >
+        JTWLKH,
+      </if>
+      <if test="dkhzjzh != null" >
+        DKHZJZH,
+      </if>
+      <if test="dkhzjxm != null" >
+        DKHZJXM,
+      </if>
+      <if test="logo != null" >
+        LOGO,
+      </if>
+      <if test="xgzd != null" >
+        XGZD,
+      </if>
+      <if test="xgnr != null" >
+        XGNR,
+      </if>
+      <if test="tzzh != null" >
+        TZZH,
+      </if>
+      <if test="whlx != null" >
+        WHLX,
+      </if>
+      <if test="ogsid != null" >
+        OGSID,
+      </if>
+      <if test="ogsdm != null" >
+        OGSDM,
+      </if>
+      <if test="ogsmc != null" >
+        OGSMC,
+      </if>
+      <if test="osssyb != null" >
+        OSSSYB,
+      </if>
+      <if test="obmid != null" >
+        OBMID,
+      </if>
+      <if test="obmqljid != null" >
+        OBMQLJID,
+      </if>
+      <if test="obmmc != null" >
+        OBMMC,
+      </if>
+      <if test="ozdrzh != null" >
+        OZDRZH,
+      </if>
+      <if test="ozdr != null" >
+        OZDR,
+      </if>
+      <if test="ozdrq != null" >
+        OZDRQ,
+      </if>
+      <if test="okhbh != null" >
+        OKHBH,
+      </if>
+      <if test="okhmc != null" >
+        OKHMC,
+      </if>
+      <if test="okhjc != null" >
+        OKHJC,
+      </if>
+      <if test="ohydm != null" >
+        OHYDM,
+      </if>
+      <if test="odwxzdm != null" >
+        ODWXZDM,
+      </if>
+      <if test="ozjdh != null" >
+        OZJDH,
+      </if>
+      <if test="ogfwz != null" >
+        OGFWZ,
+      </if>
+      <if test="ozgjd != null" >
+        OZGJD,
+      </if>
+      <if test="otzcdz != null" >
+        OTZCDZ,
+      </if>
+      <if test="obgdz != null" >
+        OBGDZ,
+      </if>
+      <if test="oclrq != null" >
+        OCLRQ,
+      </if>
+      <if test="osfss != null" >
+        OSFSS,
+      </if>
+      <if test="ozczb != null" >
+        OZCZB,
+      </if>
+      <if test="ohydwdm != null" >
+        OHYDWDM,
+      </if>
+      <if test="odwgmdm != null" >
+        ODWGMDM,
+      </if>
+      <if test="odwgm != null" >
+        ODWGM,
+      </if>
+      <if test="oscfe != null" >
+        OSCFE,
+      </if>
+      <if test="ojyfw != null" >
+        OJYFW,
+      </if>
+      <if test="ocsdm != null" >
+        OCSDM,
+      </if>
+      <if test="ogj != null" >
+        OGJ,
+      </if>
+      <if test="osf != null" >
+        OSF,
+      </if>
+      <if test="ocs != null" >
+        OCS,
+      </if>
+      <if test="oxxdz != null" >
+        OXXDZ,
+      </if>
+      <if test="ozyly != null" >
+        OZYLY,
+      </if>
+      <if test="onsrzgdm != null" >
+        ONSRZGDM,
+      </if>
+      <if test="onsrsbh != null" >
+        ONSRSBH,
+      </if>
+      <if test="ofptt != null" >
+        OFPTT,
+      </if>
+      <if test="ozh != null" >
+        OZH,
+      </if>
+      <if test="ohm != null" >
+        OHM,
+      </if>
+      <if test="okhh != null" >
+        OKHH,
+      </if>
+      <if test="ofj != null" >
+        OFJ,
+      </if>
+      <if test="obz != null" >
+        OBZ,
+      </if>
+      <if test="osjdw != null" >
+        OSJDW,
+      </if>
+      <if test="ofwbmmc != null" >
+        OFWBMMC,
+      </if>
+      <if test="ofwbmid != null" >
+        OFWBMID,
+      </if>
+      <if test="ofwbmssgsmc != null" >
+        OFWBMSSGSMC,
+      </if>
+      <if test="ofwbmssgsdm != null" >
+        OFWBMSSGSDM,
+      </if>
+      <if test="obmzjzh != null" >
+        OBMZJZH,
+      </if>
+      <if test="obmzjxm != null" >
+        OBMZJXM,
+      </if>
+      <if test="okhjlxm != null" >
+        OKHJLXM,
+      </if>
+      <if test="okhjlzh != null" >
+        OKHJLZH,
+      </if>
+      <if test="ojtwlkh != null" >
+        OJTWLKH,
+      </if>
+      <if test="odkhzjzh != null" >
+        ODKHZJZH,
+      </if>
+      <if test="odkhzjxm != null" >
+        ODKHZJXM,
+      </if>
+      <if test="ologo != null" >
+        OLOGO,
+      </if>
+      <if test="oxgzd != null" >
+        OXGZD,
+      </if>
+      <if test="oxgnr != null" >
+        OXGNR,
+      </if>
+      <if test="otzzh != null" >
+        OTZZH,
+      </if>
+      <if test="owhlx != null" >
+        OWHLX,
+      </if>
+      <if test="khzt != null" >
+        KHZT,
+      </if>
+      <if test="okhzt != null" >
+        OKHZT,
+      </if>
+      <if test="cz != null" >
+        CZ,
+      </if>
+      <if test="ocz != null" >
+        OCZ,
+      </if>
+      <if test="whlxdm != null" >
+        WHLXDM,
+      </if>
+      <if test="daid != null" >
+        DAID,
+      </if>
+      <if test="sjdwbh != null" >
+        SJDWBH,
+      </if>
+      <if test="ygsstldm != null" >
+        YGSSTLDM,
+      </if>
+      <if test="ohyxldm != null" >
+        OHYXLDM,
+      </if>
+      <if test="hyxldm != null" >
+        HYXLDM,
+      </if>
+      <if test="ykhjlid != null" >
+        YKHJLID,
+      </if>
+      <if test="hyxlxnzd != null" >
+        HYXLXNZD,
+      </if>
+      <if test="osjdwbh != null" >
+        OSJDWBH,
+      </if>
+      <if test="sfysjdw != null" >
+        SFYSJDW,
+      </if>
+      <if test="osfysjdw != null" >
+        OSFYSJDW,
+      </if>
+      <if test="stepno != null" >
+        STEPNO,
+      </if>
+      <if test="zczb1 != null" >
+        ZCZB1,
+      </if>
+      <if test="ozczb1 != null" >
+        OZCZB1,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orgno != null" >
+        #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="gsid != null" >
+        #{gsid,jdbcType=OTHER},
+      </if>
+      <if test="gsdm != null" >
+        #{gsdm,jdbcType=OTHER},
+      </if>
+      <if test="gsmc != null" >
+        #{gsmc,jdbcType=OTHER},
+      </if>
+      <if test="sssyb != null" >
+        #{sssyb,jdbcType=OTHER},
+      </if>
+      <if test="bmid != null" >
+        #{bmid,jdbcType=OTHER},
+      </if>
+      <if test="bmqljid != null" >
+        #{bmqljid,jdbcType=OTHER},
+      </if>
+      <if test="bmmc != null" >
+        #{bmmc,jdbcType=OTHER},
+      </if>
+      <if test="zdrzh != null" >
+        #{zdrzh,jdbcType=OTHER},
+      </if>
+      <if test="zdr != null" >
+        #{zdr,jdbcType=OTHER},
+      </if>
+      <if test="zdrq != null" >
+        #{zdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="khbh != null" >
+        #{khbh,jdbcType=OTHER},
+      </if>
+      <if test="khmc != null" >
+        #{khmc,jdbcType=OTHER},
+      </if>
+      <if test="khjc != null" >
+        #{khjc,jdbcType=OTHER},
+      </if>
+      <if test="hydm != null" >
+        #{hydm,jdbcType=OTHER},
+      </if>
+      <if test="dwxzdm != null" >
+        #{dwxzdm,jdbcType=OTHER},
+      </if>
+      <if test="zjdh != null" >
+        #{zjdh,jdbcType=OTHER},
+      </if>
+      <if test="gfwz != null" >
+        #{gfwz,jdbcType=OTHER},
+      </if>
+      <if test="zgjg != null" >
+        #{zgjg,jdbcType=OTHER},
+      </if>
+      <if test="tzcdz != null" >
+        #{tzcdz,jdbcType=OTHER},
+      </if>
+      <if test="bgdz != null" >
+        #{bgdz,jdbcType=OTHER},
+      </if>
+      <if test="clrq != null" >
+        #{clrq,jdbcType=OTHER},
+      </if>
+      <if test="sfss != null" >
+        #{sfss,jdbcType=OTHER},
+      </if>
+      <if test="zczb != null" >
+        #{zczb,jdbcType=OTHER},
+      </if>
+      <if test="hydwdm != null" >
+        #{hydwdm,jdbcType=OTHER},
+      </if>
+      <if test="dwgmdm != null" >
+        #{dwgmdm,jdbcType=OTHER},
+      </if>
+      <if test="scfe != null" >
+        #{scfe,jdbcType=DECIMAL},
+      </if>
+      <if test="jyfw != null" >
+        #{jyfw,jdbcType=OTHER},
+      </if>
+      <if test="csdm != null" >
+        #{csdm,jdbcType=OTHER},
+      </if>
+      <if test="gj != null" >
+        #{gj,jdbcType=OTHER},
+      </if>
+      <if test="sf != null" >
+        #{sf,jdbcType=OTHER},
+      </if>
+      <if test="cs != null" >
+        #{cs,jdbcType=OTHER},
+      </if>
+      <if test="xxdz != null" >
+        #{xxdz,jdbcType=OTHER},
+      </if>
+      <if test="zyly != null" >
+        #{zyly,jdbcType=OTHER},
+      </if>
+      <if test="nsrzgdm != null" >
+        #{nsrzgdm,jdbcType=OTHER},
+      </if>
+      <if test="nsrsbh != null" >
+        #{nsrsbh,jdbcType=OTHER},
+      </if>
+      <if test="fptt != null" >
+        #{fptt,jdbcType=OTHER},
+      </if>
+      <if test="zh != null" >
+        #{zh,jdbcType=OTHER},
+      </if>
+      <if test="hm != null" >
+        #{hm,jdbcType=OTHER},
+      </if>
+      <if test="khh != null" >
+        #{khh,jdbcType=OTHER},
+      </if>
+      <if test="fj != null" >
+        #{fj,jdbcType=OTHER},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=OTHER},
+      </if>
+      <if test="sjdw != null" >
+        #{sjdw,jdbcType=OTHER},
+      </if>
+      <if test="fwbmmc != null" >
+        #{fwbmmc,jdbcType=OTHER},
+      </if>
+      <if test="fwbmid != null" >
+        #{fwbmid,jdbcType=OTHER},
+      </if>
+      <if test="fwbmssgsmc != null" >
+        #{fwbmssgsmc,jdbcType=OTHER},
+      </if>
+      <if test="fwbmssgsdm != null" >
+        #{fwbmssgsdm,jdbcType=OTHER},
+      </if>
+      <if test="bmzjzh != null" >
+        #{bmzjzh,jdbcType=OTHER},
+      </if>
+      <if test="bmzjxm != null" >
+        #{bmzjxm,jdbcType=OTHER},
+      </if>
+      <if test="khjlxm != null" >
+        #{khjlxm,jdbcType=OTHER},
+      </if>
+      <if test="khjlzh != null" >
+        #{khjlzh,jdbcType=OTHER},
+      </if>
+      <if test="jtwlkh != null" >
+        #{jtwlkh,jdbcType=DECIMAL},
+      </if>
+      <if test="dkhzjzh != null" >
+        #{dkhzjzh,jdbcType=OTHER},
+      </if>
+      <if test="dkhzjxm != null" >
+        #{dkhzjxm,jdbcType=OTHER},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=OTHER},
+      </if>
+      <if test="xgzd != null" >
+        #{xgzd,jdbcType=OTHER},
+      </if>
+      <if test="xgnr != null" >
+        #{xgnr,jdbcType=OTHER},
+      </if>
+      <if test="tzzh != null" >
+        #{tzzh,jdbcType=OTHER},
+      </if>
+      <if test="whlx != null" >
+        #{whlx,jdbcType=OTHER},
+      </if>
+      <if test="ogsid != null" >
+        #{ogsid,jdbcType=OTHER},
+      </if>
+      <if test="ogsdm != null" >
+        #{ogsdm,jdbcType=OTHER},
+      </if>
+      <if test="ogsmc != null" >
+        #{ogsmc,jdbcType=OTHER},
+      </if>
+      <if test="osssyb != null" >
+        #{osssyb,jdbcType=OTHER},
+      </if>
+      <if test="obmid != null" >
+        #{obmid,jdbcType=OTHER},
+      </if>
+      <if test="obmqljid != null" >
+        #{obmqljid,jdbcType=OTHER},
+      </if>
+      <if test="obmmc != null" >
+        #{obmmc,jdbcType=OTHER},
+      </if>
+      <if test="ozdrzh != null" >
+        #{ozdrzh,jdbcType=OTHER},
+      </if>
+      <if test="ozdr != null" >
+        #{ozdr,jdbcType=OTHER},
+      </if>
+      <if test="ozdrq != null" >
+        #{ozdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="okhbh != null" >
+        #{okhbh,jdbcType=OTHER},
+      </if>
+      <if test="okhmc != null" >
+        #{okhmc,jdbcType=OTHER},
+      </if>
+      <if test="okhjc != null" >
+        #{okhjc,jdbcType=OTHER},
+      </if>
+      <if test="ohydm != null" >
+        #{ohydm,jdbcType=OTHER},
+      </if>
+      <if test="odwxzdm != null" >
+        #{odwxzdm,jdbcType=OTHER},
+      </if>
+      <if test="ozjdh != null" >
+        #{ozjdh,jdbcType=OTHER},
+      </if>
+      <if test="ogfwz != null" >
+        #{ogfwz,jdbcType=OTHER},
+      </if>
+      <if test="ozgjd != null" >
+        #{ozgjd,jdbcType=OTHER},
+      </if>
+      <if test="otzcdz != null" >
+        #{otzcdz,jdbcType=OTHER},
+      </if>
+      <if test="obgdz != null" >
+        #{obgdz,jdbcType=OTHER},
+      </if>
+      <if test="oclrq != null" >
+        #{oclrq,jdbcType=OTHER},
+      </if>
+      <if test="osfss != null" >
+        #{osfss,jdbcType=OTHER},
+      </if>
+      <if test="ozczb != null" >
+        #{ozczb,jdbcType=OTHER},
+      </if>
+      <if test="ohydwdm != null" >
+        #{ohydwdm,jdbcType=OTHER},
+      </if>
+      <if test="odwgmdm != null" >
+        #{odwgmdm,jdbcType=OTHER},
+      </if>
+      <if test="odwgm != null" >
+        #{odwgm,jdbcType=OTHER},
+      </if>
+      <if test="oscfe != null" >
+        #{oscfe,jdbcType=DECIMAL},
+      </if>
+      <if test="ojyfw != null" >
+        #{ojyfw,jdbcType=OTHER},
+      </if>
+      <if test="ocsdm != null" >
+        #{ocsdm,jdbcType=OTHER},
+      </if>
+      <if test="ogj != null" >
+        #{ogj,jdbcType=OTHER},
+      </if>
+      <if test="osf != null" >
+        #{osf,jdbcType=OTHER},
+      </if>
+      <if test="ocs != null" >
+        #{ocs,jdbcType=OTHER},
+      </if>
+      <if test="oxxdz != null" >
+        #{oxxdz,jdbcType=OTHER},
+      </if>
+      <if test="ozyly != null" >
+        #{ozyly,jdbcType=OTHER},
+      </if>
+      <if test="onsrzgdm != null" >
+        #{onsrzgdm,jdbcType=OTHER},
+      </if>
+      <if test="onsrsbh != null" >
+        #{onsrsbh,jdbcType=OTHER},
+      </if>
+      <if test="ofptt != null" >
+        #{ofptt,jdbcType=OTHER},
+      </if>
+      <if test="ozh != null" >
+        #{ozh,jdbcType=OTHER},
+      </if>
+      <if test="ohm != null" >
+        #{ohm,jdbcType=OTHER},
+      </if>
+      <if test="okhh != null" >
+        #{okhh,jdbcType=OTHER},
+      </if>
+      <if test="ofj != null" >
+        #{ofj,jdbcType=OTHER},
+      </if>
+      <if test="obz != null" >
+        #{obz,jdbcType=OTHER},
+      </if>
+      <if test="osjdw != null" >
+        #{osjdw,jdbcType=OTHER},
+      </if>
+      <if test="ofwbmmc != null" >
+        #{ofwbmmc,jdbcType=OTHER},
+      </if>
+      <if test="ofwbmid != null" >
+        #{ofwbmid,jdbcType=OTHER},
+      </if>
+      <if test="ofwbmssgsmc != null" >
+        #{ofwbmssgsmc,jdbcType=OTHER},
+      </if>
+      <if test="ofwbmssgsdm != null" >
+        #{ofwbmssgsdm,jdbcType=OTHER},
+      </if>
+      <if test="obmzjzh != null" >
+        #{obmzjzh,jdbcType=OTHER},
+      </if>
+      <if test="obmzjxm != null" >
+        #{obmzjxm,jdbcType=OTHER},
+      </if>
+      <if test="okhjlxm != null" >
+        #{okhjlxm,jdbcType=OTHER},
+      </if>
+      <if test="okhjlzh != null" >
+        #{okhjlzh,jdbcType=OTHER},
+      </if>
+      <if test="ojtwlkh != null" >
+        #{ojtwlkh,jdbcType=DECIMAL},
+      </if>
+      <if test="odkhzjzh != null" >
+        #{odkhzjzh,jdbcType=OTHER},
+      </if>
+      <if test="odkhzjxm != null" >
+        #{odkhzjxm,jdbcType=OTHER},
+      </if>
+      <if test="ologo != null" >
+        #{ologo,jdbcType=OTHER},
+      </if>
+      <if test="oxgzd != null" >
+        #{oxgzd,jdbcType=OTHER},
+      </if>
+      <if test="oxgnr != null" >
+        #{oxgnr,jdbcType=OTHER},
+      </if>
+      <if test="otzzh != null" >
+        #{otzzh,jdbcType=OTHER},
+      </if>
+      <if test="owhlx != null" >
+        #{owhlx,jdbcType=OTHER},
+      </if>
+      <if test="khzt != null" >
+        #{khzt,jdbcType=OTHER},
+      </if>
+      <if test="okhzt != null" >
+        #{okhzt,jdbcType=OTHER},
+      </if>
+      <if test="cz != null" >
+        #{cz,jdbcType=OTHER},
+      </if>
+      <if test="ocz != null" >
+        #{ocz,jdbcType=OTHER},
+      </if>
+      <if test="whlxdm != null" >
+        #{whlxdm,jdbcType=OTHER},
+      </if>
+      <if test="daid != null" >
+        #{daid,jdbcType=OTHER},
+      </if>
+      <if test="sjdwbh != null" >
+        #{sjdwbh,jdbcType=OTHER},
+      </if>
+      <if test="ygsstldm != null" >
+        #{ygsstldm,jdbcType=OTHER},
+      </if>
+      <if test="ohyxldm != null" >
+        #{ohyxldm,jdbcType=OTHER},
+      </if>
+      <if test="hyxldm != null" >
+        #{hyxldm,jdbcType=OTHER},
+      </if>
+      <if test="ykhjlid != null" >
+        #{ykhjlid,jdbcType=OTHER},
+      </if>
+      <if test="hyxlxnzd != null" >
+        #{hyxlxnzd,jdbcType=OTHER},
+      </if>
+      <if test="osjdwbh != null" >
+        #{osjdwbh,jdbcType=OTHER},
+      </if>
+      <if test="sfysjdw != null" >
+        #{sfysjdw,jdbcType=OTHER},
+      </if>
+      <if test="osfysjdw != null" >
+        #{osfysjdw,jdbcType=OTHER},
+      </if>
+      <if test="stepno != null" >
+        #{stepno,jdbcType=OTHER},
+      </if>
+      <if test="zczb1 != null" >
+        #{zczb1,jdbcType=OTHER},
+      </if>
+      <if test="ozczb1 != null" >
+        #{ozczb1,jdbcType=OTHER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENTBUS_P" >
+    update  BO_CRM_CLIENTBUS_P
+    <set >
+      <if test="orgno != null" >
+        ORGNO = #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        BINDID = #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER = #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        ISEND = #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="gsid != null" >
+        GSID = #{gsid,jdbcType=OTHER},
+      </if>
+      <if test="gsdm != null" >
+        GSDM = #{gsdm,jdbcType=OTHER},
+      </if>
+      <if test="gsmc != null" >
+        GSMC = #{gsmc,jdbcType=OTHER},
+      </if>
+      <if test="sssyb != null" >
+        SSSYB = #{sssyb,jdbcType=OTHER},
+      </if>
+      <if test="bmid != null" >
+        BMID = #{bmid,jdbcType=OTHER},
+      </if>
+      <if test="bmqljid != null" >
+        BMQLJID = #{bmqljid,jdbcType=OTHER},
+      </if>
+      <if test="bmmc != null" >
+        BMMC = #{bmmc,jdbcType=OTHER},
+      </if>
+      <if test="zdrzh != null" >
+        ZDRZH = #{zdrzh,jdbcType=OTHER},
+      </if>
+      <if test="zdr != null" >
+        ZDR = #{zdr,jdbcType=OTHER},
+      </if>
+      <if test="zdrq != null" >
+        ZDRQ = #{zdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="khbh != null" >
+        KHBH = #{khbh,jdbcType=OTHER},
+      </if>
+      <if test="khmc != null" >
+        KHMC = #{khmc,jdbcType=OTHER},
+      </if>
+      <if test="khjc != null" >
+        KHJC = #{khjc,jdbcType=OTHER},
+      </if>
+      <if test="hydm != null" >
+        HYDM = #{hydm,jdbcType=OTHER},
+      </if>
+      <if test="dwxzdm != null" >
+        DWXZDM = #{dwxzdm,jdbcType=OTHER},
+      </if>
+      <if test="zjdh != null" >
+        ZJDH = #{zjdh,jdbcType=OTHER},
+      </if>
+      <if test="gfwz != null" >
+        GFWZ = #{gfwz,jdbcType=OTHER},
+      </if>
+      <if test="zgjg != null" >
+        ZGJG = #{zgjg,jdbcType=OTHER},
+      </if>
+      <if test="tzcdz != null" >
+        TZCDZ = #{tzcdz,jdbcType=OTHER},
+      </if>
+      <if test="bgdz != null" >
+        BGDZ = #{bgdz,jdbcType=OTHER},
+      </if>
+      <if test="clrq != null" >
+        CLRQ = #{clrq,jdbcType=OTHER},
+      </if>
+      <if test="sfss != null" >
+        SFSS = #{sfss,jdbcType=OTHER},
+      </if>
+      <if test="zczb != null" >
+        ZCZB = #{zczb,jdbcType=OTHER},
+      </if>
+      <if test="hydwdm != null" >
+        HYDWDM = #{hydwdm,jdbcType=OTHER},
+      </if>
+      <if test="dwgmdm != null" >
+        DWGMDM = #{dwgmdm,jdbcType=OTHER},
+      </if>
+      <if test="scfe != null" >
+        SCFE = #{scfe,jdbcType=DECIMAL},
+      </if>
+      <if test="jyfw != null" >
+        JYFW = #{jyfw,jdbcType=OTHER},
+      </if>
+      <if test="csdm != null" >
+        CSDM = #{csdm,jdbcType=OTHER},
+      </if>
+      <if test="gj != null" >
+        GJ = #{gj,jdbcType=OTHER},
+      </if>
+      <if test="sf != null" >
+        SF = #{sf,jdbcType=OTHER},
+      </if>
+      <if test="cs != null" >
+        CS = #{cs,jdbcType=OTHER},
+      </if>
+      <if test="xxdz != null" >
+        XXDZ = #{xxdz,jdbcType=OTHER},
+      </if>
+      <if test="zyly != null" >
+        ZYLY = #{zyly,jdbcType=OTHER},
+      </if>
+      <if test="nsrzgdm != null" >
+        NSRZGDM = #{nsrzgdm,jdbcType=OTHER},
+      </if>
+      <if test="nsrsbh != null" >
+        NSRSBH = #{nsrsbh,jdbcType=OTHER},
+      </if>
+      <if test="fptt != null" >
+        FPTT = #{fptt,jdbcType=OTHER},
+      </if>
+      <if test="zh != null" >
+        ZH = #{zh,jdbcType=OTHER},
+      </if>
+      <if test="hm != null" >
+        HM = #{hm,jdbcType=OTHER},
+      </if>
+      <if test="khh != null" >
+        KHH = #{khh,jdbcType=OTHER},
+      </if>
+      <if test="fj != null" >
+        FJ = #{fj,jdbcType=OTHER},
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz,jdbcType=OTHER},
+      </if>
+      <if test="sjdw != null" >
+        SJDW = #{sjdw,jdbcType=OTHER},
+      </if>
+      <if test="fwbmmc != null" >
+        FWBMMC = #{fwbmmc,jdbcType=OTHER},
+      </if>
+      <if test="fwbmid != null" >
+        FWBMID = #{fwbmid,jdbcType=OTHER},
+      </if>
+      <if test="fwbmssgsmc != null" >
+        FWBMSSGSMC = #{fwbmssgsmc,jdbcType=OTHER},
+      </if>
+      <if test="fwbmssgsdm != null" >
+        FWBMSSGSDM = #{fwbmssgsdm,jdbcType=OTHER},
+      </if>
+      <if test="bmzjzh != null" >
+        BMZJZH = #{bmzjzh,jdbcType=OTHER},
+      </if>
+      <if test="bmzjxm != null" >
+        BMZJXM = #{bmzjxm,jdbcType=OTHER},
+      </if>
+      <if test="khjlxm != null" >
+        KHJLXM = #{khjlxm,jdbcType=OTHER},
+      </if>
+      <if test="khjlzh != null" >
+        KHJLZH = #{khjlzh,jdbcType=OTHER},
+      </if>
+      <if test="jtwlkh != null" >
+        JTWLKH = #{jtwlkh,jdbcType=DECIMAL},
+      </if>
+      <if test="dkhzjzh != null" >
+        DKHZJZH = #{dkhzjzh,jdbcType=OTHER},
+      </if>
+      <if test="dkhzjxm != null" >
+        DKHZJXM = #{dkhzjxm,jdbcType=OTHER},
+      </if>
+      <if test="logo != null" >
+        LOGO = #{logo,jdbcType=OTHER},
+      </if>
+      <if test="xgzd != null" >
+        XGZD = #{xgzd,jdbcType=OTHER},
+      </if>
+      <if test="xgnr != null" >
+        XGNR = #{xgnr,jdbcType=OTHER},
+      </if>
+      <if test="tzzh != null" >
+        TZZH = #{tzzh,jdbcType=OTHER},
+      </if>
+      <if test="whlx != null" >
+        WHLX = #{whlx,jdbcType=OTHER},
+      </if>
+      <if test="ogsid != null" >
+        OGSID = #{ogsid,jdbcType=OTHER},
+      </if>
+      <if test="ogsdm != null" >
+        OGSDM = #{ogsdm,jdbcType=OTHER},
+      </if>
+      <if test="ogsmc != null" >
+        OGSMC = #{ogsmc,jdbcType=OTHER},
+      </if>
+      <if test="osssyb != null" >
+        OSSSYB = #{osssyb,jdbcType=OTHER},
+      </if>
+      <if test="obmid != null" >
+        OBMID = #{obmid,jdbcType=OTHER},
+      </if>
+      <if test="obmqljid != null" >
+        OBMQLJID = #{obmqljid,jdbcType=OTHER},
+      </if>
+      <if test="obmmc != null" >
+        OBMMC = #{obmmc,jdbcType=OTHER},
+      </if>
+      <if test="ozdrzh != null" >
+        OZDRZH = #{ozdrzh,jdbcType=OTHER},
+      </if>
+      <if test="ozdr != null" >
+        OZDR = #{ozdr,jdbcType=OTHER},
+      </if>
+      <if test="ozdrq != null" >
+        OZDRQ = #{ozdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="okhbh != null" >
+        OKHBH = #{okhbh,jdbcType=OTHER},
+      </if>
+      <if test="okhmc != null" >
+        OKHMC = #{okhmc,jdbcType=OTHER},
+      </if>
+      <if test="okhjc != null" >
+        OKHJC = #{okhjc,jdbcType=OTHER},
+      </if>
+      <if test="ohydm != null" >
+        OHYDM = #{ohydm,jdbcType=OTHER},
+      </if>
+      <if test="odwxzdm != null" >
+        ODWXZDM = #{odwxzdm,jdbcType=OTHER},
+      </if>
+      <if test="ozjdh != null" >
+        OZJDH = #{ozjdh,jdbcType=OTHER},
+      </if>
+      <if test="ogfwz != null" >
+        OGFWZ = #{ogfwz,jdbcType=OTHER},
+      </if>
+      <if test="ozgjd != null" >
+        OZGJD = #{ozgjd,jdbcType=OTHER},
+      </if>
+      <if test="otzcdz != null" >
+        OTZCDZ = #{otzcdz,jdbcType=OTHER},
+      </if>
+      <if test="obgdz != null" >
+        OBGDZ = #{obgdz,jdbcType=OTHER},
+      </if>
+      <if test="oclrq != null" >
+        OCLRQ = #{oclrq,jdbcType=OTHER},
+      </if>
+      <if test="osfss != null" >
+        OSFSS = #{osfss,jdbcType=OTHER},
+      </if>
+      <if test="ozczb != null" >
+        OZCZB = #{ozczb,jdbcType=OTHER},
+      </if>
+      <if test="ohydwdm != null" >
+        OHYDWDM = #{ohydwdm,jdbcType=OTHER},
+      </if>
+      <if test="odwgmdm != null" >
+        ODWGMDM = #{odwgmdm,jdbcType=OTHER},
+      </if>
+      <if test="odwgm != null" >
+        ODWGM = #{odwgm,jdbcType=OTHER},
+      </if>
+      <if test="oscfe != null" >
+        OSCFE = #{oscfe,jdbcType=DECIMAL},
+      </if>
+      <if test="ojyfw != null" >
+        OJYFW = #{ojyfw,jdbcType=OTHER},
+      </if>
+      <if test="ocsdm != null" >
+        OCSDM = #{ocsdm,jdbcType=OTHER},
+      </if>
+      <if test="ogj != null" >
+        OGJ = #{ogj,jdbcType=OTHER},
+      </if>
+      <if test="osf != null" >
+        OSF = #{osf,jdbcType=OTHER},
+      </if>
+      <if test="ocs != null" >
+        OCS = #{ocs,jdbcType=OTHER},
+      </if>
+      <if test="oxxdz != null" >
+        OXXDZ = #{oxxdz,jdbcType=OTHER},
+      </if>
+      <if test="ozyly != null" >
+        OZYLY = #{ozyly,jdbcType=OTHER},
+      </if>
+      <if test="onsrzgdm != null" >
+        ONSRZGDM = #{onsrzgdm,jdbcType=OTHER},
+      </if>
+      <if test="onsrsbh != null" >
+        ONSRSBH = #{onsrsbh,jdbcType=OTHER},
+      </if>
+      <if test="ofptt != null" >
+        OFPTT = #{ofptt,jdbcType=OTHER},
+      </if>
+      <if test="ozh != null" >
+        OZH = #{ozh,jdbcType=OTHER},
+      </if>
+      <if test="ohm != null" >
+        OHM = #{ohm,jdbcType=OTHER},
+      </if>
+      <if test="okhh != null" >
+        OKHH = #{okhh,jdbcType=OTHER},
+      </if>
+      <if test="ofj != null" >
+        OFJ = #{ofj,jdbcType=OTHER},
+      </if>
+      <if test="obz != null" >
+        OBZ = #{obz,jdbcType=OTHER},
+      </if>
+      <if test="osjdw != null" >
+        OSJDW = #{osjdw,jdbcType=OTHER},
+      </if>
+      <if test="ofwbmmc != null" >
+        OFWBMMC = #{ofwbmmc,jdbcType=OTHER},
+      </if>
+      <if test="ofwbmid != null" >
+        OFWBMID = #{ofwbmid,jdbcType=OTHER},
+      </if>
+      <if test="ofwbmssgsmc != null" >
+        OFWBMSSGSMC = #{ofwbmssgsmc,jdbcType=OTHER},
+      </if>
+      <if test="ofwbmssgsdm != null" >
+        OFWBMSSGSDM = #{ofwbmssgsdm,jdbcType=OTHER},
+      </if>
+      <if test="obmzjzh != null" >
+        OBMZJZH = #{obmzjzh,jdbcType=OTHER},
+      </if>
+      <if test="obmzjxm != null" >
+        OBMZJXM = #{obmzjxm,jdbcType=OTHER},
+      </if>
+      <if test="okhjlxm != null" >
+        OKHJLXM = #{okhjlxm,jdbcType=OTHER},
+      </if>
+      <if test="okhjlzh != null" >
+        OKHJLZH = #{okhjlzh,jdbcType=OTHER},
+      </if>
+      <if test="ojtwlkh != null" >
+        OJTWLKH = #{ojtwlkh,jdbcType=DECIMAL},
+      </if>
+      <if test="odkhzjzh != null" >
+        ODKHZJZH = #{odkhzjzh,jdbcType=OTHER},
+      </if>
+      <if test="odkhzjxm != null" >
+        ODKHZJXM = #{odkhzjxm,jdbcType=OTHER},
+      </if>
+      <if test="ologo != null" >
+        OLOGO = #{ologo,jdbcType=OTHER},
+      </if>
+      <if test="oxgzd != null" >
+        OXGZD = #{oxgzd,jdbcType=OTHER},
+      </if>
+      <if test="oxgnr != null" >
+        OXGNR = #{oxgnr,jdbcType=OTHER},
+      </if>
+      <if test="otzzh != null" >
+        OTZZH = #{otzzh,jdbcType=OTHER},
+      </if>
+      <if test="owhlx != null" >
+        OWHLX = #{owhlx,jdbcType=OTHER},
+      </if>
+      <if test="khzt != null" >
+        KHZT = #{khzt,jdbcType=OTHER},
+      </if>
+      <if test="okhzt != null" >
+        OKHZT = #{okhzt,jdbcType=OTHER},
+      </if>
+      <if test="cz != null" >
+        CZ = #{cz,jdbcType=OTHER},
+      </if>
+      <if test="ocz != null" >
+        OCZ = #{ocz,jdbcType=OTHER},
+      </if>
+      <if test="whlxdm != null" >
+        WHLXDM = #{whlxdm,jdbcType=OTHER},
+      </if>
+      <if test="daid != null" >
+        DAID = #{daid,jdbcType=OTHER},
+      </if>
+      <if test="sjdwbh != null" >
+        SJDWBH = #{sjdwbh,jdbcType=OTHER},
+      </if>
+      <if test="ygsstldm != null" >
+        YGSSTLDM = #{ygsstldm,jdbcType=OTHER},
+      </if>
+      <if test="ohyxldm != null" >
+        OHYXLDM = #{ohyxldm,jdbcType=OTHER},
+      </if>
+      <if test="hyxldm != null" >
+        HYXLDM = #{hyxldm,jdbcType=OTHER},
+      </if>
+      <if test="ykhjlid != null" >
+        YKHJLID = #{ykhjlid,jdbcType=OTHER},
+      </if>
+      <if test="hyxlxnzd != null" >
+        HYXLXNZD = #{hyxlxnzd,jdbcType=OTHER},
+      </if>
+      <if test="osjdwbh != null" >
+        OSJDWBH = #{osjdwbh,jdbcType=OTHER},
+      </if>
+      <if test="sfysjdw != null" >
+        SFYSJDW = #{sfysjdw,jdbcType=OTHER},
+      </if>
+      <if test="osfysjdw != null" >
+        OSFYSJDW = #{osfysjdw,jdbcType=OTHER},
+      </if>
+      <if test="stepno != null" >
+        STEPNO = #{stepno,jdbcType=OTHER},
+      </if>
+      <if test="zczb1 != null" >
+        ZCZB1 = #{zczb1,jdbcType=OTHER},
+      </if>
+      <if test="ozczb1 != null" >
+        OZCZB1 = #{ozczb1,jdbcType=OTHER},
+      </if>
+      <if test="flag != null" >
+        FLAG = #{flag,jdbcType=OTHER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENTBUS_P" >
+    update  BO_CRM_CLIENTBUS_P
+    set ORGNO = #{orgno,jdbcType=OTHER},
+      BINDID = #{bindid,jdbcType=DECIMAL},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATEUSER = #{createuser,jdbcType=OTHER},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      ISEND = #{isend,jdbcType=DECIMAL},
+      GSID = #{gsid,jdbcType=OTHER},
+      GSDM = #{gsdm,jdbcType=OTHER},
+      GSMC = #{gsmc,jdbcType=OTHER},
+      SSSYB = #{sssyb,jdbcType=OTHER},
+      BMID = #{bmid,jdbcType=OTHER},
+      BMQLJID = #{bmqljid,jdbcType=OTHER},
+      BMMC = #{bmmc,jdbcType=OTHER},
+      ZDRZH = #{zdrzh,jdbcType=OTHER},
+      ZDR = #{zdr,jdbcType=OTHER},
+      ZDRQ = #{zdrq,jdbcType=TIMESTAMP},
+      KHBH = #{khbh,jdbcType=OTHER},
+      KHMC = #{khmc,jdbcType=OTHER},
+      KHJC = #{khjc,jdbcType=OTHER},
+      HYDM = #{hydm,jdbcType=OTHER},
+      DWXZDM = #{dwxzdm,jdbcType=OTHER},
+      ZJDH = #{zjdh,jdbcType=OTHER},
+      GFWZ = #{gfwz,jdbcType=OTHER},
+      ZGJG = #{zgjg,jdbcType=OTHER},
+      TZCDZ = #{tzcdz,jdbcType=OTHER},
+      BGDZ = #{bgdz,jdbcType=OTHER},
+      CLRQ = #{clrq,jdbcType=OTHER},
+      SFSS = #{sfss,jdbcType=OTHER},
+      ZCZB = #{zczb,jdbcType=OTHER},
+      HYDWDM = #{hydwdm,jdbcType=OTHER},
+      DWGMDM = #{dwgmdm,jdbcType=OTHER},
+      SCFE = #{scfe,jdbcType=DECIMAL},
+      JYFW = #{jyfw,jdbcType=OTHER},
+      CSDM = #{csdm,jdbcType=OTHER},
+      GJ = #{gj,jdbcType=OTHER},
+      SF = #{sf,jdbcType=OTHER},
+      CS = #{cs,jdbcType=OTHER},
+      XXDZ = #{xxdz,jdbcType=OTHER},
+      ZYLY = #{zyly,jdbcType=OTHER},
+      NSRZGDM = #{nsrzgdm,jdbcType=OTHER},
+      NSRSBH = #{nsrsbh,jdbcType=OTHER},
+      FPTT = #{fptt,jdbcType=OTHER},
+      ZH = #{zh,jdbcType=OTHER},
+      HM = #{hm,jdbcType=OTHER},
+      KHH = #{khh,jdbcType=OTHER},
+      FJ = #{fj,jdbcType=OTHER},
+      BZ = #{bz,jdbcType=OTHER},
+      SJDW = #{sjdw,jdbcType=OTHER},
+      FWBMMC = #{fwbmmc,jdbcType=OTHER},
+      FWBMID = #{fwbmid,jdbcType=OTHER},
+      FWBMSSGSMC = #{fwbmssgsmc,jdbcType=OTHER},
+      FWBMSSGSDM = #{fwbmssgsdm,jdbcType=OTHER},
+      BMZJZH = #{bmzjzh,jdbcType=OTHER},
+      BMZJXM = #{bmzjxm,jdbcType=OTHER},
+      KHJLXM = #{khjlxm,jdbcType=OTHER},
+      KHJLZH = #{khjlzh,jdbcType=OTHER},
+      JTWLKH = #{jtwlkh,jdbcType=DECIMAL},
+      DKHZJZH = #{dkhzjzh,jdbcType=OTHER},
+      DKHZJXM = #{dkhzjxm,jdbcType=OTHER},
+      LOGO = #{logo,jdbcType=OTHER},
+      XGZD = #{xgzd,jdbcType=OTHER},
+      XGNR = #{xgnr,jdbcType=OTHER},
+      TZZH = #{tzzh,jdbcType=OTHER},
+      WHLX = #{whlx,jdbcType=OTHER},
+      OGSID = #{ogsid,jdbcType=OTHER},
+      OGSDM = #{ogsdm,jdbcType=OTHER},
+      OGSMC = #{ogsmc,jdbcType=OTHER},
+      OSSSYB = #{osssyb,jdbcType=OTHER},
+      OBMID = #{obmid,jdbcType=OTHER},
+      OBMQLJID = #{obmqljid,jdbcType=OTHER},
+      OBMMC = #{obmmc,jdbcType=OTHER},
+      OZDRZH = #{ozdrzh,jdbcType=OTHER},
+      OZDR = #{ozdr,jdbcType=OTHER},
+      OZDRQ = #{ozdrq,jdbcType=TIMESTAMP},
+      OKHBH = #{okhbh,jdbcType=OTHER},
+      OKHMC = #{okhmc,jdbcType=OTHER},
+      OKHJC = #{okhjc,jdbcType=OTHER},
+      OHYDM = #{ohydm,jdbcType=OTHER},
+      ODWXZDM = #{odwxzdm,jdbcType=OTHER},
+      OZJDH = #{ozjdh,jdbcType=OTHER},
+      OGFWZ = #{ogfwz,jdbcType=OTHER},
+      OZGJD = #{ozgjd,jdbcType=OTHER},
+      OTZCDZ = #{otzcdz,jdbcType=OTHER},
+      OBGDZ = #{obgdz,jdbcType=OTHER},
+      OCLRQ = #{oclrq,jdbcType=OTHER},
+      OSFSS = #{osfss,jdbcType=OTHER},
+      OZCZB = #{ozczb,jdbcType=OTHER},
+      OHYDWDM = #{ohydwdm,jdbcType=OTHER},
+      ODWGMDM = #{odwgmdm,jdbcType=OTHER},
+      ODWGM = #{odwgm,jdbcType=OTHER},
+      OSCFE = #{oscfe,jdbcType=DECIMAL},
+      OJYFW = #{ojyfw,jdbcType=OTHER},
+      OCSDM = #{ocsdm,jdbcType=OTHER},
+      OGJ = #{ogj,jdbcType=OTHER},
+      OSF = #{osf,jdbcType=OTHER},
+      OCS = #{ocs,jdbcType=OTHER},
+      OXXDZ = #{oxxdz,jdbcType=OTHER},
+      OZYLY = #{ozyly,jdbcType=OTHER},
+      ONSRZGDM = #{onsrzgdm,jdbcType=OTHER},
+      ONSRSBH = #{onsrsbh,jdbcType=OTHER},
+      OFPTT = #{ofptt,jdbcType=OTHER},
+      OZH = #{ozh,jdbcType=OTHER},
+      OHM = #{ohm,jdbcType=OTHER},
+      OKHH = #{okhh,jdbcType=OTHER},
+      OFJ = #{ofj,jdbcType=OTHER},
+      OBZ = #{obz,jdbcType=OTHER},
+      OSJDW = #{osjdw,jdbcType=OTHER},
+      OFWBMMC = #{ofwbmmc,jdbcType=OTHER},
+      OFWBMID = #{ofwbmid,jdbcType=OTHER},
+      OFWBMSSGSMC = #{ofwbmssgsmc,jdbcType=OTHER},
+      OFWBMSSGSDM = #{ofwbmssgsdm,jdbcType=OTHER},
+      OBMZJZH = #{obmzjzh,jdbcType=OTHER},
+      OBMZJXM = #{obmzjxm,jdbcType=OTHER},
+      OKHJLXM = #{okhjlxm,jdbcType=OTHER},
+      OKHJLZH = #{okhjlzh,jdbcType=OTHER},
+      OJTWLKH = #{ojtwlkh,jdbcType=DECIMAL},
+      ODKHZJZH = #{odkhzjzh,jdbcType=OTHER},
+      ODKHZJXM = #{odkhzjxm,jdbcType=OTHER},
+      OLOGO = #{ologo,jdbcType=OTHER},
+      OXGZD = #{oxgzd,jdbcType=OTHER},
+      OXGNR = #{oxgnr,jdbcType=OTHER},
+      OTZZH = #{otzzh,jdbcType=OTHER},
+      OWHLX = #{owhlx,jdbcType=OTHER},
+      KHZT = #{khzt,jdbcType=OTHER},
+      OKHZT = #{okhzt,jdbcType=OTHER},
+      CZ = #{cz,jdbcType=OTHER},
+      OCZ = #{ocz,jdbcType=OTHER},
+      WHLXDM = #{whlxdm,jdbcType=OTHER},
+      DAID = #{daid,jdbcType=OTHER},
+      SJDWBH = #{sjdwbh,jdbcType=OTHER},
+      YGSSTLDM = #{ygsstldm,jdbcType=OTHER},
+      OHYXLDM = #{ohyxldm,jdbcType=OTHER},
+      HYXLDM = #{hyxldm,jdbcType=OTHER},
+      YKHJLID = #{ykhjlid,jdbcType=OTHER},
+      HYXLXNZD = #{hyxlxnzd,jdbcType=OTHER},
+      OSJDWBH = #{osjdwbh,jdbcType=OTHER},
+      SFYSJDW = #{sfysjdw,jdbcType=OTHER},
+      OSFYSJDW = #{osfysjdw,jdbcType=OTHER},
+      STEPNO = #{stepno,jdbcType=OTHER},
+      ZCZB1 = #{zczb1,jdbcType=OTHER},
+      OZCZB1 = #{ozczb1,jdbcType=OTHER},
+      FLAG = #{flag,jdbcType=OTHER}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 根据id  更新指定字段 -->
+    <update id="UpdateById"  parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENTBUS_P" >
+		UPDATE BO_CRM_CLIENTBUS_P set BMZJZH=#{bmzjzh}, BMZJXM=#{bmzjxm},FWBMSSGSMC=#{fwbmssgsmc},FWBMSSGSDM=#{fwbmssgsdm} 
+    ,DKHZJZH=#{dkhzjzh},DKHZJXM=#{dkhzjxm} WHERE ID=#{id}
+    </update>
+    
+    <!-- 根据id  更新指定字段 -->
+    <update id="UpdateByIdJT"  parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENTBUS_P" >
+		UPDATE BO_CRM_CLIENTBUS_P set JTWLKH=#{jtwlkh} WHERE ID=#{id}
+    </update>
+    <!-- 自动生成序列号或版本号 -->
+    <select id="selectByKhbh"   resultMap="BaseResultMap" parameterType="java.lang.Integer"  >
+    select KHBH from BO_CRM_CLIENTBUS_P where KHBH like 'B%' and length(KHBH)=#{cd}  group by KHBH   order by KHBH
+  </select>
+  <!-- 根据id  更新指定字段 -->
+    <update id="UpdateByBindid"  parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENTBUS_P" >
+		UPDATE BO_CRM_CLIENTBUS_P set KHBH=#{khbh}, flag=#{flag} WHERE BINDID=#{bindid}
+    </update>
+     <update id="updateBoCRMBM"  parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENTBUS_P" >
+		UPDATE BO_CRM_CLIENTBUS_P set FWBMMC=#{fwbmmc},FWBMID=#{fwbmid} WHERE bindid=#{bindid}
+    </update>
+     <update id="updateBoCRMR"  parameterType="cn.bravolinks.erp.crm.server.model.xzkh.BO_CRM_CLIENTBUS_P" >
+		UPDATE BO_CRM_CLIENTBUS_P set KHJLXM=#{khjlxm},KHJLZH=#{khjlzh} WHERE bindid=#{bindid}
+    </update>
+
+  <select id="fetchTableFieldUUID" parameterType="java.util.Map" resultType="java.lang.String">
+	select s.uuid UUID from sys_business_metadata p join sys_business_metadata_map s on p.id = s.metadata_id where s.field_name = #{fieldName} and p.entity_name = #{tableName}
+  </select>
+</mapper>

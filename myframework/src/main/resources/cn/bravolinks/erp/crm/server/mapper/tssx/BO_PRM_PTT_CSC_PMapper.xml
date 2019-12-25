@@ -1,0 +1,1553 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.tssx.BO_PRM_PTT_CSC_P_DAO" >
+  <resultMap id="BaseResultMap" type="cn.bravolinks.erp.crm.server.model.tssx.BO_PRM_PTT_CSC_P" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="ORGNO" property="orgno" jdbcType="OTHER" />
+    <result column="BINDID" property="bindid" jdbcType="DECIMAL" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CREATEUSER" property="createuser" jdbcType="OTHER" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="UPDATEUSER" property="updateuser" jdbcType="OTHER" />
+    <result column="WORKFLOWID" property="workflowid" jdbcType="DECIMAL" />
+    <result column="WORKFLOWSTEPID" property="workflowstepid" jdbcType="DECIMAL" />
+    <result column="ISEND" property="isend" jdbcType="DECIMAL" />
+    <result column="GSID" property="gsid" jdbcType="OTHER" />
+    <result column="GSDM" property="gsdm" jdbcType="OTHER" />
+    <result column="GSMC" property="gsmc" jdbcType="OTHER" />
+    <result column="SSSYB" property="sssyb" jdbcType="OTHER" />
+    <result column="BMID" property="bmid" jdbcType="OTHER" />
+    <result column="BMQLJID" property="bmqljid" jdbcType="OTHER" />
+    <result column="BMMC" property="bmmc" jdbcType="OTHER" />
+    <result column="ZDRZH" property="zdrzh" jdbcType="OTHER" />
+    <result column="ZDR" property="zdr" jdbcType="OTHER" />
+    <result column="ZDRQ" property="zdrq" jdbcType="TIMESTAMP" />
+    <result column="EMAIL" property="email" jdbcType="OTHER" />
+    <result column="LXSJ" property="lxsj" jdbcType="OTHER" />
+    <result column="LXZJ" property="lxzj" jdbcType="OTHER" />
+    <result column="FWFABH" property="fwfabh" jdbcType="OTHER" />
+    <result column="BJRQ" property="bjrq" jdbcType="TIMESTAMP" />
+    <result column="BJYXQ" property="bjyxq" jdbcType="OTHER" />
+    <result column="FATGF" property="fatgf" jdbcType="OTHER" />
+    <result column="FATGR" property="fatgr" jdbcType="OTHER" />
+    <result column="DH" property="dh" jdbcType="OTHER" />
+    <result column="FABH" property="fabh" jdbcType="OTHER" />
+    <result column="KHBH" property="khbh" jdbcType="OTHER" />
+    <result column="KHMC" property="khmc" jdbcType="OTHER" />
+    <result column="FWFSQFSDM" property="fwfsqfsdm" jdbcType="OTHER" />
+    <result column="FWFEFL" property="fwfefl" jdbcType="DECIMAL" />
+    <result column="FWF" property="fwf" jdbcType="DECIMAL" />
+    <result column="SZDM" property="szdm" jdbcType="OTHER" />
+    <result column="SWCBL" property="swcbl" jdbcType="DECIMAL" />
+    <result column="SWCBE" property="swcbe" jdbcType="DECIMAL" />
+    <result column="HJ" property="hj" jdbcType="DECIMAL" />
+    <result column="YHJE" property="yhje" jdbcType="DECIMAL" />
+    <result column="BJJE" property="bjje" jdbcType="DECIMAL" />
+    <result column="JD" property="jd" jdbcType="OTHER" />
+    <result column="SJXMBH" property="sjxmbh" jdbcType="OTHER" />
+    <result column="SJXMMC" property="sjxmmc" jdbcType="OTHER" />
+    <result column="FWLBDM" property="fwlbdm" jdbcType="OTHER" />
+    <result column="FWNRDM" property="fwnrdm" jdbcType="OTHER" />
+    <result column="XMKSRQ" property="xmksrq" jdbcType="TIMESTAMP" />
+    <result column="XMJSRQ" property="xmjsrq" jdbcType="TIMESTAMP" />
+    <result column="MDD" property="mdd" jdbcType="OTHER" />
+    <result column="KRRS" property="krrs" jdbcType="DECIMAL" />
+    <result column="ZQLGZRYRS" property="zqlgzryrs" jdbcType="DECIMAL" />
+    <result column="ZYXDM" property="zyxdm" jdbcType="OTHER" />
+    <result column="SFBCDM" property="sfbcdm" jdbcType="OTHER" />
+    <result column="SFBC1DM" property="sfbc1dm" jdbcType="OTHER" />
+    <result column="YSDH" property="ysdh" jdbcType="OTHER" />
+    <result column="YSZDRQ" property="yszdrq" jdbcType="TIMESTAMP" />
+    <result column="YSZDRZH" property="yszdrzh" jdbcType="OTHER" />
+    <result column="YSZDR" property="yszdr" jdbcType="OTHER" />
+    <result column="FJSF" property="fjsf" jdbcType="DECIMAL" />
+    <result column="YKHQYF" property="ykhqyf" jdbcType="OTHER" />
+    <result column="FKF" property="fkf" jdbcType="OTHER" />
+    <result column="JHZCB" property="jhzcb" jdbcType="DECIMAL" />
+    <result column="ML" property="ml" jdbcType="DECIMAL" />
+    <result column="MLL" property="mll" jdbcType="DECIMAL" />
+    <result column="QYF" property="qyf" jdbcType="OTHER" />
+    <result column="FKF1" property="fkf1" jdbcType="OTHER" />
+    <result column="KHTYBJDM" property="khtybjdm" jdbcType="OTHER" />
+    <result column="TSSXJEZZB" property="tssxjezzb" jdbcType="DECIMAL" />
+    <result column="KHRKDBJFA" property="khrkdbjfa" jdbcType="OTHER" />
+    <result column="FJ" property="fj" jdbcType="OTHER" />
+    <result column="MDDDM" property="mdddm" jdbcType="OTHER" />
+    <result column="CZMSDM" property="czmsdm" jdbcType="OTHER" />
+    <result column="XQDH" property="xqdh" jdbcType="OTHER" />
+    <result column="DJLX" property="djlx" jdbcType="OTHER" />
+    <result column="SFWDPRC" property="sfwdprc" jdbcType="OTHER" />
+    <result column="DSFFKDM" property="dsffkdm" jdbcType="OTHER" />
+    <result column="YLMC" property="ylmc" jdbcType="OTHER" />
+    <result column="ZYXBDID" property="zyxbdid" jdbcType="OTHER" />
+    <result column="BJZTDM" property="bjztdm" jdbcType="OTHER" />
+    <result column="SCSP" property="scsp" jdbcType="OTHER" />
+    <result column="CGSP" property="cgsp" jdbcType="OTHER" />
+    <result column="CWSP" property="cwsp" jdbcType="OTHER" />
+    <result column="FGSP" property="fgsp" jdbcType="OTHER" />
+    <result column="ZJLSP" property="zjlsp" jdbcType="OTHER" />
+    <result column="ZCSP" property="zcsp" jdbcType="OTHER" />
+    <result column="BJDH" property="bjdh" jdbcType="OTHER" />
+    <result column="SFLSTD" property="sflstd" jdbcType="OTHER" />
+    <result column="JJZJE" property="jjzje" jdbcType="DECIMAL" />
+    <result column="BJFWFZJE" property="bjfwfzje" jdbcType="DECIMAL" />
+    <result column="SJXMGSBMID" property="sjxmgsbmid" jdbcType="OTHER" />
+    <result column="JHZSR" property="jhzsr" jdbcType="DECIMAL" />
+    <result column="XMYF" property="xmyf" jdbcType="DECIMAL" />
+    <result column="FWFAMC" property="fwfamc" jdbcType="OTHER" />
+    <result column="XMZYF" property="xmzyf" jdbcType="DECIMAL" />
+    <result column="XMZSR" property="xmzsr" jdbcType="DECIMAL" />
+    <result column="DLZJE" property="dlzje" jdbcType="DECIMAL" />
+    <result column="FWFZJE" property="fwfzje" jdbcType="DECIMAL" />
+    <result column="SFXSCFJ" property="sfxscfj" jdbcType="OTHER" />
+    <result column="SCSP1" property="scsp1" jdbcType="OTHER" />
+    <result column="CGSP1" property="cgsp1" jdbcType="OTHER" />
+    <result column="CWSP1" property="cwsp1" jdbcType="OTHER" />
+    <result column="FGSP1" property="fgsp1" jdbcType="OTHER" />
+    <result column="ZJLSP1" property="zjlsp1" jdbcType="OTHER" />
+    <result column="ZCSP1" property="zcsp1" jdbcType="OTHER" />
+    <result column="JXS" property="jxs" jdbcType="DECIMAL" />
+    <result column="XXS" property="xxs" jdbcType="DECIMAL" />
+    <result column="YJZZS" property="yjzzs" jdbcType="DECIMAL" />
+    <result column="YSFJ" property="ysfj" jdbcType="OTHER" />
+    <result column="BJFJ" property="bjfj" jdbcType="OTHER" />
+    <result column="TSSXZJE" property="tssxzje" jdbcType="DECIMAL" />
+    <result column="BCTSSXJE" property="bctssxje" jdbcType="DECIMAL" />
+    <result column="XMBH" property="xmbh" jdbcType="OTHER" />
+    <result column="YJYYS" property="yjyys" jdbcType="DECIMAL" />
+    <result column="NBSWCBL" property="nbswcbl" jdbcType="DECIMAL" />
+    <result column="RCFJ" property="rcfj" jdbcType="OTHER" />
+    <result column="SFGZ" property="sfgz" jdbcType="DECIMAL" />
+    <result column="FWFAFJ" property="fwfafj" jdbcType="OTHER" />
+    <result column="YSTZJE" property="ystzje" jdbcType="DECIMAL" />
+    <result column="YFTZJE" property="yftzje" jdbcType="DECIMAL" />
+    <result column="MLTZJE" property="mltzje" jdbcType="DECIMAL" />
+    <result column="GZRQ" property="gzrq" jdbcType="TIMESTAMP" />
+    <result column="GZRZH" property="gzrzh" jdbcType="OTHER" />
+    <result column="GZR" property="gzr" jdbcType="OTHER" />
+    <result column="PZBH" property="pzbh" jdbcType="OTHER" />
+    <result column="PZBINDID" property="pzbindid" jdbcType="OTHER" />
+    <result column="FALY" property="faly" jdbcType="OTHER" />
+    <result column="LCJSSJ" property="lcjssj" jdbcType="TIMESTAMP" />
+    <result column="TSSXSPDH" property="tssxspdh" jdbcType="OTHER" />
+    <result column="GYSFZRZH" property="gysfzrzh" jdbcType="OTHER" />
+    <result column="LXKDJJE" property="lxkdjje" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORGNO, BINDID, CREATEDATE, CREATEUSER, UPDATEDATE, UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+    ISEND, GSID, GSDM, GSMC, SSSYB, BMID, BMQLJID, BMMC, ZDRZH, ZDR, ZDRQ, EMAIL, LXSJ, 
+    LXZJ, FWFABH, BJRQ, BJYXQ, FATGF, FATGR, DH, FABH, KHBH, KHMC, FWFSQFSDM, FWFEFL, 
+    FWF, SZDM, SWCBL, SWCBE, HJ, YHJE, BJJE, JD, SJXMBH, SJXMMC, FWLBDM, FWNRDM, XMKSRQ, 
+    XMJSRQ, MDD, KRRS, ZQLGZRYRS, ZYXDM, SFBCDM, SFBC1DM, YSDH, YSZDRQ, YSZDRZH, YSZDR, 
+    FJSF, YKHQYF, FKF, JHZCB, ML, MLL, QYF, FKF1, KHTYBJDM, TSSXJEZZB, KHRKDBJFA, FJ, 
+    MDDDM, CZMSDM, XQDH, DJLX, SFWDPRC, DSFFKDM, YLMC, ZYXBDID, BJZTDM, SCSP, CGSP, CWSP, 
+    FGSP, ZJLSP, ZCSP, BJDH, SFLSTD, JJZJE, BJFWFZJE, SJXMGSBMID, JHZSR, XMYF, FWFAMC, 
+    XMZYF, XMZSR, DLZJE, FWFZJE, SFXSCFJ, SCSP1, CGSP1, CWSP1, FGSP1, ZJLSP1, ZCSP1, 
+    JXS, XXS, YJZZS, YSFJ, BJFJ, TSSXZJE, BCTSSXJE, XMBH, YJYYS, NBSWCBL, RCFJ, SFGZ, 
+    FWFAFJ, YSTZJE, YFTZJE, MLTZJE, GZRQ, GZRZH, GZR, PZBH, PZBINDID, FALY, LCJSSJ, TSSXSPDH, 
+    GYSFZRZH, LXKDJJE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from PSPBPM1330313.BO_PRM_PTT_CSC_P
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PSPBPM1330313.BO_PRM_PTT_CSC_P
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_PRM_PTT_CSC_P" >
+    insert into PSPBPM1330313.BO_PRM_PTT_CSC_P (ID, ORGNO, BINDID, 
+      CREATEDATE, CREATEUSER, UPDATEDATE, 
+      UPDATEUSER, WORKFLOWID, WORKFLOWSTEPID, 
+      ISEND, GSID, GSDM, GSMC, 
+      SSSYB, BMID, BMQLJID, BMMC, 
+      ZDRZH, ZDR, ZDRQ, EMAIL, 
+      LXSJ, LXZJ, FWFABH, BJRQ, 
+      BJYXQ, FATGF, FATGR, DH, 
+      FABH, KHBH, KHMC, FWFSQFSDM, 
+      FWFEFL, FWF, SZDM, SWCBL, 
+      SWCBE, HJ, YHJE, BJJE, 
+      JD, SJXMBH, SJXMMC, FWLBDM, 
+      FWNRDM, XMKSRQ, XMJSRQ, 
+      MDD, KRRS, ZQLGZRYRS, 
+      ZYXDM, SFBCDM, SFBC1DM, YSDH, 
+      YSZDRQ, YSZDRZH, YSZDR, 
+      FJSF, YKHQYF, FKF, JHZCB, 
+      ML, MLL, QYF, FKF1, 
+      KHTYBJDM, TSSXJEZZB, KHRKDBJFA, 
+      FJ, MDDDM, CZMSDM, XQDH, 
+      DJLX, SFWDPRC, DSFFKDM, YLMC, 
+      ZYXBDID, BJZTDM, SCSP, CGSP, 
+      CWSP, FGSP, ZJLSP, ZCSP, 
+      BJDH, SFLSTD, JJZJE, BJFWFZJE, 
+      SJXMGSBMID, JHZSR, XMYF, 
+      FWFAMC, XMZYF, XMZSR, 
+      DLZJE, FWFZJE, SFXSCFJ, 
+      SCSP1, CGSP1, CWSP1, FGSP1, 
+      ZJLSP1, ZCSP1, JXS, XXS, 
+      YJZZS, YSFJ, BJFJ, TSSXZJE, 
+      BCTSSXJE, XMBH, YJYYS, 
+      NBSWCBL, RCFJ, SFGZ, 
+      FWFAFJ, YSTZJE, YFTZJE, 
+      MLTZJE, GZRQ, GZRZH, 
+      GZR, PZBH, PZBINDID, FALY, 
+      LCJSSJ, TSSXSPDH, GYSFZRZH, 
+      LXKDJJE)
+    values (#{id,jdbcType=DECIMAL}, #{orgno,jdbcType=OTHER}, #{bindid,jdbcType=DECIMAL}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=OTHER}, #{updatedate,jdbcType=TIMESTAMP}, 
+      #{updateuser,jdbcType=OTHER}, #{workflowid,jdbcType=DECIMAL}, #{workflowstepid,jdbcType=DECIMAL}, 
+      #{isend,jdbcType=DECIMAL}, #{gsid,jdbcType=OTHER}, #{gsdm,jdbcType=OTHER}, #{gsmc,jdbcType=OTHER}, 
+      #{sssyb,jdbcType=OTHER}, #{bmid,jdbcType=OTHER}, #{bmqljid,jdbcType=OTHER}, #{bmmc,jdbcType=OTHER}, 
+      #{zdrzh,jdbcType=OTHER}, #{zdr,jdbcType=OTHER}, #{zdrq,jdbcType=TIMESTAMP}, #{email,jdbcType=OTHER}, 
+      #{lxsj,jdbcType=OTHER}, #{lxzj,jdbcType=OTHER}, #{fwfabh,jdbcType=OTHER}, #{bjrq,jdbcType=TIMESTAMP}, 
+      #{bjyxq,jdbcType=OTHER}, #{fatgf,jdbcType=OTHER}, #{fatgr,jdbcType=OTHER}, #{dh,jdbcType=OTHER}, 
+      #{fabh,jdbcType=OTHER}, #{khbh,jdbcType=OTHER}, #{khmc,jdbcType=OTHER}, #{fwfsqfsdm,jdbcType=OTHER}, 
+      #{fwfefl,jdbcType=DECIMAL}, #{fwf,jdbcType=DECIMAL}, #{szdm,jdbcType=OTHER}, #{swcbl,jdbcType=DECIMAL}, 
+      #{swcbe,jdbcType=DECIMAL}, #{hj,jdbcType=DECIMAL}, #{yhje,jdbcType=DECIMAL}, #{bjje,jdbcType=DECIMAL}, 
+      #{jd,jdbcType=OTHER}, #{sjxmbh,jdbcType=OTHER}, #{sjxmmc,jdbcType=OTHER}, #{fwlbdm,jdbcType=OTHER}, 
+      #{fwnrdm,jdbcType=OTHER}, #{xmksrq,jdbcType=TIMESTAMP}, #{xmjsrq,jdbcType=TIMESTAMP}, 
+      #{mdd,jdbcType=OTHER}, #{krrs,jdbcType=DECIMAL}, #{zqlgzryrs,jdbcType=DECIMAL}, 
+      #{zyxdm,jdbcType=OTHER}, #{sfbcdm,jdbcType=OTHER}, #{sfbc1dm,jdbcType=OTHER}, #{ysdh,jdbcType=OTHER}, 
+      #{yszdrq,jdbcType=TIMESTAMP}, #{yszdrzh,jdbcType=OTHER}, #{yszdr,jdbcType=OTHER}, 
+      #{fjsf,jdbcType=DECIMAL}, #{ykhqyf,jdbcType=OTHER}, #{fkf,jdbcType=OTHER}, #{jhzcb,jdbcType=DECIMAL}, 
+      #{ml,jdbcType=DECIMAL}, #{mll,jdbcType=DECIMAL}, #{qyf,jdbcType=OTHER}, #{fkf1,jdbcType=OTHER}, 
+      #{khtybjdm,jdbcType=OTHER}, #{tssxjezzb,jdbcType=DECIMAL}, #{khrkdbjfa,jdbcType=OTHER}, 
+      #{fj,jdbcType=OTHER}, #{mdddm,jdbcType=OTHER}, #{czmsdm,jdbcType=OTHER}, #{xqdh,jdbcType=OTHER}, 
+      #{djlx,jdbcType=OTHER}, #{sfwdprc,jdbcType=OTHER}, #{dsffkdm,jdbcType=OTHER}, #{ylmc,jdbcType=OTHER}, 
+      #{zyxbdid,jdbcType=OTHER}, #{bjztdm,jdbcType=OTHER}, #{scsp,jdbcType=OTHER}, #{cgsp,jdbcType=OTHER}, 
+      #{cwsp,jdbcType=OTHER}, #{fgsp,jdbcType=OTHER}, #{zjlsp,jdbcType=OTHER}, #{zcsp,jdbcType=OTHER}, 
+      #{bjdh,jdbcType=OTHER}, #{sflstd,jdbcType=OTHER}, #{jjzje,jdbcType=DECIMAL}, #{bjfwfzje,jdbcType=DECIMAL}, 
+      #{sjxmgsbmid,jdbcType=OTHER}, #{jhzsr,jdbcType=DECIMAL}, #{xmyf,jdbcType=DECIMAL}, 
+      #{fwfamc,jdbcType=OTHER}, #{xmzyf,jdbcType=DECIMAL}, #{xmzsr,jdbcType=DECIMAL}, 
+      #{dlzje,jdbcType=DECIMAL}, #{fwfzje,jdbcType=DECIMAL}, #{sfxscfj,jdbcType=OTHER}, 
+      #{scsp1,jdbcType=OTHER}, #{cgsp1,jdbcType=OTHER}, #{cwsp1,jdbcType=OTHER}, #{fgsp1,jdbcType=OTHER}, 
+      #{zjlsp1,jdbcType=OTHER}, #{zcsp1,jdbcType=OTHER}, #{jxs,jdbcType=DECIMAL}, #{xxs,jdbcType=DECIMAL}, 
+      #{yjzzs,jdbcType=DECIMAL}, #{ysfj,jdbcType=OTHER}, #{bjfj,jdbcType=OTHER}, #{tssxzje,jdbcType=DECIMAL}, 
+      #{bctssxje,jdbcType=DECIMAL}, #{xmbh,jdbcType=OTHER}, #{yjyys,jdbcType=DECIMAL}, 
+      #{nbswcbl,jdbcType=DECIMAL}, #{rcfj,jdbcType=OTHER}, #{sfgz,jdbcType=DECIMAL}, 
+      #{fwfafj,jdbcType=OTHER}, #{ystzje,jdbcType=DECIMAL}, #{yftzje,jdbcType=DECIMAL}, 
+      #{mltzje,jdbcType=DECIMAL}, #{gzrq,jdbcType=TIMESTAMP}, #{gzrzh,jdbcType=OTHER}, 
+      #{gzr,jdbcType=OTHER}, #{pzbh,jdbcType=OTHER}, #{pzbindid,jdbcType=OTHER}, #{faly,jdbcType=OTHER}, 
+      #{lcjssj,jdbcType=TIMESTAMP}, #{tssxspdh,jdbcType=OTHER}, #{gysfzrzh,jdbcType=OTHER}, 
+      #{lxkdjje,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_PRM_PTT_CSC_P" >
+    insert into PSPBPM1330313.BO_PRM_PTT_CSC_P
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgno != null" >
+        ORGNO,
+      </if>
+      <if test="bindid != null" >
+        BINDID,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER,
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID,
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID,
+      </if>
+      <if test="isend != null" >
+        ISEND,
+      </if>
+      <if test="gsid != null" >
+        GSID,
+      </if>
+      <if test="gsdm != null" >
+        GSDM,
+      </if>
+      <if test="gsmc != null" >
+        GSMC,
+      </if>
+      <if test="sssyb != null" >
+        SSSYB,
+      </if>
+      <if test="bmid != null" >
+        BMID,
+      </if>
+      <if test="bmqljid != null" >
+        BMQLJID,
+      </if>
+      <if test="bmmc != null" >
+        BMMC,
+      </if>
+      <if test="zdrzh != null" >
+        ZDRZH,
+      </if>
+      <if test="zdr != null" >
+        ZDR,
+      </if>
+      <if test="zdrq != null" >
+        ZDRQ,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="lxsj != null" >
+        LXSJ,
+      </if>
+      <if test="lxzj != null" >
+        LXZJ,
+      </if>
+      <if test="fwfabh != null" >
+        FWFABH,
+      </if>
+      <if test="bjrq != null" >
+        BJRQ,
+      </if>
+      <if test="bjyxq != null" >
+        BJYXQ,
+      </if>
+      <if test="fatgf != null" >
+        FATGF,
+      </if>
+      <if test="fatgr != null" >
+        FATGR,
+      </if>
+      <if test="dh != null" >
+        DH,
+      </if>
+      <if test="fabh != null" >
+        FABH,
+      </if>
+      <if test="khbh != null" >
+        KHBH,
+      </if>
+      <if test="khmc != null" >
+        KHMC,
+      </if>
+      <if test="fwfsqfsdm != null" >
+        FWFSQFSDM,
+      </if>
+      <if test="fwfefl != null" >
+        FWFEFL,
+      </if>
+      <if test="fwf != null" >
+        FWF,
+      </if>
+      <if test="szdm != null" >
+        SZDM,
+      </if>
+      <if test="swcbl != null" >
+        SWCBL,
+      </if>
+      <if test="swcbe != null" >
+        SWCBE,
+      </if>
+      <if test="hj != null" >
+        HJ,
+      </if>
+      <if test="yhje != null" >
+        YHJE,
+      </if>
+      <if test="bjje != null" >
+        BJJE,
+      </if>
+      <if test="jd != null" >
+        JD,
+      </if>
+      <if test="sjxmbh != null" >
+        SJXMBH,
+      </if>
+      <if test="sjxmmc != null" >
+        SJXMMC,
+      </if>
+      <if test="fwlbdm != null" >
+        FWLBDM,
+      </if>
+      <if test="fwnrdm != null" >
+        FWNRDM,
+      </if>
+      <if test="xmksrq != null" >
+        XMKSRQ,
+      </if>
+      <if test="xmjsrq != null" >
+        XMJSRQ,
+      </if>
+      <if test="mdd != null" >
+        MDD,
+      </if>
+      <if test="krrs != null" >
+        KRRS,
+      </if>
+      <if test="zqlgzryrs != null" >
+        ZQLGZRYRS,
+      </if>
+      <if test="zyxdm != null" >
+        ZYXDM,
+      </if>
+      <if test="sfbcdm != null" >
+        SFBCDM,
+      </if>
+      <if test="sfbc1dm != null" >
+        SFBC1DM,
+      </if>
+      <if test="ysdh != null" >
+        YSDH,
+      </if>
+      <if test="yszdrq != null" >
+        YSZDRQ,
+      </if>
+      <if test="yszdrzh != null" >
+        YSZDRZH,
+      </if>
+      <if test="yszdr != null" >
+        YSZDR,
+      </if>
+      <if test="fjsf != null" >
+        FJSF,
+      </if>
+      <if test="ykhqyf != null" >
+        YKHQYF,
+      </if>
+      <if test="fkf != null" >
+        FKF,
+      </if>
+      <if test="jhzcb != null" >
+        JHZCB,
+      </if>
+      <if test="ml != null" >
+        ML,
+      </if>
+      <if test="mll != null" >
+        MLL,
+      </if>
+      <if test="qyf != null" >
+        QYF,
+      </if>
+      <if test="fkf1 != null" >
+        FKF1,
+      </if>
+      <if test="khtybjdm != null" >
+        KHTYBJDM,
+      </if>
+      <if test="tssxjezzb != null" >
+        TSSXJEZZB,
+      </if>
+      <if test="khrkdbjfa != null" >
+        KHRKDBJFA,
+      </if>
+      <if test="fj != null" >
+        FJ,
+      </if>
+      <if test="mdddm != null" >
+        MDDDM,
+      </if>
+      <if test="czmsdm != null" >
+        CZMSDM,
+      </if>
+      <if test="xqdh != null" >
+        XQDH,
+      </if>
+      <if test="djlx != null" >
+        DJLX,
+      </if>
+      <if test="sfwdprc != null" >
+        SFWDPRC,
+      </if>
+      <if test="dsffkdm != null" >
+        DSFFKDM,
+      </if>
+      <if test="ylmc != null" >
+        YLMC,
+      </if>
+      <if test="zyxbdid != null" >
+        ZYXBDID,
+      </if>
+      <if test="bjztdm != null" >
+        BJZTDM,
+      </if>
+      <if test="scsp != null" >
+        SCSP,
+      </if>
+      <if test="cgsp != null" >
+        CGSP,
+      </if>
+      <if test="cwsp != null" >
+        CWSP,
+      </if>
+      <if test="fgsp != null" >
+        FGSP,
+      </if>
+      <if test="zjlsp != null" >
+        ZJLSP,
+      </if>
+      <if test="zcsp != null" >
+        ZCSP,
+      </if>
+      <if test="bjdh != null" >
+        BJDH,
+      </if>
+      <if test="sflstd != null" >
+        SFLSTD,
+      </if>
+      <if test="jjzje != null" >
+        JJZJE,
+      </if>
+      <if test="bjfwfzje != null" >
+        BJFWFZJE,
+      </if>
+      <if test="sjxmgsbmid != null" >
+        SJXMGSBMID,
+      </if>
+      <if test="jhzsr != null" >
+        JHZSR,
+      </if>
+      <if test="xmyf != null" >
+        XMYF,
+      </if>
+      <if test="fwfamc != null" >
+        FWFAMC,
+      </if>
+      <if test="xmzyf != null" >
+        XMZYF,
+      </if>
+      <if test="xmzsr != null" >
+        XMZSR,
+      </if>
+      <if test="dlzje != null" >
+        DLZJE,
+      </if>
+      <if test="fwfzje != null" >
+        FWFZJE,
+      </if>
+      <if test="sfxscfj != null" >
+        SFXSCFJ,
+      </if>
+      <if test="scsp1 != null" >
+        SCSP1,
+      </if>
+      <if test="cgsp1 != null" >
+        CGSP1,
+      </if>
+      <if test="cwsp1 != null" >
+        CWSP1,
+      </if>
+      <if test="fgsp1 != null" >
+        FGSP1,
+      </if>
+      <if test="zjlsp1 != null" >
+        ZJLSP1,
+      </if>
+      <if test="zcsp1 != null" >
+        ZCSP1,
+      </if>
+      <if test="jxs != null" >
+        JXS,
+      </if>
+      <if test="xxs != null" >
+        XXS,
+      </if>
+      <if test="yjzzs != null" >
+        YJZZS,
+      </if>
+      <if test="ysfj != null" >
+        YSFJ,
+      </if>
+      <if test="bjfj != null" >
+        BJFJ,
+      </if>
+      <if test="tssxzje != null" >
+        TSSXZJE,
+      </if>
+      <if test="bctssxje != null" >
+        BCTSSXJE,
+      </if>
+      <if test="xmbh != null" >
+        XMBH,
+      </if>
+      <if test="yjyys != null" >
+        YJYYS,
+      </if>
+      <if test="nbswcbl != null" >
+        NBSWCBL,
+      </if>
+      <if test="rcfj != null" >
+        RCFJ,
+      </if>
+      <if test="sfgz != null" >
+        SFGZ,
+      </if>
+      <if test="fwfafj != null" >
+        FWFAFJ,
+      </if>
+      <if test="ystzje != null" >
+        YSTZJE,
+      </if>
+      <if test="yftzje != null" >
+        YFTZJE,
+      </if>
+      <if test="mltzje != null" >
+        MLTZJE,
+      </if>
+      <if test="gzrq != null" >
+        GZRQ,
+      </if>
+      <if test="gzrzh != null" >
+        GZRZH,
+      </if>
+      <if test="gzr != null" >
+        GZR,
+      </if>
+      <if test="pzbh != null" >
+        PZBH,
+      </if>
+      <if test="pzbindid != null" >
+        PZBINDID,
+      </if>
+      <if test="faly != null" >
+        FALY,
+      </if>
+      <if test="lcjssj != null" >
+        LCJSSJ,
+      </if>
+      <if test="tssxspdh != null" >
+        TSSXSPDH,
+      </if>
+      <if test="gysfzrzh != null" >
+        GYSFZRZH,
+      </if>
+      <if test="lxkdjje != null" >
+        LXKDJJE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orgno != null" >
+        #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="gsid != null" >
+        #{gsid,jdbcType=OTHER},
+      </if>
+      <if test="gsdm != null" >
+        #{gsdm,jdbcType=OTHER},
+      </if>
+      <if test="gsmc != null" >
+        #{gsmc,jdbcType=OTHER},
+      </if>
+      <if test="sssyb != null" >
+        #{sssyb,jdbcType=OTHER},
+      </if>
+      <if test="bmid != null" >
+        #{bmid,jdbcType=OTHER},
+      </if>
+      <if test="bmqljid != null" >
+        #{bmqljid,jdbcType=OTHER},
+      </if>
+      <if test="bmmc != null" >
+        #{bmmc,jdbcType=OTHER},
+      </if>
+      <if test="zdrzh != null" >
+        #{zdrzh,jdbcType=OTHER},
+      </if>
+      <if test="zdr != null" >
+        #{zdr,jdbcType=OTHER},
+      </if>
+      <if test="zdrq != null" >
+        #{zdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=OTHER},
+      </if>
+      <if test="lxsj != null" >
+        #{lxsj,jdbcType=OTHER},
+      </if>
+      <if test="lxzj != null" >
+        #{lxzj,jdbcType=OTHER},
+      </if>
+      <if test="fwfabh != null" >
+        #{fwfabh,jdbcType=OTHER},
+      </if>
+      <if test="bjrq != null" >
+        #{bjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bjyxq != null" >
+        #{bjyxq,jdbcType=OTHER},
+      </if>
+      <if test="fatgf != null" >
+        #{fatgf,jdbcType=OTHER},
+      </if>
+      <if test="fatgr != null" >
+        #{fatgr,jdbcType=OTHER},
+      </if>
+      <if test="dh != null" >
+        #{dh,jdbcType=OTHER},
+      </if>
+      <if test="fabh != null" >
+        #{fabh,jdbcType=OTHER},
+      </if>
+      <if test="khbh != null" >
+        #{khbh,jdbcType=OTHER},
+      </if>
+      <if test="khmc != null" >
+        #{khmc,jdbcType=OTHER},
+      </if>
+      <if test="fwfsqfsdm != null" >
+        #{fwfsqfsdm,jdbcType=OTHER},
+      </if>
+      <if test="fwfefl != null" >
+        #{fwfefl,jdbcType=DECIMAL},
+      </if>
+      <if test="fwf != null" >
+        #{fwf,jdbcType=DECIMAL},
+      </if>
+      <if test="szdm != null" >
+        #{szdm,jdbcType=OTHER},
+      </if>
+      <if test="swcbl != null" >
+        #{swcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="swcbe != null" >
+        #{swcbe,jdbcType=DECIMAL},
+      </if>
+      <if test="hj != null" >
+        #{hj,jdbcType=DECIMAL},
+      </if>
+      <if test="yhje != null" >
+        #{yhje,jdbcType=DECIMAL},
+      </if>
+      <if test="bjje != null" >
+        #{bjje,jdbcType=DECIMAL},
+      </if>
+      <if test="jd != null" >
+        #{jd,jdbcType=OTHER},
+      </if>
+      <if test="sjxmbh != null" >
+        #{sjxmbh,jdbcType=OTHER},
+      </if>
+      <if test="sjxmmc != null" >
+        #{sjxmmc,jdbcType=OTHER},
+      </if>
+      <if test="fwlbdm != null" >
+        #{fwlbdm,jdbcType=OTHER},
+      </if>
+      <if test="fwnrdm != null" >
+        #{fwnrdm,jdbcType=OTHER},
+      </if>
+      <if test="xmksrq != null" >
+        #{xmksrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xmjsrq != null" >
+        #{xmjsrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mdd != null" >
+        #{mdd,jdbcType=OTHER},
+      </if>
+      <if test="krrs != null" >
+        #{krrs,jdbcType=DECIMAL},
+      </if>
+      <if test="zqlgzryrs != null" >
+        #{zqlgzryrs,jdbcType=DECIMAL},
+      </if>
+      <if test="zyxdm != null" >
+        #{zyxdm,jdbcType=OTHER},
+      </if>
+      <if test="sfbcdm != null" >
+        #{sfbcdm,jdbcType=OTHER},
+      </if>
+      <if test="sfbc1dm != null" >
+        #{sfbc1dm,jdbcType=OTHER},
+      </if>
+      <if test="ysdh != null" >
+        #{ysdh,jdbcType=OTHER},
+      </if>
+      <if test="yszdrq != null" >
+        #{yszdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yszdrzh != null" >
+        #{yszdrzh,jdbcType=OTHER},
+      </if>
+      <if test="yszdr != null" >
+        #{yszdr,jdbcType=OTHER},
+      </if>
+      <if test="fjsf != null" >
+        #{fjsf,jdbcType=DECIMAL},
+      </if>
+      <if test="ykhqyf != null" >
+        #{ykhqyf,jdbcType=OTHER},
+      </if>
+      <if test="fkf != null" >
+        #{fkf,jdbcType=OTHER},
+      </if>
+      <if test="jhzcb != null" >
+        #{jhzcb,jdbcType=DECIMAL},
+      </if>
+      <if test="ml != null" >
+        #{ml,jdbcType=DECIMAL},
+      </if>
+      <if test="mll != null" >
+        #{mll,jdbcType=DECIMAL},
+      </if>
+      <if test="qyf != null" >
+        #{qyf,jdbcType=OTHER},
+      </if>
+      <if test="fkf1 != null" >
+        #{fkf1,jdbcType=OTHER},
+      </if>
+      <if test="khtybjdm != null" >
+        #{khtybjdm,jdbcType=OTHER},
+      </if>
+      <if test="tssxjezzb != null" >
+        #{tssxjezzb,jdbcType=DECIMAL},
+      </if>
+      <if test="khrkdbjfa != null" >
+        #{khrkdbjfa,jdbcType=OTHER},
+      </if>
+      <if test="fj != null" >
+        #{fj,jdbcType=OTHER},
+      </if>
+      <if test="mdddm != null" >
+        #{mdddm,jdbcType=OTHER},
+      </if>
+      <if test="czmsdm != null" >
+        #{czmsdm,jdbcType=OTHER},
+      </if>
+      <if test="xqdh != null" >
+        #{xqdh,jdbcType=OTHER},
+      </if>
+      <if test="djlx != null" >
+        #{djlx,jdbcType=OTHER},
+      </if>
+      <if test="sfwdprc != null" >
+        #{sfwdprc,jdbcType=OTHER},
+      </if>
+      <if test="dsffkdm != null" >
+        #{dsffkdm,jdbcType=OTHER},
+      </if>
+      <if test="ylmc != null" >
+        #{ylmc,jdbcType=OTHER},
+      </if>
+      <if test="zyxbdid != null" >
+        #{zyxbdid,jdbcType=OTHER},
+      </if>
+      <if test="bjztdm != null" >
+        #{bjztdm,jdbcType=OTHER},
+      </if>
+      <if test="scsp != null" >
+        #{scsp,jdbcType=OTHER},
+      </if>
+      <if test="cgsp != null" >
+        #{cgsp,jdbcType=OTHER},
+      </if>
+      <if test="cwsp != null" >
+        #{cwsp,jdbcType=OTHER},
+      </if>
+      <if test="fgsp != null" >
+        #{fgsp,jdbcType=OTHER},
+      </if>
+      <if test="zjlsp != null" >
+        #{zjlsp,jdbcType=OTHER},
+      </if>
+      <if test="zcsp != null" >
+        #{zcsp,jdbcType=OTHER},
+      </if>
+      <if test="bjdh != null" >
+        #{bjdh,jdbcType=OTHER},
+      </if>
+      <if test="sflstd != null" >
+        #{sflstd,jdbcType=OTHER},
+      </if>
+      <if test="jjzje != null" >
+        #{jjzje,jdbcType=DECIMAL},
+      </if>
+      <if test="bjfwfzje != null" >
+        #{bjfwfzje,jdbcType=DECIMAL},
+      </if>
+      <if test="sjxmgsbmid != null" >
+        #{sjxmgsbmid,jdbcType=OTHER},
+      </if>
+      <if test="jhzsr != null" >
+        #{jhzsr,jdbcType=DECIMAL},
+      </if>
+      <if test="xmyf != null" >
+        #{xmyf,jdbcType=DECIMAL},
+      </if>
+      <if test="fwfamc != null" >
+        #{fwfamc,jdbcType=OTHER},
+      </if>
+      <if test="xmzyf != null" >
+        #{xmzyf,jdbcType=DECIMAL},
+      </if>
+      <if test="xmzsr != null" >
+        #{xmzsr,jdbcType=DECIMAL},
+      </if>
+      <if test="dlzje != null" >
+        #{dlzje,jdbcType=DECIMAL},
+      </if>
+      <if test="fwfzje != null" >
+        #{fwfzje,jdbcType=DECIMAL},
+      </if>
+      <if test="sfxscfj != null" >
+        #{sfxscfj,jdbcType=OTHER},
+      </if>
+      <if test="scsp1 != null" >
+        #{scsp1,jdbcType=OTHER},
+      </if>
+      <if test="cgsp1 != null" >
+        #{cgsp1,jdbcType=OTHER},
+      </if>
+      <if test="cwsp1 != null" >
+        #{cwsp1,jdbcType=OTHER},
+      </if>
+      <if test="fgsp1 != null" >
+        #{fgsp1,jdbcType=OTHER},
+      </if>
+      <if test="zjlsp1 != null" >
+        #{zjlsp1,jdbcType=OTHER},
+      </if>
+      <if test="zcsp1 != null" >
+        #{zcsp1,jdbcType=OTHER},
+      </if>
+      <if test="jxs != null" >
+        #{jxs,jdbcType=DECIMAL},
+      </if>
+      <if test="xxs != null" >
+        #{xxs,jdbcType=DECIMAL},
+      </if>
+      <if test="yjzzs != null" >
+        #{yjzzs,jdbcType=DECIMAL},
+      </if>
+      <if test="ysfj != null" >
+        #{ysfj,jdbcType=OTHER},
+      </if>
+      <if test="bjfj != null" >
+        #{bjfj,jdbcType=OTHER},
+      </if>
+      <if test="tssxzje != null" >
+        #{tssxzje,jdbcType=DECIMAL},
+      </if>
+      <if test="bctssxje != null" >
+        #{bctssxje,jdbcType=DECIMAL},
+      </if>
+      <if test="xmbh != null" >
+        #{xmbh,jdbcType=OTHER},
+      </if>
+      <if test="yjyys != null" >
+        #{yjyys,jdbcType=DECIMAL},
+      </if>
+      <if test="nbswcbl != null" >
+        #{nbswcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="rcfj != null" >
+        #{rcfj,jdbcType=OTHER},
+      </if>
+      <if test="sfgz != null" >
+        #{sfgz,jdbcType=DECIMAL},
+      </if>
+      <if test="fwfafj != null" >
+        #{fwfafj,jdbcType=OTHER},
+      </if>
+      <if test="ystzje != null" >
+        #{ystzje,jdbcType=DECIMAL},
+      </if>
+      <if test="yftzje != null" >
+        #{yftzje,jdbcType=DECIMAL},
+      </if>
+      <if test="mltzje != null" >
+        #{mltzje,jdbcType=DECIMAL},
+      </if>
+      <if test="gzrq != null" >
+        #{gzrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gzrzh != null" >
+        #{gzrzh,jdbcType=OTHER},
+      </if>
+      <if test="gzr != null" >
+        #{gzr,jdbcType=OTHER},
+      </if>
+      <if test="pzbh != null" >
+        #{pzbh,jdbcType=OTHER},
+      </if>
+      <if test="pzbindid != null" >
+        #{pzbindid,jdbcType=OTHER},
+      </if>
+      <if test="faly != null" >
+        #{faly,jdbcType=OTHER},
+      </if>
+      <if test="lcjssj != null" >
+        #{lcjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tssxspdh != null" >
+        #{tssxspdh,jdbcType=OTHER},
+      </if>
+      <if test="gysfzrzh != null" >
+        #{gysfzrzh,jdbcType=OTHER},
+      </if>
+      <if test="lxkdjje != null" >
+        #{lxkdjje,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_PRM_PTT_CSC_P" >
+    update PSPBPM1330313.BO_PRM_PTT_CSC_P
+    <set >
+      <if test="orgno != null" >
+        ORGNO = #{orgno,jdbcType=OTHER},
+      </if>
+      <if test="bindid != null" >
+        BINDID = #{bindid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER = #{createuser,jdbcType=OTHER},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      </if>
+      <if test="workflowid != null" >
+        WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      </if>
+      <if test="workflowstepid != null" >
+        WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        ISEND = #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="gsid != null" >
+        GSID = #{gsid,jdbcType=OTHER},
+      </if>
+      <if test="gsdm != null" >
+        GSDM = #{gsdm,jdbcType=OTHER},
+      </if>
+      <if test="gsmc != null" >
+        GSMC = #{gsmc,jdbcType=OTHER},
+      </if>
+      <if test="sssyb != null" >
+        SSSYB = #{sssyb,jdbcType=OTHER},
+      </if>
+      <if test="bmid != null" >
+        BMID = #{bmid,jdbcType=OTHER},
+      </if>
+      <if test="bmqljid != null" >
+        BMQLJID = #{bmqljid,jdbcType=OTHER},
+      </if>
+      <if test="bmmc != null" >
+        BMMC = #{bmmc,jdbcType=OTHER},
+      </if>
+      <if test="zdrzh != null" >
+        ZDRZH = #{zdrzh,jdbcType=OTHER},
+      </if>
+      <if test="zdr != null" >
+        ZDR = #{zdr,jdbcType=OTHER},
+      </if>
+      <if test="zdrq != null" >
+        ZDRQ = #{zdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=OTHER},
+      </if>
+      <if test="lxsj != null" >
+        LXSJ = #{lxsj,jdbcType=OTHER},
+      </if>
+      <if test="lxzj != null" >
+        LXZJ = #{lxzj,jdbcType=OTHER},
+      </if>
+      <if test="fwfabh != null" >
+        FWFABH = #{fwfabh,jdbcType=OTHER},
+      </if>
+      <if test="bjrq != null" >
+        BJRQ = #{bjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bjyxq != null" >
+        BJYXQ = #{bjyxq,jdbcType=OTHER},
+      </if>
+      <if test="fatgf != null" >
+        FATGF = #{fatgf,jdbcType=OTHER},
+      </if>
+      <if test="fatgr != null" >
+        FATGR = #{fatgr,jdbcType=OTHER},
+      </if>
+      <if test="dh != null" >
+        DH = #{dh,jdbcType=OTHER},
+      </if>
+      <if test="fabh != null" >
+        FABH = #{fabh,jdbcType=OTHER},
+      </if>
+      <if test="khbh != null" >
+        KHBH = #{khbh,jdbcType=OTHER},
+      </if>
+      <if test="khmc != null" >
+        KHMC = #{khmc,jdbcType=OTHER},
+      </if>
+      <if test="fwfsqfsdm != null" >
+        FWFSQFSDM = #{fwfsqfsdm,jdbcType=OTHER},
+      </if>
+      <if test="fwfefl != null" >
+        FWFEFL = #{fwfefl,jdbcType=DECIMAL},
+      </if>
+      <if test="fwf != null" >
+        FWF = #{fwf,jdbcType=DECIMAL},
+      </if>
+      <if test="szdm != null" >
+        SZDM = #{szdm,jdbcType=OTHER},
+      </if>
+      <if test="swcbl != null" >
+        SWCBL = #{swcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="swcbe != null" >
+        SWCBE = #{swcbe,jdbcType=DECIMAL},
+      </if>
+      <if test="hj != null" >
+        HJ = #{hj,jdbcType=DECIMAL},
+      </if>
+      <if test="yhje != null" >
+        YHJE = #{yhje,jdbcType=DECIMAL},
+      </if>
+      <if test="bjje != null" >
+        BJJE = #{bjje,jdbcType=DECIMAL},
+      </if>
+      <if test="jd != null" >
+        JD = #{jd,jdbcType=OTHER},
+      </if>
+      <if test="sjxmbh != null" >
+        SJXMBH = #{sjxmbh,jdbcType=OTHER},
+      </if>
+      <if test="sjxmmc != null" >
+        SJXMMC = #{sjxmmc,jdbcType=OTHER},
+      </if>
+      <if test="fwlbdm != null" >
+        FWLBDM = #{fwlbdm,jdbcType=OTHER},
+      </if>
+      <if test="fwnrdm != null" >
+        FWNRDM = #{fwnrdm,jdbcType=OTHER},
+      </if>
+      <if test="xmksrq != null" >
+        XMKSRQ = #{xmksrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xmjsrq != null" >
+        XMJSRQ = #{xmjsrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mdd != null" >
+        MDD = #{mdd,jdbcType=OTHER},
+      </if>
+      <if test="krrs != null" >
+        KRRS = #{krrs,jdbcType=DECIMAL},
+      </if>
+      <if test="zqlgzryrs != null" >
+        ZQLGZRYRS = #{zqlgzryrs,jdbcType=DECIMAL},
+      </if>
+      <if test="zyxdm != null" >
+        ZYXDM = #{zyxdm,jdbcType=OTHER},
+      </if>
+      <if test="sfbcdm != null" >
+        SFBCDM = #{sfbcdm,jdbcType=OTHER},
+      </if>
+      <if test="sfbc1dm != null" >
+        SFBC1DM = #{sfbc1dm,jdbcType=OTHER},
+      </if>
+      <if test="ysdh != null" >
+        YSDH = #{ysdh,jdbcType=OTHER},
+      </if>
+      <if test="yszdrq != null" >
+        YSZDRQ = #{yszdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yszdrzh != null" >
+        YSZDRZH = #{yszdrzh,jdbcType=OTHER},
+      </if>
+      <if test="yszdr != null" >
+        YSZDR = #{yszdr,jdbcType=OTHER},
+      </if>
+      <if test="fjsf != null" >
+        FJSF = #{fjsf,jdbcType=DECIMAL},
+      </if>
+      <if test="ykhqyf != null" >
+        YKHQYF = #{ykhqyf,jdbcType=OTHER},
+      </if>
+      <if test="fkf != null" >
+        FKF = #{fkf,jdbcType=OTHER},
+      </if>
+      <if test="jhzcb != null" >
+        JHZCB = #{jhzcb,jdbcType=DECIMAL},
+      </if>
+      <if test="ml != null" >
+        ML = #{ml,jdbcType=DECIMAL},
+      </if>
+      <if test="mll != null" >
+        MLL = #{mll,jdbcType=DECIMAL},
+      </if>
+      <if test="qyf != null" >
+        QYF = #{qyf,jdbcType=OTHER},
+      </if>
+      <if test="fkf1 != null" >
+        FKF1 = #{fkf1,jdbcType=OTHER},
+      </if>
+      <if test="khtybjdm != null" >
+        KHTYBJDM = #{khtybjdm,jdbcType=OTHER},
+      </if>
+      <if test="tssxjezzb != null" >
+        TSSXJEZZB = #{tssxjezzb,jdbcType=DECIMAL},
+      </if>
+      <if test="khrkdbjfa != null" >
+        KHRKDBJFA = #{khrkdbjfa,jdbcType=OTHER},
+      </if>
+      <if test="fj != null" >
+        FJ = #{fj,jdbcType=OTHER},
+      </if>
+      <if test="mdddm != null" >
+        MDDDM = #{mdddm,jdbcType=OTHER},
+      </if>
+      <if test="czmsdm != null" >
+        CZMSDM = #{czmsdm,jdbcType=OTHER},
+      </if>
+      <if test="xqdh != null" >
+        XQDH = #{xqdh,jdbcType=OTHER},
+      </if>
+      <if test="djlx != null" >
+        DJLX = #{djlx,jdbcType=OTHER},
+      </if>
+      <if test="sfwdprc != null" >
+        SFWDPRC = #{sfwdprc,jdbcType=OTHER},
+      </if>
+      <if test="dsffkdm != null" >
+        DSFFKDM = #{dsffkdm,jdbcType=OTHER},
+      </if>
+      <if test="ylmc != null" >
+        YLMC = #{ylmc,jdbcType=OTHER},
+      </if>
+      <if test="zyxbdid != null" >
+        ZYXBDID = #{zyxbdid,jdbcType=OTHER},
+      </if>
+      <if test="bjztdm != null" >
+        BJZTDM = #{bjztdm,jdbcType=OTHER},
+      </if>
+      <if test="scsp != null" >
+        SCSP = #{scsp,jdbcType=OTHER},
+      </if>
+      <if test="cgsp != null" >
+        CGSP = #{cgsp,jdbcType=OTHER},
+      </if>
+      <if test="cwsp != null" >
+        CWSP = #{cwsp,jdbcType=OTHER},
+      </if>
+      <if test="fgsp != null" >
+        FGSP = #{fgsp,jdbcType=OTHER},
+      </if>
+      <if test="zjlsp != null" >
+        ZJLSP = #{zjlsp,jdbcType=OTHER},
+      </if>
+      <if test="zcsp != null" >
+        ZCSP = #{zcsp,jdbcType=OTHER},
+      </if>
+      <if test="bjdh != null" >
+        BJDH = #{bjdh,jdbcType=OTHER},
+      </if>
+      <if test="sflstd != null" >
+        SFLSTD = #{sflstd,jdbcType=OTHER},
+      </if>
+      <if test="jjzje != null" >
+        JJZJE = #{jjzje,jdbcType=DECIMAL},
+      </if>
+      <if test="bjfwfzje != null" >
+        BJFWFZJE = #{bjfwfzje,jdbcType=DECIMAL},
+      </if>
+      <if test="sjxmgsbmid != null" >
+        SJXMGSBMID = #{sjxmgsbmid,jdbcType=OTHER},
+      </if>
+      <if test="jhzsr != null" >
+        JHZSR = #{jhzsr,jdbcType=DECIMAL},
+      </if>
+      <if test="xmyf != null" >
+        XMYF = #{xmyf,jdbcType=DECIMAL},
+      </if>
+      <if test="fwfamc != null" >
+        FWFAMC = #{fwfamc,jdbcType=OTHER},
+      </if>
+      <if test="xmzyf != null" >
+        XMZYF = #{xmzyf,jdbcType=DECIMAL},
+      </if>
+      <if test="xmzsr != null" >
+        XMZSR = #{xmzsr,jdbcType=DECIMAL},
+      </if>
+      <if test="dlzje != null" >
+        DLZJE = #{dlzje,jdbcType=DECIMAL},
+      </if>
+      <if test="fwfzje != null" >
+        FWFZJE = #{fwfzje,jdbcType=DECIMAL},
+      </if>
+      <if test="sfxscfj != null" >
+        SFXSCFJ = #{sfxscfj,jdbcType=OTHER},
+      </if>
+      <if test="scsp1 != null" >
+        SCSP1 = #{scsp1,jdbcType=OTHER},
+      </if>
+      <if test="cgsp1 != null" >
+        CGSP1 = #{cgsp1,jdbcType=OTHER},
+      </if>
+      <if test="cwsp1 != null" >
+        CWSP1 = #{cwsp1,jdbcType=OTHER},
+      </if>
+      <if test="fgsp1 != null" >
+        FGSP1 = #{fgsp1,jdbcType=OTHER},
+      </if>
+      <if test="zjlsp1 != null" >
+        ZJLSP1 = #{zjlsp1,jdbcType=OTHER},
+      </if>
+      <if test="zcsp1 != null" >
+        ZCSP1 = #{zcsp1,jdbcType=OTHER},
+      </if>
+      <if test="jxs != null" >
+        JXS = #{jxs,jdbcType=DECIMAL},
+      </if>
+      <if test="xxs != null" >
+        XXS = #{xxs,jdbcType=DECIMAL},
+      </if>
+      <if test="yjzzs != null" >
+        YJZZS = #{yjzzs,jdbcType=DECIMAL},
+      </if>
+      <if test="ysfj != null" >
+        YSFJ = #{ysfj,jdbcType=OTHER},
+      </if>
+      <if test="bjfj != null" >
+        BJFJ = #{bjfj,jdbcType=OTHER},
+      </if>
+      <if test="tssxzje != null" >
+        TSSXZJE = #{tssxzje,jdbcType=DECIMAL},
+      </if>
+      <if test="bctssxje != null" >
+        BCTSSXJE = #{bctssxje,jdbcType=DECIMAL},
+      </if>
+      <if test="xmbh != null" >
+        XMBH = #{xmbh,jdbcType=OTHER},
+      </if>
+      <if test="yjyys != null" >
+        YJYYS = #{yjyys,jdbcType=DECIMAL},
+      </if>
+      <if test="nbswcbl != null" >
+        NBSWCBL = #{nbswcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="rcfj != null" >
+        RCFJ = #{rcfj,jdbcType=OTHER},
+      </if>
+      <if test="sfgz != null" >
+        SFGZ = #{sfgz,jdbcType=DECIMAL},
+      </if>
+      <if test="fwfafj != null" >
+        FWFAFJ = #{fwfafj,jdbcType=OTHER},
+      </if>
+      <if test="ystzje != null" >
+        YSTZJE = #{ystzje,jdbcType=DECIMAL},
+      </if>
+      <if test="yftzje != null" >
+        YFTZJE = #{yftzje,jdbcType=DECIMAL},
+      </if>
+      <if test="mltzje != null" >
+        MLTZJE = #{mltzje,jdbcType=DECIMAL},
+      </if>
+      <if test="gzrq != null" >
+        GZRQ = #{gzrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gzrzh != null" >
+        GZRZH = #{gzrzh,jdbcType=OTHER},
+      </if>
+      <if test="gzr != null" >
+        GZR = #{gzr,jdbcType=OTHER},
+      </if>
+      <if test="pzbh != null" >
+        PZBH = #{pzbh,jdbcType=OTHER},
+      </if>
+      <if test="pzbindid != null" >
+        PZBINDID = #{pzbindid,jdbcType=OTHER},
+      </if>
+      <if test="faly != null" >
+        FALY = #{faly,jdbcType=OTHER},
+      </if>
+      <if test="lcjssj != null" >
+        LCJSSJ = #{lcjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tssxspdh != null" >
+        TSSXSPDH = #{tssxspdh,jdbcType=OTHER},
+      </if>
+      <if test="gysfzrzh != null" >
+        GYSFZRZH = #{gysfzrzh,jdbcType=OTHER},
+      </if>
+      <if test="lxkdjje != null" >
+        LXKDJJE = #{lxkdjje,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bravolinks.erp.crm.server.model.tssx.BO_PRM_PTT_CSC_P" >
+    update PSPBPM1330313.BO_PRM_PTT_CSC_P
+    set ORGNO = #{orgno,jdbcType=OTHER},
+      BINDID = #{bindid,jdbcType=DECIMAL},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATEUSER = #{createuser,jdbcType=OTHER},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      UPDATEUSER = #{updateuser,jdbcType=OTHER},
+      WORKFLOWID = #{workflowid,jdbcType=DECIMAL},
+      WORKFLOWSTEPID = #{workflowstepid,jdbcType=DECIMAL},
+      ISEND = #{isend,jdbcType=DECIMAL},
+      GSID = #{gsid,jdbcType=OTHER},
+      GSDM = #{gsdm,jdbcType=OTHER},
+      GSMC = #{gsmc,jdbcType=OTHER},
+      SSSYB = #{sssyb,jdbcType=OTHER},
+      BMID = #{bmid,jdbcType=OTHER},
+      BMQLJID = #{bmqljid,jdbcType=OTHER},
+      BMMC = #{bmmc,jdbcType=OTHER},
+      ZDRZH = #{zdrzh,jdbcType=OTHER},
+      ZDR = #{zdr,jdbcType=OTHER},
+      ZDRQ = #{zdrq,jdbcType=TIMESTAMP},
+      EMAIL = #{email,jdbcType=OTHER},
+      LXSJ = #{lxsj,jdbcType=OTHER},
+      LXZJ = #{lxzj,jdbcType=OTHER},
+      FWFABH = #{fwfabh,jdbcType=OTHER},
+      BJRQ = #{bjrq,jdbcType=TIMESTAMP},
+      BJYXQ = #{bjyxq,jdbcType=OTHER},
+      FATGF = #{fatgf,jdbcType=OTHER},
+      FATGR = #{fatgr,jdbcType=OTHER},
+      DH = #{dh,jdbcType=OTHER},
+      FABH = #{fabh,jdbcType=OTHER},
+      KHBH = #{khbh,jdbcType=OTHER},
+      KHMC = #{khmc,jdbcType=OTHER},
+      FWFSQFSDM = #{fwfsqfsdm,jdbcType=OTHER},
+      FWFEFL = #{fwfefl,jdbcType=DECIMAL},
+      FWF = #{fwf,jdbcType=DECIMAL},
+      SZDM = #{szdm,jdbcType=OTHER},
+      SWCBL = #{swcbl,jdbcType=DECIMAL},
+      SWCBE = #{swcbe,jdbcType=DECIMAL},
+      HJ = #{hj,jdbcType=DECIMAL},
+      YHJE = #{yhje,jdbcType=DECIMAL},
+      BJJE = #{bjje,jdbcType=DECIMAL},
+      JD = #{jd,jdbcType=OTHER},
+      SJXMBH = #{sjxmbh,jdbcType=OTHER},
+      SJXMMC = #{sjxmmc,jdbcType=OTHER},
+      FWLBDM = #{fwlbdm,jdbcType=OTHER},
+      FWNRDM = #{fwnrdm,jdbcType=OTHER},
+      XMKSRQ = #{xmksrq,jdbcType=TIMESTAMP},
+      XMJSRQ = #{xmjsrq,jdbcType=TIMESTAMP},
+      MDD = #{mdd,jdbcType=OTHER},
+      KRRS = #{krrs,jdbcType=DECIMAL},
+      ZQLGZRYRS = #{zqlgzryrs,jdbcType=DECIMAL},
+      ZYXDM = #{zyxdm,jdbcType=OTHER},
+      SFBCDM = #{sfbcdm,jdbcType=OTHER},
+      SFBC1DM = #{sfbc1dm,jdbcType=OTHER},
+      YSDH = #{ysdh,jdbcType=OTHER},
+      YSZDRQ = #{yszdrq,jdbcType=TIMESTAMP},
+      YSZDRZH = #{yszdrzh,jdbcType=OTHER},
+      YSZDR = #{yszdr,jdbcType=OTHER},
+      FJSF = #{fjsf,jdbcType=DECIMAL},
+      YKHQYF = #{ykhqyf,jdbcType=OTHER},
+      FKF = #{fkf,jdbcType=OTHER},
+      JHZCB = #{jhzcb,jdbcType=DECIMAL},
+      ML = #{ml,jdbcType=DECIMAL},
+      MLL = #{mll,jdbcType=DECIMAL},
+      QYF = #{qyf,jdbcType=OTHER},
+      FKF1 = #{fkf1,jdbcType=OTHER},
+      KHTYBJDM = #{khtybjdm,jdbcType=OTHER},
+      TSSXJEZZB = #{tssxjezzb,jdbcType=DECIMAL},
+      KHRKDBJFA = #{khrkdbjfa,jdbcType=OTHER},
+      FJ = #{fj,jdbcType=OTHER},
+      MDDDM = #{mdddm,jdbcType=OTHER},
+      CZMSDM = #{czmsdm,jdbcType=OTHER},
+      XQDH = #{xqdh,jdbcType=OTHER},
+      DJLX = #{djlx,jdbcType=OTHER},
+      SFWDPRC = #{sfwdprc,jdbcType=OTHER},
+      DSFFKDM = #{dsffkdm,jdbcType=OTHER},
+      YLMC = #{ylmc,jdbcType=OTHER},
+      ZYXBDID = #{zyxbdid,jdbcType=OTHER},
+      BJZTDM = #{bjztdm,jdbcType=OTHER},
+      SCSP = #{scsp,jdbcType=OTHER},
+      CGSP = #{cgsp,jdbcType=OTHER},
+      CWSP = #{cwsp,jdbcType=OTHER},
+      FGSP = #{fgsp,jdbcType=OTHER},
+      ZJLSP = #{zjlsp,jdbcType=OTHER},
+      ZCSP = #{zcsp,jdbcType=OTHER},
+      BJDH = #{bjdh,jdbcType=OTHER},
+      SFLSTD = #{sflstd,jdbcType=OTHER},
+      JJZJE = #{jjzje,jdbcType=DECIMAL},
+      BJFWFZJE = #{bjfwfzje,jdbcType=DECIMAL},
+      SJXMGSBMID = #{sjxmgsbmid,jdbcType=OTHER},
+      JHZSR = #{jhzsr,jdbcType=DECIMAL},
+      XMYF = #{xmyf,jdbcType=DECIMAL},
+      FWFAMC = #{fwfamc,jdbcType=OTHER},
+      XMZYF = #{xmzyf,jdbcType=DECIMAL},
+      XMZSR = #{xmzsr,jdbcType=DECIMAL},
+      DLZJE = #{dlzje,jdbcType=DECIMAL},
+      FWFZJE = #{fwfzje,jdbcType=DECIMAL},
+      SFXSCFJ = #{sfxscfj,jdbcType=OTHER},
+      SCSP1 = #{scsp1,jdbcType=OTHER},
+      CGSP1 = #{cgsp1,jdbcType=OTHER},
+      CWSP1 = #{cwsp1,jdbcType=OTHER},
+      FGSP1 = #{fgsp1,jdbcType=OTHER},
+      ZJLSP1 = #{zjlsp1,jdbcType=OTHER},
+      ZCSP1 = #{zcsp1,jdbcType=OTHER},
+      JXS = #{jxs,jdbcType=DECIMAL},
+      XXS = #{xxs,jdbcType=DECIMAL},
+      YJZZS = #{yjzzs,jdbcType=DECIMAL},
+      YSFJ = #{ysfj,jdbcType=OTHER},
+      BJFJ = #{bjfj,jdbcType=OTHER},
+      TSSXZJE = #{tssxzje,jdbcType=DECIMAL},
+      BCTSSXJE = #{bctssxje,jdbcType=DECIMAL},
+      XMBH = #{xmbh,jdbcType=OTHER},
+      YJYYS = #{yjyys,jdbcType=DECIMAL},
+      NBSWCBL = #{nbswcbl,jdbcType=DECIMAL},
+      RCFJ = #{rcfj,jdbcType=OTHER},
+      SFGZ = #{sfgz,jdbcType=DECIMAL},
+      FWFAFJ = #{fwfafj,jdbcType=OTHER},
+      YSTZJE = #{ystzje,jdbcType=DECIMAL},
+      YFTZJE = #{yftzje,jdbcType=DECIMAL},
+      MLTZJE = #{mltzje,jdbcType=DECIMAL},
+      GZRQ = #{gzrq,jdbcType=TIMESTAMP},
+      GZRZH = #{gzrzh,jdbcType=OTHER},
+      GZR = #{gzr,jdbcType=OTHER},
+      PZBH = #{pzbh,jdbcType=OTHER},
+      PZBINDID = #{pzbindid,jdbcType=OTHER},
+      FALY = #{faly,jdbcType=OTHER},
+      LCJSSJ = #{lcjssj,jdbcType=TIMESTAMP},
+      TSSXSPDH = #{tssxspdh,jdbcType=OTHER},
+      GYSFZRZH = #{gysfzrzh,jdbcType=OTHER},
+      LXKDJJE = #{lxkdjje,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+   <!-- 根据bindid 查询所有的客户服务方案主表信息 -->
+   <select id="getKhfwfa" parameterType="String" resultMap="BaseResultMap">
+    SELECT * FROM BO_PRM_PTT_CSC_P WHERE bindid = #{0}
+  </select>
+</mapper>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bravolinks.erp.crm.server.dao.COMMON_BO_CRM_APPRIGHT_Dao">
+  <!-- 根据服务部门获取大客户总监账号 -->
+  <select id="getDKHZJZH" parameterType="String" resultType="String">
+    select dkhzjzh from BO_CRM_CLIENT_SERDPT where khbh=#{0}
+  </select>
+  <select id="isSingleCompany" parameterType="String" resultType="integer">
+    select count(distinct gsdm) count from BO_CRM_CLIENT_SERDPT where khbh=#{0}
+  </select>
+  <select id="getKHSSGS" parameterType="String" resultType="String">
+    select distinct gsdm from BO_CRM_CLIENT_SERDPT where khbh=#{0}
+  </select>
+  <select id="getGSXX" parameterType="String" resultType="map">
+    select dp.id,p.gsmc,p.gsdm from BO_ORG_EXT_DEPT p  inner join (select id,departmentno from orgdepartment union select id,companyno from orgcompany ) dp on p.gsdm=dp.departmentno where departmentid=#{0}
+  </select>
+  <select id="up_APPRIGHT_S" parameterType="map">
+    update BO_CRM_APPRIGHT_S set gsdm=#{0},gsmc=#{1} where bindid=#{2} and bmid=#{3}
+  </select>
+  <select id="countFwbmSql" parameterType="String" resultType="integer">
+    select count(*) as fwbmcount from bo_crm_client_serdpt where khbh =#{0}
+  </select>
+  <select id="countDkhzjSql" parameterType="String" resultType="integer">
+    select count(dkhzjxm) as dkhzjcount from bo_crm_client_serdpt where khbh =#{0}
+  </select>
+  <select id="distinctdkhzjcount" parameterType="String" resultType="integer">
+    select count(distinct dkhzjxm) as distinctdkhzjcount from bo_crm_client_serdpt where khbh =#{0}
+  </select>
+  
+  <!-- 查询ERP所有人员信息 getAllOrgUser -->
+  <select id="getAllOrgUser" resultType="cn.bravolinks.erp.crm.server.model.User" >
+     select u.userid,
+       u.username name,
+       u.position_name position,
+       u.mobile,
+       u.email,
+       d.departmentname,
+       ((select departmentname
+	          from orgdepartment
+	         where id = d.parentdepartmentid) || '/' || d.departmentname) bmqc
+	  from orguser u
+	 inner join orgdepartment d on u.departmentid = d.id
+	                           and d.companyid = 1
+	                           and u.disenable = 0
+  </select>
+  <!-- 根据部门id查询部门下的人员 getUsersByID -->
+  <select id="getUsersByID" parameterType="int" resultType="cn.bravolinks.erp.crm.server.model.User" >
+     select userid, username name, position_name position, mobile, email
+	  from orguser
+	 where departmentid = #{id}
+	   and disenable = 0
+  </select>
+  
+  <!-- 根据部门id查询子部门getDeptsByID -->
+  <select id="getDeptsByID" parameterType="int" resultType="cn.bravolinks.erp.crm.server.model.Dept" >
+     select id, departmentname as name, parentdepartmentid as parentid
+	  from orgdepartment
+	 where companyid = 1 and parentdepartmentid = #{id}
+  </select>
+  
+  <!-- 查询ERP组织架构部门根部门getRootDept -->
+  <select id="getRootDept" resultType="cn.bravolinks.erp.crm.server.model.Dept" >
+     select id, departmentname as name, parentdepartmentid as parentid
+	  from orgdepartment
+	 where companyid = 1 and parentdepartmentid = 0
+  </select>
+  <!-- 根据lx，dl，ywmc 获取ERP基础数据表 的待办URL getUrLOfTodoTask -->
+  <select id="getUrLOfTodoTask" parameterType="map" resultType="string" >
+  	 select bz from bo_cyts_baseinfo where dl = #{dl} and lx=#{lx} and ywmc = #{ywmc} and zt='有效'
+  </select>
+
+  <!-- 获取流程的跟踪数据 -->
+  <select id="fetchTracingDatas" parameterType="map" resultType="map">
+      SELECT a.AUDITDESC, b.Username, a.DEPTNAME, a.POSITIONNAME, a.CREATE_DATE, a.ISAGREE, a.OPINION
+      FROM WF_MESSAGEOPINION a, ORGUSER b
+      WHERE a.CREATE_USER = b.USERID AND a.PARENT_ID=to_number(#{bindid}) ORDER BY a.CREATE_DATE asc
+  </select>
+
+  <!-- 获取节点是否勾选了发送短信配置 -->
+  <select id="checkSelectedSendMsg" parameterType="int" resultType="int">
+      select count(1) flow_id from sysflowstep where ISSHORTMESSAGE=1 and id in(select wfsid from wf_task where id =#{0})
+  </select>
+</mapper>
