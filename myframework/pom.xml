@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.12</version>
+			<version>1.2.83</version>
 		</dependency>
 		<dependency>
 			<groupId>cn.bravolinks.framework.pangu</groupId>
@@ -59,7 +59,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.12</version>
+			<version>1.2.83</version>
 		</dependency>
 		<!--默认情况下，启用一个内嵌的Apache Tomcat 7实例。 我们使用了我们定义的版本重写了这一点。 如果你需要部署War包在其他独立版本的Tomcat服务器上也可以标明-->
 		<dependency>
